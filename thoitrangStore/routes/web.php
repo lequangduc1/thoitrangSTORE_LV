@@ -25,6 +25,10 @@ Route::name('admin.')->prefix('/admin')->group(function () {
     });
 
     Route::middleware('admin.auth')->group(function(){
+        Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+    });
+
+    Route::middleware('admin.auth')->group(function(){
         foreach (File::allFiles(__DIR__ . '/admin') as $route_file) {
             require $route_file->getPathname();
         }

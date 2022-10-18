@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{asset('system/admin/plugins/bower_components/chartist/dist/chartist.min.css')}}">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{asset('system/admin/css/style.min.css')}}">
+    <link rel="stylesheet" href="{{asset('system/admin/css/mystyle.css')}}">
 
 </head>
 <body>
