@@ -1,22 +1,34 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\File;
+use App\Http\Controllers\login\loginController;
 
 
 /**
- *  gọi tất cả route trong thư mục admin (routes/admin)
+ *  g?i t?t c? route trong thu muc home (routes/admin)
  **/
-Route::name('home.')->prefix('/')->group(function () {
-    foreach (File::allFiles(__DIR__ . '/home') as $route_file) {
+Route::name('home.')->prefix('/home')->group(function () {
+
+    foreach (File::allFiles(__DIR__ . '\home') as $route_file) {
         require $route_file->getPathname();
     }
+
 });
 /**
- *  gọi tất cả route trong thư mục home (routes/home)
+ *  g?i t?t c? route trong thu muc admin (routes/home)
  **/
-Route::name('admin.')->prefix('/')->group(function () {
-    foreach (File::allFiles(__DIR__ . '/admin') as $route_file) {
-        require $route_file->getPathname();
-    }
+Route::name('admin.')->prefix('/admin')->group(function () {
+
+    Route::middleware('admin.not.auth')->group(function(){
+        Route::get('/login',[LoginController::class, 'form_login'])->name('login');
+        Route::post('/login',[LoginController::class, 'login'])->name('login');
+    });
+
+    Route::middleware('admin.auth')->group(function(){
+        foreach (File::allFiles(__DIR__ . '/admin') as $route_file) {
+            require $route_file->getPathname();
+        }
+    });
+
+
 });
