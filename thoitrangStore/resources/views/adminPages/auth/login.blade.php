@@ -9,14 +9,15 @@
 </head>
 <body>
 <div id="wrapper">
-    <form action="">
+    <form action="{{route('admin.login')}}" method="POST" >
         <h3>Đăng nhập</h3>
+        @csrf
         <div class="form-group">
-            <input type="text" name="email" required  value="admin@gmail.com">
+            <input type="text" name="email" autocomplete="off" required >
             <label for="">Email</label>
         </div>
         <div class="form-group">
-            <input type="password" name="password" required value="123456">
+            <input type="password" name="password" autocomplete="new-password" required >
             <label for="">Mật khẩu</label>
         </div>
         <input type="submit" value="Đăng nhập" id="btn-login">

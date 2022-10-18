@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'quantri',
         'passwords' => 'users',
     ],
 
@@ -39,6 +39,12 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+
+
+        'quantri' => [
+            'driver' => 'session',
+            'provider' => 'quantri',
         ],
 
         'api' => [
@@ -71,10 +77,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+         'quantri' => [
+             'driver' => 'eloquent',
+             'model' => \App\Models\QuanTri::class,
+         ],
     ],
 
     /*
