@@ -1,11 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\login\loginController;
+use Illuminate\Support\Facades\File;
 
 
-Route::get('/', function () {
-    return view('welcome');
+/**
+ *  gọi tất cả route trong thư mục admin (routes/admin)
+ **/
+Route::name('home.')->prefix('/')->group(function () {
+    foreach (File::allFiles(__DIR__ . '/home') as $route_file) {
+        require $route_file->getPathname();
+    }
 });
-
-Route::get('/admin/login', [loginController::class, 'getLogin'])->name('login');
+/**
+ *  gọi tất cả route trong thư mục home (routes/home)
+ **/
+Route::name('admin.')->prefix('/')->group(function () {
+    foreach (File::allFiles(__DIR__ . '/admin') as $route_file) {
+        require $route_file->getPathname();
+    }
+});
