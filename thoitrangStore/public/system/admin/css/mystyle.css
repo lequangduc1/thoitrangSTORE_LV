@@ -11,3 +11,16 @@
 .icon-action .fa-trash{
     color: #ff2b2b;
 }
+
+/*Image review */
+
+.image-review{
+    text-align: center;
+    height: 120px;
+}
+
+.image-review img {
+    height: 120px;
+}
+
+/*End image review*/
