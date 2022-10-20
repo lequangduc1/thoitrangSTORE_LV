@@ -28,22 +28,22 @@
                             <thead>
                             <tr>
                                 <th class="border-top-0">#</th>
-                                <th class="border-top-0">Tên khuyến mãi</th>
-                                <th class="border-top-0">Mã khuyến mãi</th>
-                                <th class="border-top-0">Phần trăm</th>
-                                <th class="border-top-0">Số Lượng</th>
-                                <th class="border-top-0">Còn lại</th>
-                                <th class="border-top-0">Ngày bắt đầu</th>
-                                <th class="border-top-0">Ngày kết thúc</th>
-                                <th class="border-top-0">Trạng thái</th>
-                                <th class="border-top-0">Thao tác</th>
+                                <th class="border-top-0"><b>Tên khuyến mãi</b></th>
+                                <th class="border-top-0"><b>Mã khuyến mãi</b></th>
+                                <th class="border-top-0"><b>Phần trăm</b></th>
+                                <th class="border-top-0"><b>Số Lượng</b></th>
+                                <th class="border-top-0"><b>Còn lại</b></th>
+                                <th class="border-top-0"><b>Ngày bắt đầu</b></th>
+                                <th class="border-top-0"><b>Ngày kết thúc</b></th>
+                                <th class="border-top-0"><b>Trạng thái</b></th>
+                                <th class="border-top-0"><b>Thao tác</b></th>
                             </tr>
                             </thead>
                             <tbody>
                             @if(!is_array($allPromotions))
                                 @foreach($allPromotions as $key => $value)
                                     <tr>
-                                        <td>{{$key+1}}</td>
+                                        <td><b>{{$key+1}}</b></td>
                                         <td>{{$value->ten_km}}</td>
                                         <td>{{$value->ma_km}}</td>
                                         <td>{{$value->phantramgiam}}</td>
