@@ -11,7 +11,6 @@ $(function() {
         $(".app-search").toggle(200);
         $(".app-search input").focus();
     });
-
     // ==============================================================
     // Resize all elements
     // ==============================================================
@@ -31,7 +30,6 @@ $(function() {
     };
     $(window).ready(setsidebartype);
     $(window).on("resize", setsidebartype);
-
 });
 
 
@@ -45,3 +43,4 @@ function handleReviewImage(data, id){
         reader.readAsDataURL(file);
     }
 }
+
