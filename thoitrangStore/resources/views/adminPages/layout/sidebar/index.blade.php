@@ -15,8 +15,15 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.account.index')}}"
                        aria-expanded="false">
-                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <i class="fas fa-users" aria-hidden="true"></i>
                         <span class="hide-menu">Danh sách tài khoản</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.information.index')}}"
+                       aria-expanded="false">
+                        <i class="fas fa-cogs" aria-hidden="true"></i>
+                        <span class="hide-menu">Thông tin wesbite</span>
                     </a>
                 </li>
             </ul>

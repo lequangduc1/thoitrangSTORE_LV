@@ -14,14 +14,14 @@ class CreateThongtinshopTable extends Migration
     public function up()
     {
         Schema::create('thongtinshop', function (Blueprint $table) {
-            $table->id();
-            $table->integer('quantriid');
-            $table->string('tenshop');
-            $table->string('anhlogo');
-            $table->string('sodienthoai');
-            $table->string('diachishop');
-            $table->string('emailshop');
-            $table->longText('iframe');
+            $table->integer('id')->autoIncrement();
+            $table->string('ten_shop');
+            $table->string('logo')->nullable();
+            $table->string('favicon')->nullable();
+            $table->string('dien_thoai');
+            $table->string('dia_chi');
+            $table->string('email');
+            $table->longText('iframe')->default('iframe');
             $table->timestamps();
         });
     }
