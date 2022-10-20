@@ -1,4 +1,5 @@
 @extends('adminPages.index')
+@section('title', 'Tổng quan')
 @section('content')
     <div class="container-fluid">
         <div class="row justify-content-center">
