@@ -15,16 +15,16 @@ class CreateKhuyenmaiTable extends Migration
     {
         Schema::create('khuyenmai', function (Blueprint $table) {
             $table->id();
-            $table->integer('quantriid');
             $table->string('ten_km');
             $table->string('ma_km');
-            $table->integer('soluonggiam');
-            $table->integer('solan_dadung');
-            $table->integer('giagiam_km');
+            $table->integer('phantramgiam');
+            $table->integer('soluong');
+            $table->integer('conlai');
             $table->date('ngaybatdau_km');
             $table->date('ngayketthuc_km');
-            $table->integer('hinhthuc_km');
-            $table->integer('trangthai_km');
+            $table->integer('trangthai');
+            $table->string('create_by');
+            $table->string('update_by');
             $table->timestamps();
         });
     }

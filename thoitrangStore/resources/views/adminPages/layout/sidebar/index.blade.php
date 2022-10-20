@@ -20,12 +20,20 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.promotion.index')}}"
+                       aria-expanded="false">
+                        <i class="fas fa-address-card" aria-hidden="true"></i>
+                        <span class="hide-menu">Quản lí khuyến mãi</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.information.index')}}"
                        aria-expanded="false">
                         <i class="fas fa-cogs" aria-hidden="true"></i>
                         <span class="hide-menu">Thông tin wesbite</span>
                     </a>
                 </li>
+
             </ul>
 
         </nav>
