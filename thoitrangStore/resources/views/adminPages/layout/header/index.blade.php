@@ -52,7 +52,7 @@
                 <!-- ============================================================== -->
                 <li>
                     <a class="profile-pic" href="#">
-                        <img src="{{asset('system/admin/plugins/images/users/varun.jpg')}}" alt="user-img" width="36"
+                        <img src="{{asset('uploads/user_default.png')}}" alt="user-img" width="36"
                              class="img-circle"><span class="text-white font-medium">{{\Illuminate\Support\Facades\Auth::user()->ten}}</span></a>
                 </li>
                 <!-- ============================================================== -->
