@@ -6,7 +6,7 @@
             <ul id="sidebarnav">
                 <!-- User Profile-->
                 <li class="sidebar-item pt-2">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.dashboard.index')}}"
                        aria-expanded="false">
                         <i class="far fa-clock" aria-hidden="true"></i>
                         <span class="hide-menu">Dashboard</span>
@@ -33,7 +33,13 @@
                         <span class="hide-menu">Thông tin wesbite</span>
                     </a>
                 </li>
-
+                <li class="text-center p-20 upgrade-btn" style="padding: 20px">
+                    <a href="{{route('admin.logout')}}"
+                       class="btn d-grid btn-danger text-white"
+                       >
+                        Đăng xuất
+                    </a>
+                </li>
             </ul>
 
         </nav>
