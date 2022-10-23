@@ -21,7 +21,7 @@ class InfomationSeeder extends Seeder
         DB::table('thongtinshop')->insert([
             'ten_shop'=>"Shop Thoi Trang",
             'logo'=>"/uploads/logo_default.png",
-            'favicon'=>"/uploads/favicon_default.png",
+            'favicon'=>"/uploads/logo_default.png",
             'dien_thoai'=>"038756952",
             'dia_chi'=>"Address",
             'email'=>"admin@gmail.com",

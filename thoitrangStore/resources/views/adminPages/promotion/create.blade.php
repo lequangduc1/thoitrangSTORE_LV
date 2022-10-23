@@ -16,41 +16,41 @@
                         @csrf
 
                         <div class="form-group mb-4">
-                            <label class="col-md-12 p-0">Tên khuyến mãi</label>
+                            <label class="col-md-12 p-0">Tên khuyến mãi<span style="color: red"> *</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="text" class="form-control p-0 border-0" name="ten_km" required></div>
                         </div>
 
                         <div class="form-group mb-4">
-                            <label for="example-email" class="col-md-12 p-0">Mã khuyến mãi</label>
+                            <label for="example-email" class="col-md-12 p-0">Mã khuyến mãi<span style="color: red"> *</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="text" class="form-control p-0 border-0" name="ma_km" required>
                             </div>
                         </div>
 
                         <div class="form-group mb-4">
-                            <label class="col-md-12 p-0">Phần trăm giảm</label>
+                            <label class="col-md-12 p-0">Phần trăm giảm<span style="color: red"> *</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="text" name="phantramgiam" class="form-control p-0 border-0" required>
                             </div>
                         </div>
 
                         <div class="form-group mb-4">
-                            <label class="col-md-12 p-0">số lượng</label>
+                            <label class="col-md-12 p-0">số lượng<span style="color: red"> *</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="text" name="soluong" class="form-control p-0 border-0" required>
                             </div>
                         </div>
 
                         <div class="form-group mb-4">
-                            <label class="col-md-12 p-0">Ngày bắt đầu</label>
+                            <label class="col-md-12 p-0">Ngày bắt đầu<span style="color: red"> *</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="date" name="ngaybatdau_km" class="form-control p-0 border-0" required>
                             </div>
                         </div>
 
                         <div class="form-group mb-4">
-                            <label class="col-md-12 p-0">Ngày kết thúc</label>
+                            <label class="col-md-12 p-0">Ngày kết thúc<span style="color: red"> *</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="date" name="ngayketthuc_km" class="form-control p-0 border-0" required>
                             </div>
@@ -64,7 +64,7 @@
 {{--                        </div>--}}
 
                         <div class="form-group mb-4">
-                            <label class="col-sm-12">Trạng thái</label>
+                            <label class="col-sm-12">Trạng thái<span style="color: red"> *</span></label>
                             <div class="col-sm-12 border-bottom">
                                 <select name="trangthai" class="form-select shadow-none p-0 border-0 form-control-line">
                                     <option value="1">Hiện</option>

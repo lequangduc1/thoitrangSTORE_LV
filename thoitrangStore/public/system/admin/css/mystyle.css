@@ -24,3 +24,22 @@
 }
 
 /*End image review*/
+
+
+/* validate css */
+
+.input__required{
+    margin: 0px 5px;
+    color: #ff2727;
+}
+
+/* End validate css*/
+
+
+/* sidebar active*/
+
+.active {
+    background-color: rgba(0,0,0,0.07) !important;
+}
+
+/* end sidebar active*/

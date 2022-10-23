@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\QuanTri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use \Yoeunes\Toastr\Facades\Toastr;
 
 class AccountController extends Controller
@@ -34,11 +35,21 @@ class AccountController extends Controller
 
     public function store(Request $request){
 
+        $request->validate([
+            'ten'=>'required|max:255',
+            'email'=>'required|max:255|email',
+            'password'=>Rule::requiredIf(!isset($request->id)),
+            'phone'=>'required|regex:/(01)[0-9]{9}/'
+        ],
+        [
+            'phone.regex'=>'Phone field must is type number phone'
+        ]
+        );
+
+
+
         try{
             $data = $request->input();
-
-
-
             if(isset($data['id'])){
                 $account = QuanTri::where('email', $data['email'])->where('id','<>',$data['id'])->first();
             }else{

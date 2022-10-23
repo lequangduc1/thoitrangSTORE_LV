@@ -4,7 +4,7 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="dashboard.html">
+            <a class="navbar-brand" href="{{route('admin.dashboard.index')}}">
                 <!-- Logo icon -->
                 <b class="logo-icon">
                     <!-- Dark Logo icon -->
@@ -52,8 +52,8 @@
                 <!-- ============================================================== -->
                 <li>
                     <a class="profile-pic" href="#">
-                        <img src="{{asset('system/admin/plugins/images/users/varun.jpg')}}" alt="user-img" width="36"
-                             class="img-circle"><span class="text-white font-medium">Steave</span></a>
+                        <img src="{{asset('uploads/user_default.png')}}" alt="user-img" width="36"
+                             class="img-circle"><span class="text-white font-medium">{{\Illuminate\Support\Facades\Auth::user()->ten}}</span></a>
                 </li>
                 <!-- ============================================================== -->
                 <!-- User profile and search -->

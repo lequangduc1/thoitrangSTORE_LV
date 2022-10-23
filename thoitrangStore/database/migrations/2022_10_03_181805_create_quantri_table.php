@@ -19,7 +19,7 @@ class CreateQuantriTable extends Migration
             $table->string('password');
             $table->string('email');
             $table->string('phone');
-            $table->string('diachi');
+            $table->string('diachi')->nullable();
             $table->string('quyen');
             $table->integer('trangthai');
             $table->timestamps();
