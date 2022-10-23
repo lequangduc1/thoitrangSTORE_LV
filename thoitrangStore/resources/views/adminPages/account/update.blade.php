@@ -1,4 +1,5 @@
 @extends('adminPages.index')
+@section('title', 'Cập nhật tài khoản')
 @section('content')
     <div class="page-breadcrumb bg-white">
         <div class="row align-items-center">
@@ -11,12 +12,19 @@
     <div class="container-fluid">
         <div class="row">
             <div class="card">
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        @php
+                            \Yoeunes\Toastr\Facades\Toastr::error($error);
+                        @endphp
+                    @endforeach
+                @endif
                 <div class="card-body">
                     <form class="form-horizontal form-material" action="{{route('admin.account.store')}}" method="POST">
                         @csrf
                         <input type="hidden" value="{{$account->id}}" name="id"/>
                         <div class="form-group mb-4">
-                            <label class="col-md-12 p-0">Họ và tên</label>
+                            <label class="col-md-12 p-0">Họ và tên <span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="text"
                                        class="form-control p-0 border-0"
@@ -25,7 +33,7 @@
                                        required> </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="example-email" class="col-md-12 p-0">Email</label>
+                            <label for="example-email" class="col-md-12 p-0">Email<span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="email"
                                        class="form-control p-0 border-0"
@@ -44,7 +52,7 @@
 {{--                            </div>--}}
 {{--                        </div>--}}
                         <div class="form-group mb-4">
-                            <label class="col-md-12 p-0">Số điện thoại</label>
+                            <label class="col-md-12 p-0">Số điện thoại<span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="text"
                                        name="phone"
