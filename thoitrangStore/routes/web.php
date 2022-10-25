@@ -2,13 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\login\loginController;
+use App\Http\Controllers\HomePages\HomeController;
 
 
 /**
  *  g?i t?t c? route trong thu muc home (routes/admin)
  **/
-Route::name('home.')->prefix('/home')->group(function () {
-
+Route::name('home.')->prefix('/')->group(function () {
+    Route::get('/',[HomeController::class, 'home'])->name('home');
     foreach (File::allFiles(__DIR__ . '\home') as $route_file) {
         require $route_file->getPathname();
     }
