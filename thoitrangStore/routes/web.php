@@ -30,6 +30,7 @@ Route::name('admin.')->prefix('/admin')->group(function () {
     });
 
     Route::middleware('admin.auth')->group(function(){
+        Route::get('', [\App\Http\Controllers\Admin\DashboardController::class, 'index']);
         foreach (File::allFiles(__DIR__ . '/admin') as $route_file) {
             require $route_file->getPathname();
         }

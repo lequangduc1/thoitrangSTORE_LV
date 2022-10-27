@@ -46,6 +46,10 @@ return [
             'driver' => 'session',
             'provider' => 'quantri',
         ],
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customer',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -81,6 +85,10 @@ return [
              'driver' => 'eloquent',
              'model' => \App\Models\QuanTri::class,
          ],
+        'customer' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\Customer::class,
+        ],
     ],
 
     /*

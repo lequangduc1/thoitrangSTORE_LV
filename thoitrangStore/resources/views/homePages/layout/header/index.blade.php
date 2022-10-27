@@ -5,8 +5,8 @@
             <div class="d-inline-flex align-items-center">
                 <i class="bi bi-geo-alt fs-1 text-primary me-3"></i>
                 <div class="text-start">
-                    <h6 class="text-uppercase mb-1">Our Office</h6>
-                    <span>123 Street, New York, USA</span>
+                    <h6 class="text-uppercase mb-1">Địa chỉ</h6>
+                    <span>{{getInformation('dia_chi')}}</span>
                 </div>
             </div>
         </div>
@@ -14,8 +14,8 @@
             <div class="d-inline-flex align-items-center">
                 <i class="bi bi-envelope-open fs-1 text-primary me-3"></i>
                 <div class="text-start">
-                    <h6 class="text-uppercase mb-1">Email Us</h6>
-                    <span>info@example.com</span>
+                    <h6 class="text-uppercase mb-1">Email</h6>
+                    <span>{{ getInformation('email')  }}</span>
                 </div>
             </div>
         </div>
@@ -23,8 +23,8 @@
             <div class="d-inline-flex align-items-center">
                 <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
                 <div class="text-start">
-                    <h6 class="text-uppercase mb-1">Call Us</h6>
-                    <span>+012 345 6789</span>
+                    <h6 class="text-uppercase mb-1">Số điện thoại</h6>
+                    <span>{{ getInformation('dien_thoai')}}</span>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0">
     <a href="index.html" class="navbar-brand ms-lg-5">
-        <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>Pet Shop</h1>
+        <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>{{getInformation('ten_shop')}}</h1>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
