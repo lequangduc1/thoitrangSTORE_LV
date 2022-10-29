@@ -39,6 +39,12 @@ class PromotionController extends Controller
         }
     }
 
+    // ham create - update
+
+    /**
+     *   public function postCreate($checkForm null ){}
+     *   public function postUpdate($checkForm co du lieu){}
+     **/
     public function store(Request $request){
         try{
             $checkForm = $request->id;
@@ -61,7 +67,7 @@ class PromotionController extends Controller
                 $data = $request->input();
                 $data['update_by'] = "duclq@gmail.com";
                 $data['updated_at'] = $date;
-                $promotion = khuyenmai::find($checkForm);
+                $promotion = khuyenmai::find($checkForm); //UPDATE
                 $promotion->fill($data);
                 $promotion->save();
             }else{
@@ -70,7 +76,7 @@ class PromotionController extends Controller
                 $data['conlai'] = $request->soluong;
                 $data['created_at'] = $date;
                 $data['updated_at'] = null;
-                $promotion = new khuyenmai();
+                $promotion = new khuyenmai(); //INSERT
                 $promotion->fill($data);
                 $promotion->save();
             }

@@ -30,6 +30,7 @@ class CustomersController extends Controller
         }
     }
 
+    //ham update
     public function store(Request $request){
         try{
             $checkForm = $request->id;
@@ -38,6 +39,8 @@ class CustomersController extends Controller
                 $data = $request->input();
                 $data['updated_at'] = $date;
                 $promotion = khachhang::find($checkForm);
+//                $promotion->hovaten = $data->hovaten;
+//                $promotion->email = $data->email;
                 $promotion->fill($data);
                 $promotion->save();
             }
