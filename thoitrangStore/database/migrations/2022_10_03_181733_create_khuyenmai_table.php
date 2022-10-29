@@ -23,8 +23,8 @@ class CreateKhuyenmaiTable extends Migration
             $table->date('ngaybatdau_km');
             $table->date('ngayketthuc_km');
             $table->integer('trangthai');
-            $table->string('create_by');
-            $table->string('update_by');
+            $table->string('create_by')->nullable();
+            $table->string('update_by')->nullable();
             $table->timestamps();
         });
     }

@@ -25,6 +25,16 @@ class CustomerSeeder extends Seeder
             'diachi'=>"HCM",
             'password'=>Hash::make('password'),
             'trangthai'=>1,
+            'created_at'=>date(today()),
+        ]);
+        DB::table('khachhang')->insert([
+            'hovaten'=>"Khach hang 2",
+            'email'=>"customer2@gmail.com",
+            'sodienthoai'=>"0387855869",
+            'diachi'=>"HCM",
+            'password'=>Hash::make('password'),
+            'trangthai'=>0,
+            'created_at'=>date(today()),
         ]);
     }
 }

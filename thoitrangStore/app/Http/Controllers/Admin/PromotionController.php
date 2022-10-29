@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Facades\Validator;
 use App\Models\khuyenmai;
 
 use App\Http\Controllers\Controller;
@@ -43,6 +43,20 @@ class PromotionController extends Controller
         try{
             $checkForm = $request->id;
             $date = date(today());
+//            $validator = Validator::make($request->all(), [
+//                'ten_km' => 'required',
+//                'ma_km' => 'required',
+//                'phantramgiam' => 'required|max:2',
+//                'soluong' => 'required',
+//                'conlai' => 'required',
+//                'ngaybatdau_km' => 'required',
+//                'ngayketthuc_km' => 'required',
+//            ]);
+//            dd($validator);
+//            if ($validator->fails()) {
+//                Toastr::error('Lưu thất bại');
+//                return redirect()->route('admin.promotion.index');
+//            }
             if(isset($checkForm)){
                 $data = $request->input();
                 $data['update_by'] = "duclq@gmail.com";

@@ -39,10 +39,10 @@ class AccountController extends Controller
             'ten'=>'required|max:255',
             'email'=>'required|max:255|email',
             'password'=>Rule::requiredIf(!isset($request->id)),
-            'phone'=>'required|regex:/(01)[0-9]{9}/'
+//            'phone'=>'required|regex:/(01)[0-9]{9}/'
         ],
         [
-            'phone.regex'=>'Phone field must is type number phone'
+//            'phone.regex'=>'Phone field must is type number phone'
         ]
         );
 
