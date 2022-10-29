@@ -24,7 +24,7 @@
                         @csrf
                         <input type="hidden" value="{{$account->id}}" name="id"/>
                         <div class="form-group mb-4">
-                            <label class="col-md-12 p-0">Họ và tên <span class="input__required">*</span></label>
+                            <label class="col-md-12 p-0"><b>Họ và tên</b> <span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="text"
                                        class="form-control p-0 border-0"
@@ -33,7 +33,7 @@
                                        required> </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="example-email" class="col-md-12 p-0">Email<span class="input__required">*</span></label>
+                            <label for="example-email" class="col-md-12 p-0"><b>Email</b><span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="email"
                                        class="form-control p-0 border-0"
@@ -41,18 +41,8 @@
                                        name="email" required>
                             </div>
                         </div>
-{{--                        <div class="form-group mb-4">--}}
-{{--                            <label class="col-md-12 p-0">Password</label>--}}
-{{--                            <div class="col-md-12 border-bottom p-0">--}}
-{{--                                <input type="password"--}}
-{{--                                       name="password"--}}
-{{--                                       value="{{$account->password}}"--}}
-{{--                                       class="form-control p-0 border-0"--}}
-{{--                                       required>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                         <div class="form-group mb-4">
-                            <label class="col-md-12 p-0">Số điện thoại<span class="input__required">*</span></label>
+                            <label class="col-md-12 p-0"><b>Số điện thoại</b><span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="text"
                                        name="phone"
@@ -62,13 +52,13 @@
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label class="col-md-12 p-0">Địa chỉ</label>
+                            <label class="col-md-12 p-0"><b>Địa chỉ</b></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <textarea rows="5" class="form-control p-0 border-0" name="diachi" required>{{$account->diachi}}</textarea>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label class="col-sm-12">Trạng thái</label>
+                            <label class="col-sm-12"><b>Trạng thái</b></label>
                             <div class="col-sm-12 border-bottom">
                                 <select name="trangthai" class="form-select shadow-none p-0 border-0 form-control-line">
                                     <option value="1" {{$account->trangthai==1 ? 'selected' : ''}}>Hiện</option>

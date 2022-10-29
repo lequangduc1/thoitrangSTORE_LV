@@ -16,12 +16,11 @@ class CreateKhachhangTable extends Migration
         Schema::create('khachhang', function (Blueprint $table) {
             $table->id();
             $table->string('hovaten');
-            $table->string('enail');
-            $table->string('diachi');
+            $table->string('email');
+            $table->string('diachi')->default('HCM');
             $table->string('sodienthoai');
             $table->string('password');
-            $table->integer('kichhoat');
-            $table->integer('trangthai');
+            $table->integer('trangthai')->default(1);
             $table->timestamps();
         });
     }
