@@ -21,6 +21,10 @@ class AuthController extends Controller
         return view('homePages.auth.register');
     }
 
+    public function logout(){
+        Auth::guard('customer')->logout();
+        return redirect()->back();
+    }
 
     public function login(Request $request){
         $data = $request->input();

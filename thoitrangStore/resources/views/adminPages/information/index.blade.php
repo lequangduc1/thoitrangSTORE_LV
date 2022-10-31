@@ -50,7 +50,7 @@
                             <div class="col-6">
                                 <div class="image-review">
                                     @if(getInformation('favicon'))
-                                        <img id="image__favicon-review" src="{{asset(getInformation('logo'))}}" alt="logo"/>
+                                        <img id="image__favicon-review" src="{{asset(getInformation('favicon'))}}" alt="logo"/>
 
                                     @else
                                         <img id="image__favicon-review" src="{{asset('uploads/logo_default.png')}}" alt="logo"/>
