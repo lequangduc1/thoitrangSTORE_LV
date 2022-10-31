@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Facades\Validator;
 use App\Models\khuyenmai;
 
 use App\Http\Controllers\Controller;
@@ -39,15 +39,35 @@ class PromotionController extends Controller
         }
     }
 
+    // ham create - update
+
+    /**
+     *   public function postCreate($checkForm null ){}
+     *   public function postUpdate($checkForm co du lieu){}
+     **/
     public function store(Request $request){
         try{
             $checkForm = $request->id;
             $date = date(today());
+//            $validator = Validator::make($request->all(), [
+//                'ten_km' => 'required',
+//                'ma_km' => 'required',
+//                'phantramgiam' => 'required|max:2',
+//                'soluong' => 'required',
+//                'conlai' => 'required',
+//                'ngaybatdau_km' => 'required',
+//                'ngayketthuc_km' => 'required',
+//            ]);
+//            dd($validator);
+//            if ($validator->fails()) {
+//                Toastr::error('Lưu thất bại');
+//                return redirect()->route('admin.promotion.index');
+//            }
             if(isset($checkForm)){
                 $data = $request->input();
                 $data['update_by'] = "duclq@gmail.com";
                 $data['updated_at'] = $date;
-                $promotion = khuyenmai::find($checkForm);
+                $promotion = khuyenmai::find($checkForm); //UPDATE
                 $promotion->fill($data);
                 $promotion->save();
             }else{
@@ -56,7 +76,7 @@ class PromotionController extends Controller
                 $data['conlai'] = $request->soluong;
                 $data['created_at'] = $date;
                 $data['updated_at'] = null;
-                $promotion = new khuyenmai();
+                $promotion = new khuyenmai(); //INSERT
                 $promotion->fill($data);
                 $promotion->save();
             }

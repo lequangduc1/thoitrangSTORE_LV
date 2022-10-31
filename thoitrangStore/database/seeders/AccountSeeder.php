@@ -27,5 +27,15 @@ class AccountSeeder extends Seeder
             'trangthai'=>1,
             'quyen'=>1
         ]);
+
+        DB::table('quantri')->insert([
+            'ten'=>"administrators",
+            'email'=>"administrators@gmail.com",
+            'phone'=>"0387855869",
+            'diachi'=>"HCM",
+            'password'=>Hash::make('password'),
+            'trangthai'=>1,
+            'quyen'=>2
+        ]);
     }
 }

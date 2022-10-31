@@ -27,13 +27,13 @@
                         <table class="table text-nowrap">
                             <thead>
                             <tr>
-                                <th class="border-top-0">#</th>
-                                <th class="border-top-0">Họ và Tên</th>
-                                <th class="border-top-0">Email</th>
-                                <th class="border-top-0">Số điện thoại</th>
-                                <th class="border-top-0">Địa chỉ</th>
-                                <th class="border-top-0">Trạng thái</th>
-                                <th class="border-top-0">Thao tác</th>
+                                <th class="border-top-0"><b>#</b></th>
+                                <th class="border-top-0"><b>Họ và Tên</b></th>
+                                <th class="border-top-0"><b>Email</b></th>
+                                <th class="border-top-0"><b>Số điện thoại</b></th>
+                                <th class="border-top-0"><b>Địa chỉ</b></th>
+                                <th class="border-top-0"><b>Trạng thái</b></th>
+                                <th class="border-top-0"><b>Thao tác</b></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -45,9 +45,12 @@
                                     <td>{{$value->phone}}</td>
                                     <td>{{$value->diachi}}</td>
                                     <td>
-                                        <span @class(['status-hide'=>$value->trangthai==0,'status-show'=>$value->trangthai==1])>
-                                            {{$value->trangthai == 1 ? 'Hiện' : 'Ẩn'}}
-                                        </span>
+                                            <span
+                                                @class(['status-hide'=>$value->trangthai==0,'status-show'=>$value->trangthai==1])
+                                                style="background-color:{{$value->trangthai == 1 ? 'chartreuse' : 'red'}}; color: #fff ; border-radius: 5px"
+                                            >
+                                                {{$value->trangthai == 1 ? 'UnLock' : 'Lock'}}
+                                            </span>
                                     </td>
                                     <td>
                                         <a href="{{route('admin.account.update', $value->id)}}"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>
