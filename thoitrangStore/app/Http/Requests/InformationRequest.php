@@ -24,8 +24,8 @@ class InformationRequest extends FormRequest
     public function rules()
     {
         return [
-            'logo' => 'mimetypes:png,jpg,jpeg',
-            'favicon' => 'mimetypes:png,jpg,jpeg'
+            'logo' => 'mimes:jpg,jpeg,png',
+            'favicon' => 'mimes:jpg,jpeg,png'
         ];
     }
 

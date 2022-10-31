@@ -1,81 +1,144 @@
-<div class="container-fluid bg-light mt-5 py-5">
-    <div class="container pt-5">
-        <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
-                <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Get In Touch</h5>
-                <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed
-                    dolor</p>
-                <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>{{getInformation('dia_chi')}}</p>
-                <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>{{getInformation('email')}}</p>
-                <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i>{{getInformation('dien_thoai')}}</p>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Quick Links</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
-                    <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
-                    <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our
-                        Services</a>
-                    <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Meet The Team</a>
-                    <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest
-                        Blog</a>
-                    <a class="text-body" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Popular Links</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
-                    <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
-                    <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our
-                        Services</a>
-                    <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Meet The Team</a>
-                    <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest
-                        Blog</a>
-                    <a class="text-body" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Newsletter</h5>
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control p-3" placeholder="Your Email">
-                        <button class="btn btn-primary">Sign Up</button>
-                    </div>
-                </form>
-                <h6 class="text-uppercase mt-4 mb-3">Follow Us</h6>
-                <div class="d-flex">
-                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
-                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
-                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
-                    <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
-                </div>
-            </div>
-            <div class="col-12 text-center text-body">
-                <a class="text-body" href="">Terms & Conditions</a>
-                <span class="mx-1">|</span>
-                <a class="text-body" href="">Privacy Policy</a>
-                <span class="mx-1">|</span>
-                <a class="text-body" href="">Customer Support</a>
-                <span class="mx-1">|</span>
-                <a class="text-body" href="">Payments</a>
-                <span class="mx-1">|</span>
-                <a class="text-body" href="">Help</a>
-                <span class="mx-1">|</span>
-                <a class="text-body" href="">FAQs</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid bg-dark text-white-50 py-4">
+<!-- BEGIN STEPS -->
+<div class="steps-block steps-block-red">
     <div class="container">
-        <div class="row g-5">
-            <div class="col-md-6 text-center text-md-start">
-                <p class="mb-md-0">&copy; <a class="text-white" href="#">Your Site Name</a>. All Rights Reserved.</p>
+        <div class="row">
+            <div class="col-md-4 steps-block-col">
+                <i class="fa fa-truck"></i>
+                <div>
+                    <h2>Free shipping</h2>
+                    <em>Express delivery withing 3 days</em>
+                </div>
+                <span>&nbsp;</span>
             </div>
-            <div class="col-md-6 text-center text-md-end">
-                <p class="mb-0">Designed by <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
+            <div class="col-md-4 steps-block-col">
+                <i class="fa fa-gift"></i>
+                <div>
+                    <h2>Daily Gifts</h2>
+                    <em>3 Gifts daily for lucky customers</em>
+                </div>
+                <span>&nbsp;</span>
+            </div>
+            <div class="col-md-4 steps-block-col">
+                <i class="fa fa-phone"></i>
+                <div>
+                    <h2>477 505 8877</h2>
+                    <em>24/7 customer care available</em>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<!-- END STEPS -->
+
+<!-- BEGIN PRE-FOOTER -->
+<div class="pre-footer">
+    <div class="container">
+        <div class="row">
+            <!-- BEGIN BOTTOM ABOUT BLOCK -->
+            <div class="col-md-3 col-sm-6 pre-footer-col">
+                <h2>About us</h2>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam sit nonummy nibh euismod tincidunt ut laoreet dolore magna aliquarm erat sit volutpat. Nostrud exerci tation ullamcorper suscipit lobortis nisl aliquip  commodo consequat. </p>
+                <p>Duis autem vel eum iriure dolor vulputate velit esse molestie at dolore.</p>
+            </div>
+            <!-- END BOTTOM ABOUT BLOCK -->
+            <!-- BEGIN BOTTOM INFO BLOCK -->
+            <div class="col-md-3 col-sm-6 pre-footer-col">
+                <h2>Information</h2>
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Delivery Information</a></li>
+                    <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Customer Service</a></li>
+                    <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Order Tracking</a></li>
+                    <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Shipping &amp; Returns</a></li>
+                    <li><i class="fa fa-angle-right"></i> <a href="contacts.html">Contact Us</a></li>
+                    <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Careers</a></li>
+                    <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Payment Methods</a></li>
+                </ul>
+            </div>
+            <!-- END INFO BLOCK -->
+
+            <!-- BEGIN TWITTER BLOCK -->
+            <div class="col-md-3 col-sm-6 pre-footer-col">
+                <h2 class="margin-bottom-0">Latest Tweets</h2>
+                <a class="twitter-timeline" href="https://twitter.com/twitterapi" data-tweet-limit="2" data-theme="dark" data-link-color="#57C8EB" data-widget-id="455411516829736961" data-chrome="noheader nofooter noscrollbar noborders transparent">Loading tweets by @keenthemes...</a>
+            </div>
+            <!-- END TWITTER BLOCK -->
+
+            <!-- BEGIN BOTTOM CONTACTS -->
+            <div class="col-md-3 col-sm-6 pre-footer-col">
+                <h2>Our Contacts</h2>
+                <address class="margin-bottom-40">
+                    35, Lorem Lis Street, Park Ave<br>
+                    California, US<br>
+                    Phone: 300 323 3456<br>
+                    Fax: 300 323 1456<br>
+                    Email: <a href="mailto:info@metronic.com">info@metronic.com</a><br>
+                    Skype: <a href="skype:metronic">metronic</a>
+                </address>
+            </div>
+            <!-- END BOTTOM CONTACTS -->
+        </div>
+        <hr>
+        <div class="row">
+            <!-- BEGIN SOCIAL ICONS -->
+            <div class="col-md-6 col-sm-6">
+                <ul class="social-icons">
+                    <li><a class="rss" data-original-title="rss" href="javascript:;"></a></li>
+                    <li><a class="facebook" data-original-title="facebook" href="javascript:;"></a></li>
+                    <li><a class="twitter" data-original-title="twitter" href="javascript:;"></a></li>
+                    <li><a class="googleplus" data-original-title="googleplus" href="javascript:;"></a></li>
+                    <li><a class="linkedin" data-original-title="linkedin" href="javascript:;"></a></li>
+                    <li><a class="youtube" data-original-title="youtube" href="javascript:;"></a></li>
+                    <li><a class="vimeo" data-original-title="vimeo" href="javascript:;"></a></li>
+                    <li><a class="skype" data-original-title="skype" href="javascript:;"></a></li>
+                </ul>
+            </div>
+            <!-- END SOCIAL ICONS -->
+            <!-- BEGIN NEWLETTER -->
+            <div class="col-md-6 col-sm-6">
+                <div class="pre-footer-subscribe-box pull-right">
+                    <h2>Newsletter</h2>
+                    <form action="#">
+                        <div class="input-group">
+                            <input type="text" placeholder="youremail@mail.com" class="form-control">
+                            <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Subscribe</button>
+                  </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- END NEWLETTER -->
+        </div>
+    </div>
+</div>
+<!-- END PRE-FOOTER -->
+
+<!-- BEGIN FOOTER -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- BEGIN COPYRIGHT -->
+            <div class="col-md-4 col-sm-4 padding-top-10">
+                2015 © Keenthemes. ALL Rights Reserved.
+            </div>
+            <!-- END COPYRIGHT -->
+            <!-- BEGIN PAYMENTS -->
+            <div class="col-md-4 col-sm-4">
+                <ul class="list-unstyled list-inline pull-right">
+                    <li><img src="assets/corporate/img/payments/western-union.jpg" alt="We accept Western Union" title="We accept Western Union"></li>
+                    <li><img src="assets/corporate/img/payments/american-express.jpg" alt="We accept American Express" title="We accept American Express"></li>
+                    <li><img src="assets/corporate/img/payments/MasterCard.jpg" alt="We accept MasterCard" title="We accept MasterCard"></li>
+                    <li><img src="assets/corporate/img/payments/PayPal.jpg" alt="We accept PayPal" title="We accept PayPal"></li>
+                    <li><img src="assets/corporate/img/payments/visa.jpg" alt="We accept Visa" title="We accept Visa"></li>
+                </ul>
+            </div>
+            <!-- END PAYMENTS -->
+            <!-- BEGIN POWERED -->
+            <div class="col-md-4 col-sm-4 text-right">
+                <p class="powered">Powered by: <a href="http://www.keenthemes.com/">KeenThemes.com</a></p>
+            </div>
+            <!-- END POWERED -->
+        </div>
+    </div>
+</div>
+<!-- END FOOTER -->
