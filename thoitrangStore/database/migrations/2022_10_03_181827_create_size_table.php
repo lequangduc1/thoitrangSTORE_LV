@@ -16,6 +16,7 @@ class CreateSizeTable extends Migration
         Schema::create('size', function (Blueprint $table) {
             $table->id();
             $table->string('tensize');
+            $table->integer('trangthai');
             $table->timestamps();
         });
     }
