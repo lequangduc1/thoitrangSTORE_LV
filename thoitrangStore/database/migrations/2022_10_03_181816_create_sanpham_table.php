@@ -15,12 +15,8 @@ class CreateSanphamTable extends Migration
     {
         Schema::create('sanpham', function (Blueprint $table) {
             $table->id();
-            $table->integer('macodesanpham');
-            $table->integer('loaisanphamid');
-            $table->integer('quantriid');
+            $table->string('macodesanpham');
             $table->string('ten_sp');
-            $table->integer('gia_sp');
-            $table->string('anh_sp');
             $table->longText('mota');
             $table->integer('trangthai');
             $table->timestamps();
