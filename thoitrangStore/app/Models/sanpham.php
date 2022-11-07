@@ -10,13 +10,12 @@ class sanpham extends Model
     use HasFactory;
     protected $table = 'sanpham';
 
-//    protected $fillable = [
-//        'ten',
-//        'email',
-//        'password',
-//        'phone',
-//        'diachi',
-//        'quyen',
-//        'trangthai'
-//    ];
+    protected $fillable = [
+        'macodesanpham',
+        'ten_sp',
+        'mota',
+        'trangthai',
+        'updated_at',
+        'created_at',
+    ];
 }
