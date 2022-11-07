@@ -48,7 +48,7 @@
                             <span class="hide-menu">Quản lí sản phẩm</span>
                         </a>
                         <div class="w3-dropdown-content w3-bar-block ">
-                            <a href="#" class="sidebar-link sidebar-item">
+                            <a href="{{route('admin.products.index')}}" class="sidebar-link sidebar-item">
                                 <i class="fas fa-angle-double-right"> Sản phẩm</i>
                             </a>
                             <a href="{{route('admin.producttype.index')}}" class="sidebar-link sidebar-item">

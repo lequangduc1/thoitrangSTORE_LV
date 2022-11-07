@@ -15,13 +15,14 @@ class CreateChitietsanphamTable extends Migration
     {
         Schema::create('chitietsanpham', function (Blueprint $table) {
             $table->id();
-            $table->integer('quantriid');
-            $table->string('tenshop');
-            $table->string('anhlogo');
-            $table->string('sodienthoai');
-            $table->string('diachishop');
-            $table->string('emailshop');
-            $table->longText('iframe');
+            $table->integer('idsanpham');
+            $table->integer('idloaisanpham');
+            $table->integer('idsize');
+            $table->integer('idmau');
+            $table->integer('idbinhluan')->nullable();
+            $table->integer('soluong');
+            $table->string('anhsanpham');
+            $table->string('giasanpham');
             $table->timestamps();
         });
     }
