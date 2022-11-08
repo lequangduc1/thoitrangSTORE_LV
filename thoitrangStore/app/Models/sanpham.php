@@ -10,12 +10,19 @@ class sanpham extends Model
     use HasFactory;
     protected $table = 'sanpham';
 
-    protected $fillable = [
-        'macodesanpham',
-        'ten_sp',
-        'mota',
-        'trangthai',
-        'updated_at',
-        'created_at',
-    ];
+    public function chitiet(){
+        return $this->hasMany(chitietsanpham::class, 'idsanpham', 'id');
+    }
+
+
+
+//    protected $fillable = [
+//        'ten',
+//        'email',
+//        'password',
+//        'phone',
+//        'diachi',
+//        'quyen',
+//        'trangthai'
+//    ];
 }

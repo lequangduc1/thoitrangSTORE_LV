@@ -84,35 +84,9 @@
         <div class="header-navigation">
             <ul>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                        Woman
-
+                    <a class="dropdown-toggle"  href="{{ route('home.product.list') }}">
+                        sản phẩm
                     </a>
-
-                    <!-- BEGIN DROPDOWN MENU -->
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-submenu">
-                            <a href="shop-product-list.html">Hi Tops <i class="fa fa-angle-right"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="shop-product-list.html">Second Level Link</a></li>
-                                <li><a href="shop-product-list.html">Second Level Link</a></li>
-                                <li class="dropdown-submenu">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
-                                        Second Level Link
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="shop-product-list.html">Third Level Link</a></li>
-                                        <li><a href="shop-product-list.html">Third Level Link</a></li>
-                                        <li><a href="shop-product-list.html">Third Level Link</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="shop-product-list.html">Running Shoes</a></li>
-                        <li><a href="shop-product-list.html">Jackets and Coats</a></li>
-                    </ul>
-                    <!-- END DROPDOWN MENU -->
                 </li>
                 <li class="dropdown dropdown-megamenu">
                     <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">

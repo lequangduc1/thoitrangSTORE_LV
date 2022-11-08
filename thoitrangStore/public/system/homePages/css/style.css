@@ -1,0 +1,26 @@
+.filter:hover{
+    text-decoration: none;
+}
+
+.filter__color{
+    width:30px;
+    height: 30px;
+    display: inline-block;
+}
+.filter__color.active{
+    border: 2px solid black;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}
+
+.filter__size{
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,0.2);
+    justify-content: center;
+    align-content: center;
+    display: inline-flex;
+}
+
+.filter__size.active{
+    background-color: #e84d1c;
+    color:white;
+}

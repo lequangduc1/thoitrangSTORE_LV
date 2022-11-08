@@ -2,13 +2,9 @@
 
 namespace App\Models;
 
-
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\sanpham;
-use App\Models\mausanpham;
-use App\Models\kickthuocsanpham;
+
 class chitietsanpham extends Model
 {
     use HasFactory;
