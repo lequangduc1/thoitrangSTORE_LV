@@ -32,9 +32,8 @@
                                 <th class="border-top-0"><b>Tên sản phẩm</b></th>
                                 <th class="border-top-0"><b>Giá</b></th>
                                 <th class="border-top-0"><b>Số lượng</b></th>
+                                <th class="border-top-0"><b>Mẫu</b></th>
                                 <th class="border-top-0"><b>Trạng thái</b></th>
-                                <th class="border-top-0"><b>Ngày tạo</b></th>
-                                <th class="border-top-0"><b>Ngày sửa</b></th>
                                 <th class="border-top-0"><b>Thao tác</b></th>
                             </tr>
                             </thead>
@@ -43,17 +42,22 @@
                                 @foreach($products as $key => $value)
                                     <tr>
                                         <td><b>{{$key+1}}</b></td>
-                                        <td>{{$value->tensize}}</td>
+                                        <td>{{$value->sanphams->macodesanpham}}</td>
+                                        <td>{{$value->sanphams->ten_sp}}</td>
+                                        <td>{{$value->giasanpham}}</td>
+                                        <td>{{$value->soluong}}</td>
+                                        <td>
+                                            <div><button style="background-color: {{$value->maus->tenmau}}; width: 50px; height: 30px; float: left" /></div>
+                                            <div>  - {{$value->sizes->tensize}}</div>
+                                        </td>
                                         <td>
                                             <span
-                                                @class(['status-hide'=>$value->trangthai==0,'status-show'=>$value->trangthai==1])
-                                                style="background-color:{{$value->trangthai == 1 ? 'chartreuse' : 'red'}}; color: #fff ; border-radius: 5px"
+                                                @class(['status-hide'=>$value->trangthai==0,'status-show'=>$value->sanphams->trangthai==1])
+                                                style="background-color:{{$value->sanphams->trangthai == 1 ? 'chartreuse' : 'red'}}; color: #fff ; border-radius: 5px"
                                             >
-                                                {{$value->trangthai == 1 ? 'UnLock' : 'Lock'}}
+                                                {{$value->sanphams->trangthai == 1 ? 'UnLock' : 'Lock'}}
                                             </span>
                                         </td>
-                                        <td>{{$value->created_at}}</td>
-                                        <td>{{$value->updated_at}}</td>
                                         <td>
                                             <a href="{{route('admin.products.update', $value->id)}}"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>
                                         </td>

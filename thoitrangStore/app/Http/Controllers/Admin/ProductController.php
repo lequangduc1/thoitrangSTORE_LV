@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\chitietsanpham;
 use App\Models\loaisanpham;
 use App\Models\mausanpham;
 use App\Models\kickthuocsanpham;
+use App\Models\sanpham;
 use Illuminate\Http\Request;
 use Yoeunes\Toastr\Facades\Toastr;
 
@@ -13,7 +15,7 @@ class ProductController extends Controller
 {
     public function index(){
         try {
-            $params['products'] = mausanpham::orderBy('id','desc')->get();
+            $params['products'] = chitietsanpham::orderBy('id','desc')->get();
             return view('adminPages.products.index',$params);
         } catch (Exception $e) {
             $params['products'] = null;
@@ -39,7 +41,8 @@ class ProductController extends Controller
             $params['productColor'] = mausanpham::all();
             $params['productSize'] = kickthuocsanpham::all();
             $params['productType'] = loaisanpham::all();
-            return view('adminPages.products.create',$params);
+            $params['products'] = chitietsanpham::where('id',$id)->first();
+            return view('adminPages.products.update',$params);
         } catch (Exception $e) {
 
         }
@@ -62,18 +65,25 @@ class ProductController extends Controller
             $data = $request->input();
             $date = date(today());
             if(isset($data['id'])){
-                $newProductColor = mausanpham::find($data['id']);
+                $newProduct = sanpham::find($data['id']);
+                $newProductDetail = chitietsanpham::find($data['id']);
                 $data['updated_at'] = $date;
             }else{
-                $newProductColor = New mausanpham();
+                $newProduct = New sanpham();
+                $newProductDetail = new chitietsanpham();
                 $data['created_at'] = $date;
             }
-            $newProductColor->fill($data);
+            $newProduct->fill($data);
+            $newProduct->save();
 
-            $newProductColor->save();
+            $data['idsanpham'] = $newProduct->id;
+            $data['soluong'] = 0;
+            $data['anhsanpham'] = 'asdasdasd';
+            $newProductDetail->fill($data);
+            $newProductDetail->save();
 
             Toastr::success('Lưu thành công');
-            return redirect()->route('admin.productcolor.index');
+            return redirect()->route('admin.products.index');
 
         }catch (Exception $exception){
             Toastr::error('Lưu thất bại',$exception);

@@ -9,12 +9,26 @@ class chitietsanpham extends Model
 {
     use HasFactory;
     protected $table = 'chitietsanpham';
+    protected $fillable = [
+        'idsanpham',
+        'idloaisanpham',
+        'idsize',
+        'idmau',
+        'idbinhluan',
+        'soluong',
+        'anhsanpham',
+        'giasanpham',
+        'created_at',
+        'updated_at',
+    ];
 
-    public function sanpham(){
-        return $this->belongsTo(sanpham::class, 'idsanpham', 'id');
+    public function sanphams(){
+        return $this->belongsTo(sanpham::class,'idsanpham');
     }
-
-    public function color(){
-        return $this->belongsTo(mausanpham::class, 'idmau', 'id');
+    public function maus(){
+        return $this->belongsTo(mausanpham::class,'idmau');
+    }
+    public function sizes(){
+        return $this->belongsTo(kickthuocsanpham::class,'idsize');
     }
 }

@@ -20,12 +20,12 @@
                     @endforeach
                 @endif
                 <div class="card-body">
-                    <form class="form-horizontal form-material" action="{{route('admin.productsize.store')}}" method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal form-material" action="{{route('admin.products.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-4">
                             <label class="col-md-12 p-0"><b>Tên sản phẩm</b><span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">
-                                <input type="text" class="form-control p-0 border-0" name="tensanpham" />
+                                <input type="text" class="form-control p-0 border-0" name="ten_sp" />
                             </div>
                         </div>
                         <div class="form-group mb-4">
@@ -85,6 +85,12 @@
                                     <option value="1">Hiện</option>
                                     <option value="0">Ẩn</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="col-md-12 p-0"><b>Mô tả sản phẩm</b><span class="input__required">*</span></label>
+                            <div class="col-md-12 border-bottom p-0">
+                                <input type="text" class="form-control p-0 border-0" name="mota" />
                             </div>
                         </div>
                         <div class="form-group mb-4">
