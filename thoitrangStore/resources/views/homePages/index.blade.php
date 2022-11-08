@@ -44,6 +44,8 @@
     <link href="{{asset('/system/homePages/assets/corporate/css/style-responsive.css')}}" rel="stylesheet">
     <link href="{{asset('/system/homePages/assets/corporate/css/themes/red.css')}}" rel="stylesheet" id="style-color">
     <link href="{{asset('/system/homePages/assets/corporate/css/custom.css')}}" rel="stylesheet">
+    <link href="{{asset('/system/homePages/css/style.css')}}" rel="stylesheet">
+
     <!-- Theme styles END -->
 </head>
 <!-- Head END -->
@@ -81,18 +83,18 @@
 <div class="brands">
     <div class="container">
         <div class="owl-carousel owl-carousel6-brands">
-            <a href="shop-product-list.html"><img src="assets/pages/img/brands/canon.jpg" alt="canon" title="canon"></a>
-            <a href="shop-product-list.html"><img src="assets/pages/img/brands/esprit.jpg" alt="esprit" title="esprit"></a>
-            <a href="shop-product-list.html"><img src="assets/pages/img/brands/gap.jpg" alt="gap" title="gap"></a>
-            <a href="shop-product-list.html"><img src="assets/pages/img/brands/next.jpg" alt="next" title="next"></a>
-            <a href="shop-product-list.html"><img src="assets/pages/img/brands/puma.jpg" alt="puma" title="puma"></a>
-            <a href="shop-product-list.html"><img src="assets/pages/img/brands/zara.jpg" alt="zara" title="zara"></a>
-            <a href="shop-product-list.html"><img src="assets/pages/img/brands/canon.jpg" alt="canon" title="canon"></a>
-            <a href="shop-product-list.html"><img src="assets/pages/img/brands/esprit.jpg" alt="esprit" title="esprit"></a>
-            <a href="shop-product-list.html"><img src="assets/pages/img/brands/gap.jpg" alt="gap" title="gap"></a>
-            <a href="shop-product-list.html"><img src="assets/pages/img/brands/next.jpg" alt="next" title="next"></a>
-            <a href="shop-product-list.html"><img src="assets/pages/img/brands/puma.jpg" alt="puma" title="puma"></a>
-            <a href="shop-product-list.html"><img src="assets/pages/img/brands/zara.jpg" alt="zara" title="zara"></a>
+            <a href="shop-product-list.html"><img src="{{asset('system/homePages/assets/pages/img/brands/canon.jpg')}}" alt="canon" title="canon"></a>
+            <a href="shop-product-list.html"><img src="{{asset('system/homePages/assets/pages/img/brands/esprit.jpg')}}" alt="esprit" title="esprit"></a>
+            <a href="shop-product-list.html"><img src="{{asset('system/homePages/assets/pages/img/brands/gap.jpg')}}" alt="gap" title="gap"></a>
+            <a href="shop-product-list.html"><img src="{{asset('system/homePages/assets/pages/img/brands/next.jpg')}}" alt="next" title="next"></a>
+            <a href="shop-product-list.html"><img src="{{asset('system/homePages/assets/pages/img/brands/puma.jpg')}}" alt="puma" title="puma"></a>
+            <a href="shop-product-list.html"><img src="{{asset('system/homePages/assets/pages/img/brands/zara.jpg')}}" alt="zara" title="zara"></a>
+            <a href="shop-product-list.html"><img src="{{asset('system/homePages/assets/pages/img/brands/canon.jpg')}}" alt="canon" title="canon"></a>
+            <a href="shop-product-list.html"><img src="{{asset('system/homePages/assets/pages/img/brands/esprit.jpg')}}" alt="esprit" title="esprit"></a>
+            <a href="shop-product-list.html"><img src="{{asset('system/homePages/assets/pages/img/brands/gap.jpg')}}" alt="gap" title="gap"></a>
+            <a href="shop-product-list.html"><img src="{{asset('system/homePages/assets/pages/img/brands/next.jpg')}}" alt="next" title="next"></a>
+            <a href="shop-product-list.html"><img src="{{asset('system/homePages/assets/pages/img/brands/puma.jpg')}}" alt="puma" title="puma"></a>
+            <a href="shop-product-list.html"><img src="{{asset('system/homePages/assets/pages/img/brands/zara.jpg')}}" alt="zara" title="zara"></a>
         </div>
     </div>
 </div>
@@ -101,9 +103,9 @@
 
 <!-- Load javascripts at bottom, this will reduce page load time -->
 <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
-<!--[if lt IE 9]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{asset('system/homePages/js/script.js')}}" type="text/javascript"></script>
 <script src="{{asset('system/homePages/assets/plugins/respond.min.js')}}"></script>
-<![endif]-->
 <script src="{{asset('system/homePages/assets/plugins/jquery.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('system/homePages/assets/plugins/jquery-migrate.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('system/homePages/assets/plugins/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>

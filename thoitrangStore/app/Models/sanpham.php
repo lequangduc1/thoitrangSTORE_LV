@@ -10,6 +10,12 @@ class sanpham extends Model
     use HasFactory;
     protected $table = 'sanpham';
 
+    public function chitiet(){
+        return $this->hasMany(chitietsanpham::class, 'idsanpham', 'id');
+    }
+
+
+
 //    protected $fillable = [
 //        'ten',
 //        'email',
