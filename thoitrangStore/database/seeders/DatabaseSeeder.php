@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductColor::class);
         $this->call(ProductType::class);
         $this->call(ProductSeeder::class);
+        $this->call(ImportCouponDetailSeeder::class);
+        $this->call(ImportCouponSeeder::class);
     }
 }
