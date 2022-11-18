@@ -8,4 +8,5 @@ Route::prefix('/account')->name('account.')->group(function(){
     Route::post('/store',[\App\Http\Controllers\Admin\AccountController::class,'store'])->name('store');
     Route::get('/update/{id}',[\App\Http\Controllers\Admin\AccountController::class,'update'])->name('update');
 
+
 });

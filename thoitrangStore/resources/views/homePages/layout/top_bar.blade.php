@@ -15,13 +15,19 @@
             <!-- BEGIN TOP BAR MENU -->
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
-                    <li><a href="shop-account.html">My Account</a></li>
-                    <li><a href="shop-wishlist.html">My Wishlist</a></li>
-                    <li><a href="shop-checkout.html">Checkout</a></li>
+                    <li>
+                        <a href="{{route('home.account.index')}}">Tài khoản</a>
+                    </li>
+                    <li>
+                        <a href="shop-wishlist.html">Danh sách yêu thích</a>
+                    </li>
+                    <li>
+                        <a href="shop-checkout.html">Thanh toán</a>
+                    </li>
                     @if(\Illuminate\Support\Facades\Auth::guard('customer')->check())
-                        <li><a href="{{route('home.auth.logout')}}">Log out</a></li>
+                        <li><a href="{{route('home.auth.logout')}}">Đăng xuất</a></li>
                     @else
-                        <li><a href="{{route('home.auth.login_form')}}">Log In</a></li>
+                        <li><a href="{{route('home.auth.login_form')}}">Đăng nhập</a></li>
                     @endif
                 </ul>
             </div>

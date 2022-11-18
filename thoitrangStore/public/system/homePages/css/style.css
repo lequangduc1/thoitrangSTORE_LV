@@ -24,3 +24,99 @@
     background-color: #e84d1c;
     color:white;
 }
+
+.btn__save__quality{
+    border: none;
+    outline: none;
+    width: 10%;
+    padding: 10px 0;
+    display: block;
+    color: white;
+    margin-top:10px;
+    background-color: #0a53be;
+}
+
+.msg__error__cart{
+    display: block;
+    font-size: 14px;
+    padding: 10px 5px;
+    color: #842029;
+    background-color: #f8d7da;
+}
+
+.msg__success__cart{
+    display: block;
+    font-size: 14px;
+    padding: 10px 5px;
+    color: #004085;
+    background-color: #cce5ff;
+    margin: 10px 0;
+}
+
+.quality__max{
+    display: block;
+    text-align: center;
+}
+
+/*Order status style*/
+.order_new{
+    color: #000;
+    background-color: #2cabe3;
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+    padding: 5px;
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    width: 100px;
+    border-radius: 15px !important;
+}
+
+.order_process{
+    color: #fff;
+    background-color: #ffc36d;
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+    padding: 5px;
+    display: block;
+    font-size: 12px;
+    width: 100px;
+    text-align: center;
+    border-radius: 15px !important;
+}
+.order_confirm{
+    padding: 5px;
+    color: #000;
+    background-color:#7ace4c;
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+    display: block;
+    font-size: 12px;
+    width: 100px;
+    text-align: center;
+    border-radius: 15px !important;
+}
+.order_finished{
+    padding: 5px;
+    color: #fff;
+    background-color: #707cd2;
+    display: block;
+    font-size: 12px;
+    width: 100px;
+    text-align: center;
+    border-radius: 15px !important;
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+}
+.order_destroy{
+    padding: 5px;
+    color: #000;
+    background-color: #f33155;
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+    display: block;
+    font-size: 12px;
+    width: 100px;
+    text-align: center;
+    border-radius: 15px !important;
+}
+
+/*End order status style*/
+
+
+

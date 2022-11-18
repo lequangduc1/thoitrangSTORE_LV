@@ -27,6 +27,14 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                       href="{{route('admin.order.index')}}"
+                       aria-expanded="false">
+                        <i class="fas fa-archive" aria-hidden="true"></i>
+                        <span class="hide-menu">Quản lý đơn hàng</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.promotion.index')}}"
                        aria-expanded="false">
                         <i class="fas fa-address-card" aria-hidden="true"></i>

@@ -20,7 +20,10 @@
                                 </div>
                                 <h3><a href="shop-item.html">{{$product->ten_sp}}</a></h3>
                                 <div class="pi-price">{{number_format($product->giasanpham). ' VNĐ'}}</div>
-                                <a href="javascript:;" class="btn btn-default add2cart">Thêm vào giỏ</a>
+                                <a
+                                    href="{{route('home.cart.add-to-cart', $product->id)}}"
+                                    class="btn btn-default add2cart"
+                                >Thêm vào giỏ</a>
                                 <div class="sticker sticker-new"></div>
                             </div>
                         </div>
@@ -88,7 +91,9 @@
                             </div>
                             <h3><a href="shop-item.html">{{$product->ten_sp}}</a></h3>
                             <div class="pi-price">{{number_format($product->giasanpham).' VNĐ' }}</div>
-                            <a href="javascript:;" class="btn btn-default add2cart">Thêm vào giỏ</a>
+                            <a href="{{route('home.cart.add-to-cart', $product->id)}}"
+                               class="btn btn-default add2cart"
+                            >Thêm vào giỏ</a>
                         </div>
                     </div>
                     @endforeach
@@ -130,7 +135,10 @@
                             </div>
                             <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                             <div class="pi-price">$29.00</div>
-                            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                            <a
+                                href="javascript:;"
+                                class="btn btn-default add2cart"
+                            >Thêm vào giỏ</a>
                             <div class="sticker sticker-sale"></div>
                         </div>
                     </div>

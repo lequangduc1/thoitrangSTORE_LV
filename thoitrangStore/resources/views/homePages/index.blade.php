@@ -73,7 +73,9 @@
 
 @include('homePages.layout.top_bar');
 @include('homePages.layout.header.index');
-@include('homePages.layout.slider');
+@if($_SERVER['REQUEST_URI'] == '/')
+    @include('homePages.layout.slider');
+@endif
 
 <div class="main">
     @section('content') @show

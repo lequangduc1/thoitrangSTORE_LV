@@ -15,12 +15,9 @@ class CreateChitietdonhangTable extends Migration
     {
         Schema::create('chitietdonhang', function (Blueprint $table) {
             $table->id();
-            $table->integer('dondathangid');
-            $table->integer('chitietsanphamid');
-            $table->integer('masanpham_dh');
-            $table->string('tensanpham_dh');
-            $table->string('mau_dh');
-            $table->string('size_dh');
+            $table->integer('madonhang');
+            $table->integer('machitietsanpham');
+            $table->integer('masanpham');
             $table->integer('dongia');
             $table->integer('soluong_sp');
             $table->timestamps();

@@ -43,3 +43,107 @@
 }
 
 /* end sidebar active*/
+
+/*Order status style*/
+.order_new{
+    color: #000;
+    background-color: #2cabe3;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+    font-size: 14px;
+    padding: 5px;
+
+}
+
+.order_process{
+    color: #fff;
+    background-color: #ffc36d;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+    font-size: 14px;
+    padding: 5px;
+
+}
+.order_confirm{
+    padding: 5px;
+    color: #000;
+    background-color:#7ace4c;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+    font-size: 14px;
+}
+.order_finished{
+    padding: 5px;
+    color: #fff;
+    background-color: #707cd2;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+    font-size: 14px;
+}
+.order_destroy{
+    padding: 5px;
+    color: #000;
+    background-color: #f33155;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+    font-size: 14px;
+}
+
+/*End order status style*/
+
+.shopping-total,
+.checkout-total-block {
+    width: 230px;
+    float: right;
+    padding-top: 9px;
+    color: #3e4d5c;
+}
+.checkout-total-block {
+    margin-bottom: 20px;
+}
+.shopping-total ul,
+.checkout-total-block ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.shopping-total li,
+.checkout-total-block li {
+    border-bottom: solid 1px #ecebeb;
+    width: 100%;
+    overflow: hidden;
+    padding: 9px 0;
+}
+.shopping-total li:last-child,
+.checkout-total-block li:last-child {
+    border: none;
+}
+.shopping-total em,
+.checkout-total-block em {
+    font-size: 14px;
+    float: left;
+    text-transform: uppercase;
+    position: relative;
+    top: 2px;
+}
+.shopping-total strong,
+.checkout-total-block strong {
+    color: #e84d1c;
+    font: 21px 'PT Sans Narrow', sans-serif;
+    font-weight: normal;
+    float: right;
+}
+.shopping-total strong span,
+.checkout-total-block strong span {
+    font-size: 17px;
+}
+.shopping-total-price,
+.checkout-total-price {
+    font-weight: bold;
+}
+.shopping-total-price strong,
+.checkout-total-price strong {
+    font-weight: bold;
+}
+
+/* checkout page */
