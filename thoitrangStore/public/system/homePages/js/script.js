@@ -7,8 +7,12 @@ $(document).ready(function(){
         }
         filter();
     })
+
 })
 
+function addQuality(productId){
+
+}
 
 function filter(){
     var i;

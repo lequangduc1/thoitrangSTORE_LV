@@ -16,7 +16,8 @@ class Customer extends Authenticatable
         'hovaten',
         'email',
         'password',
-        'sodienthoai'
+        'sodienthoai',
+        'diachi'
     ];
 
 }

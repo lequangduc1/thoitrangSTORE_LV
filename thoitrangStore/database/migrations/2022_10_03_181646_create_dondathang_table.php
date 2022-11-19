@@ -13,17 +13,13 @@ class CreateDondathangTable extends Migration
      */
     public function up()
     {
-        Schema::create('dondathang', function (Blueprint $table) {
+        Schema::create('donhang', function (Blueprint $table) {
             $table->id();
-            $table->integer('khachhangid');
-            $table->integer('khuyenmaiid');
-            $table->integer('quantriid');
-            $table->string('nguoinhan_dh');
-            $table->string('sodienthoai_dh');
-            $table->string('diachi_dh');
+            $table->integer('makhachhang');
+            $table->text('makhuyenmai')->default('');
+            $table->integer('manhanvien')->nullable();
             $table->integer('tongtien_dh');
             $table->integer('trangthai_dh');
-            $table->integer('trangthai_tt');
             $table->integer('phuongthuc_tt');
             $table->string('ghichu');
             $table->timestamps();
