@@ -16,7 +16,7 @@ class CreateDondathangTable extends Migration
         Schema::create('donhang', function (Blueprint $table) {
             $table->id();
             $table->integer('makhachhang');
-            $table->text('makhuyenmai')->default('');
+            $table->text('makhuyenmai')->nullable();
             $table->integer('manhanvien')->nullable();
             $table->integer('tongtien_dh');
             $table->integer('trangthai_dh');

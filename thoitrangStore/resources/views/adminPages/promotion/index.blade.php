@@ -52,9 +52,15 @@
                                         <td>{{$value->ngaybatdau_km}}</td>
                                         <td>{{$value->ngayketthuc_km}}</td>
                                         <td>
-                                            <span @class(['status-hide'=>$value->trangthai==0,'status-show'=>$value->trangthai==1])>
+                                            <div class="btn {{$value->trangthai == 1 ? 'btn-success' : 'btn-danger'}}"
+                                                 style="
+                                                        color: #000;
+                                                        border-radius: 5px;
+                                                        width: 100px"
+
+                                            >
                                                 {{$value->trangthai == 1 ? 'Hiện' : 'Ẩn'}}
-                                            </span>
+                                            </div>
                                         </td>
                                         <td>
                                             <a href="{{route('admin.promotion.update', $value->id)}}"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>

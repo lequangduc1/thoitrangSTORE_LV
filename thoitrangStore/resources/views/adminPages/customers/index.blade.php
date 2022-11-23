@@ -40,12 +40,15 @@
                                         <td>{{$value->sodienthoai}}</td>
                                         <td>{{$value->kichhoat}}</td>
                                         <td>
-                                            <span
-                                                @class(['status-hide'=>$value->trangthai==0,'status-show'=>$value->trangthai==1])
-                                                style="background-color:{{$value->trangthai == 1 ? 'chartreuse' : 'red'}}; color: #fff ; border-radius: 5px"
+                                            <div class="btn {{$value->trangthai == 1 ? 'btn-success' : 'btn-danger'}}"
+                                                 style="
+                                                        color: #000;
+                                                        border-radius: 5px;
+                                                        width: 100px"
+
                                             >
-                                                {{$value->trangthai == 1 ? 'UnLock' : 'Lock'}}
-                                            </span>
+                                                {{$value->trangthai == 1 ? 'Hiện' : 'Ẩn'}}
+                                            </div>
                                         </td>
                                         <td>{{$value->created_at}}</td>
                                         <td>{{$value->updated_at}}</td>

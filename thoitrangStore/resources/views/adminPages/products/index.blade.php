@@ -44,19 +44,21 @@
                                         <td><b>{{$key+1}}</b></td>
                                         <td>{{$value->sanphams->macodesanpham}}</td>
                                         <td>{{$value->sanphams->ten_sp}}</td>
-                                        <td>{{$value->giasanpham}}</td>
+                                        <td><?php echo number_format($value->giasanpham)?> VNĐ</td>
                                         <td>{{$value->soluong}}</td>
                                         <td>
-                                            <div><button style="background-color: {{$value->maus->tenmau}}; width: 50px; height: 30px; float: left" /></div>
-                                            <div>  - {{$value->sizes->tensize}}</div>
+                                            <div> {{$value->maus->tenmau}} - {{$value->sizes->tensize}}</div>
                                         </td>
                                         <td>
-                                            <span
-                                                @class(['status-hide'=>$value->trangthai==0,'status-show'=>$value->sanphams->trangthai==1])
-                                                style="background-color:{{$value->sanphams->trangthai == 1 ? 'chartreuse' : 'red'}}; color: #fff ; border-radius: 5px"
+                                            <button class="btn {{$value->sanphams->trangthai == 1 ? 'btn-success' : 'btn-danger'}}"
+                                                    style="
+                                                        color: #000;
+                                                        border-radius: 5px;
+                                                        width: 100px"
+
                                             >
-                                                {{$value->sanphams->trangthai == 1 ? 'UnLock' : 'Lock'}}
-                                            </span>
+                                                {{$value->sanphams->trangthai == 1 ? 'Hiện' : 'Ẩn'}}
+                                            </button>
                                         </td>
                                         <td>
                                             <a href="{{route('admin.products.update', $value->id)}}"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>

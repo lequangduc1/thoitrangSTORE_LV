@@ -16,13 +16,14 @@ class sanpham extends Model
 
 
 
-//    protected $fillable = [
-//        'ten',
-//        'email',
-//        'password',
-//        'phone',
-//        'diachi',
-//        'quyen',
-//        'trangthai'
-//    ];
+    protected $fillable = [
+        'ten_sp',
+        'email',
+        'password',
+        'phone',
+        'diachi',
+        'macodesanpham',
+        'mota',
+        'trangthai'
+    ];
 }
