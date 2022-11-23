@@ -20,3 +20,16 @@ function getCart() : array{
     ];
 }
 
+function getCartImport() : array{
+    $cartInformation = \Illuminate\Support\Facades\Session::get('cartImport') ?? [];
+    $total = 0;
+    foreach ($cartInformation as $product) {
+        $total += $product['gianhp'] * $product['soluongnhap'];
+    }
+    return [
+        'count'=>count($cartInformation),
+        'total'=>$total,
+        'allProductInCartImport'=>$cartInformation
+    ];
+}
+
