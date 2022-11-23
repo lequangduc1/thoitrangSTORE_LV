@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <form class="form-horizontal form-material" action="{{route('admin.products.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="text" class="form-control p-0 border-0" name="id" value="{{$products->id}}"/>
+                        <input type="text" class="form-control p-0 border-0" name="id" value="{{$products->id}}" hidden/>
                         <div class="form-group mb-4">
                             <label class="col-md-12 p-0"><b>Tên sản phẩm</b><span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">

@@ -29,6 +29,7 @@
                             <tr>
                                 <th class="border-top-0">#</th>
                                 <th class="border-top-0"><b>Tên màu</b></th>
+                                <th class="border-top-0"><b>code</b></th>
                                 <th class="border-top-0"><b>Trạng thái</b></th>
                                 <th class="border-top-0"><b>Ngày tạo</b></th>
                                 <th class="border-top-0"><b>Ngày sửa</b></th>
@@ -40,7 +41,8 @@
                                 @foreach($productColor as $key => $value)
                                     <tr>
                                         <td><b>{{$key+1}}</b></td>
-                                        <td ><button style="background-color:{{$value->tenmau}}; width: 150px;height: 30px" />{{$value->tenmau}}</td>
+                                        <td>{{$value->tenmau}}</td>
+                                        <td ><button style="background-color:{{$value->code}}; width: 100px;height: 30px" /></td>
                                         <td>
                                             <div class="btn {{$value->trangthai == 1 ? 'btn-success' : 'btn-danger'}}"
                                                  style="

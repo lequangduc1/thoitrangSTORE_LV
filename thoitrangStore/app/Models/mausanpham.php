@@ -13,6 +13,7 @@ class mausanpham extends Model
 
     protected $fillable = [
         'tenmau',
+        'code',
         'trangthai',
         'created_at',
         'updated_at',

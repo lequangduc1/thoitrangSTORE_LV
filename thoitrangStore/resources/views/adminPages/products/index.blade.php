@@ -44,11 +44,10 @@
                                         <td><b>{{$key+1}}</b></td>
                                         <td>{{$value->sanphams->macodesanpham}}</td>
                                         <td>{{$value->sanphams->ten_sp}}</td>
-                                        <td>{{$value->giasanpham}}</td>
+                                        <td><?php echo number_format($value->giasanpham)?> VNĐ</td>
                                         <td>{{$value->soluong}}</td>
                                         <td>
-                                            <div><button style="background-color: {{$value->maus->tenmau}}; width: 50px; height: 30px; float: left" /></div>
-                                            <div>  - {{$value->sizes->tensize}}</div>
+                                            <div> {{$value->maus->tenmau}} - {{$value->sizes->tensize}}</div>
                                         </td>
                                         <td>
                                             <button class="btn {{$value->sanphams->trangthai == 1 ? 'btn-success' : 'btn-danger'}}"

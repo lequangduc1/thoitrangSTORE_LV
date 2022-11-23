@@ -86,6 +86,7 @@ class ProductController extends Controller
             return redirect()->route('admin.products.index');
 
         }catch (Exception $exception){
+            dd($exception);
             Toastr::error('Lưu thất bại',$exception);
             return back();
         }
