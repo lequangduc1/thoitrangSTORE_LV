@@ -51,12 +51,15 @@
                                             <div>  - {{$value->sizes->tensize}}</div>
                                         </td>
                                         <td>
-                                            <span
-                                                @class(['status-hide'=>$value->trangthai==0,'status-show'=>$value->sanphams->trangthai==1])
-                                                style="background-color:{{$value->sanphams->trangthai == 1 ? 'chartreuse' : 'red'}}; color: #fff ; border-radius: 5px"
+                                            <button class="btn {{$value->sanphams->trangthai == 1 ? 'btn-success' : 'btn-danger'}}"
+                                                    style="
+                                                        color: #000;
+                                                        border-radius: 5px;
+                                                        width: 100px"
+
                                             >
-                                                {{$value->sanphams->trangthai == 1 ? 'UnLock' : 'Lock'}}
-                                            </span>
+                                                {{$value->sanphams->trangthai == 1 ? 'Hiện' : 'Ẩn'}}
+                                            </button>
                                         </td>
                                         <td>
                                             <a href="{{route('admin.products.update', $value->id)}}"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>

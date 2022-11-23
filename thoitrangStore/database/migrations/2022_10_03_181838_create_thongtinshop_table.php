@@ -21,7 +21,7 @@ class CreateThongtinshopTable extends Migration
             $table->string('dien_thoai');
             $table->string('dia_chi');
             $table->string('email');
-            $table->longText('iframe')->default('iframe');
+            $table->longText('iframe');
             $table->timestamps();
         });
     }

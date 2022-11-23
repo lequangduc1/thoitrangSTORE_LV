@@ -13,8 +13,34 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="white-box">
+                    <div class="col-md-12" >
+                        <form action="{{route('admin.order.search')}}" method="POST" >
+                            @csrf
+                            <div class="col-md-2 border-bottom" style="float: left">
+                                <label
+                                    @class(config('constant.order.style_status')[$trangthai])
+                                    style="
+                                        color: #000;
+                                        border-radius: 5px"
+                                >
+                                   <b> Trạng thái</b>
+                                </label>
+                                <select name="trangthai" class="form-select shadow-none p-0  ">
+                                    <option value="2" {{$trangthai == 2 ? 'selected' : ''}}>Đơn thành công</option>
+                                    <option value="1" {{$trangthai == 1 ? 'selected' : ''}}>Đơn đang xử lí</option>
+                                    <option value="0" {{$trangthai == 0 ? 'selected' : ''}}>Đơn mới</option>
+                                    <option value="0" {{$trangthai == 3 ? 'selected' : ''}}>Đơn hoàn thành</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1" style="float: left; margin-left: 10px; margin-top: 39px">
+                                <button class="btn btn-info" >Tìm kiếm</button>
+                            </div>
+
+                        </form>
+                    </div>
+
                     <h3 class="box-title"></h3>
-                    <div class="table-responsive">
+                    <div class="table-responsive col-md-12">
                         <table class="table text-nowrap">
                             <thead>
                             <tr>

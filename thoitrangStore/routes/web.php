@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\login\loginController;
+use App\Http\Controllers\login\LoginController;
 use App\Http\Controllers\HomePages\HomeController;
 
 
@@ -10,7 +10,7 @@ use App\Http\Controllers\HomePages\HomeController;
  **/
 Route::name('home.')->prefix('/')->group(function () {
     Route::get('/',[HomeController::class, 'home'])->name('home');
-    foreach (File::allFiles(__DIR__ . '\home') as $route_file) {
+    foreach (File::allFiles(__DIR__ . '/home') as $route_file) {
         require $route_file->getPathname();
     }
 

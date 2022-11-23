@@ -45,12 +45,15 @@
                                     <td>{{$value->phone}}</td>
                                     <td>{{$value->diachi}}</td>
                                     <td>
-                                            <span
-                                                @class(['status-hide'=>$value->trangthai==0,'status-show'=>$value->trangthai==1])
-                                                style="background-color:{{$value->trangthai == 1 ? 'chartreuse' : 'red'}}; color: #fff ; border-radius: 5px"
-                                            >
-                                                {{$value->trangthai == 1 ? 'UnLock' : 'Lock'}}
-                                            </span>
+                                        <div class="btn {{$value->trangthai == 1 ? 'btn-success' : 'btn-danger'}}"
+                                             style="
+                                                        color: #000;
+                                                        border-radius: 5px;
+                                                        width: 100px"
+
+                                        >
+                                            {{$value->trangthai == 1 ? 'Hiện' : 'Ẩn'}}
+                                        </div>
                                     </td>
                                     <td>
                                         <a href="{{route('admin.account.update', $value->id)}}"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\chitietphieunhap;
 use App\Models\chitietsanpham;
 use App\Models\DonHang;
+use App\Models\phieunhap;
 use Illuminate\Http\Request;
 use Yoeunes\Toastr\Facades\Toastr;
 
@@ -12,9 +14,9 @@ class OrderController extends Controller
 {
 
     public function index(){
-        $params['allOrder'] = DonHang::orderby('created_at','DESC')->get();
+        $params['allOrder'] = DonHang::where('trangthai_dh', 0)->orderby('created_at','DESC')->get();
+        $params['trangthai'] = 0;
         return view('adminPages.order.index', $params);
-
     }
 
     public function detail($id){
@@ -46,10 +48,26 @@ class OrderController extends Controller
                 }
             }
             Toastr::success('Cập nhật trạng thái thành công!!');
-            return redirect()->back();
+            return redirect()->route('admin.order.index');
         }catch(\Exception $e){
             dd($e);
         }
+    }
+
+    public function search(Request $request){
+        try {
+            $trangthai = $request->trangthai;
+            if($trangthai != null){
+                $params['allOrder'] = DonHang::where('trangthai_dh', $trangthai)->orderby('created_at','DESC')->get();
+            }
+            $params['trangthai'] = $trangthai;
+            return view('adminPages.order.index', $params);
+        }catch (Exception $e) {
+            $params['products'] = null;
+            Toastr::error('Lỗi Lấy dữ liệu');
+            return view('adminPages.order.index',$params);
+        }
+
     }
 
 }
