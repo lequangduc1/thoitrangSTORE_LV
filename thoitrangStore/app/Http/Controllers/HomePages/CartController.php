@@ -18,20 +18,26 @@ class CartController extends Controller
 
     public function  addToCart($productId, Request $request){
         try{
+            $query = $request->query('quality');
+
             $productInformation = chitietsanpham::join('sanpham', 'chitietsanpham.id', '=', 'sanpham.id')
                                     ->where('sanpham.trangthai', 1)
                                     ->where('sanpham.id', $productId)
                                     ->first();
+
             $sessionCurrent = Session::get('cart') ?? array();
             if(array_key_exists('product_'.$productId, $sessionCurrent)){
-                $sessionCurrent['product_'.$productId]['quality'] += 1;
+                if($query && ($query + $sessionCurrent['product_'.$productId]['quality'] > $productInformation->soluong)){
+                    return redirect()->back()->withErrors(['msg'=>'Số lương không đủ !!']);
+                }
+                $sessionCurrent['product_'.$productId]['quality'] += $query ?? 1;
                 Session::push('cart',$sessionCurrent);
             }else{
                 $productNew = [
                     'id'=> $productInformation->id,
                     'product_id'=>$productInformation->idsanpham,
                     'img' => $productInformation->anhsanpham,
-                    'quality'=>1,
+                    'quality'=>$query ?? 1,
                     'quality_max'=>$productInformation->soluong,
                     'name'=>$productInformation->ten_sp,
                     'price'=>$productInformation->giasanpham,

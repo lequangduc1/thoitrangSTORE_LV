@@ -33,4 +33,26 @@ class ProductController extends Controller
         return view('homePages.product.product_list', $params);
     }
 
+    public function detail($produceCode){
+        //get all category
+        $params['allCategory'] = loaisanpham::where('trangthai', 1)->get();
+        //get product information
+        $params['productDetail'] = chitietsanpham::join('sanpham', 'sanpham.id', '=', 'chitietsanpham.id')
+                                                ->where('trangthai', 1)
+                                                ->where('chitietsanpham.id', $produceCode)
+                                                ->first();
+
+        $params['sizes']  = kickthuocsanpham::where('trangthai', 1)->get();
+        $params['size_id'] = $params['productDetail']->idsize;
+        $params['color_id'] = $params['productDetail']->idmau;
+        $params['categoryId'] = $params['productDetail']->idloaisanpham;
+        $params['productRelated'] = chitietsanpham::join('sanpham', 'sanpham.id', '=', 'chitietsanpham.id')
+                                                    ->where('trangthai', 1)
+                                                    ->where('idloaisanpham', $params['productDetail']->idloaisanpham)
+                                                    ->where('chitietsanpham.id', '<>', $produceCode)
+                                                    ->get();
+
+        return view('homePages.product.product_detail', $params);
+    }
+
 }

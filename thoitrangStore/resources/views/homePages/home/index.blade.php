@@ -15,7 +15,10 @@
                                     <img src="{{asset('system/homePages/assets/pages/img/products/model1.jpg')}}" class="img-responsive" alt="Berry Lace Dress">
                                     <div>
                                         <a href="assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                        <a href="{{route('home.product.detail', $product->id)}}"
+                                           class="btn btn-default fancybox-fast-view">
+                                            View
+                                        </a>
                                     </div>
                                 </div>
                                 <h3><a href="shop-item.html">{{$product->ten_sp}}</a></h3>
@@ -44,33 +47,6 @@
                                 <i class="fa fa-angle-right"></i> {{$category->tenloai}}</a>
                         </li>
                         @endforeach
-
-{{--                   <li class="list-group-item clearfix dropdown">--}}
-{{--                        <ul class="dropdown-menu">--}}
-{{--                            <li class="list-group-item dropdown clearfix">--}}
-{{--                                <a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Shoes </a>--}}
-{{--                                <ul class="dropdown-menu">--}}
-{{--                                    <li class="list-group-item dropdown clearfix">--}}
-{{--                                        <a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic </a>--}}
-{{--                                        <ul class="dropdown-menu">--}}
-{{--                                            <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic 1</a></li>--}}
-{{--                                            <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Classic 2</a></li>--}}
-{{--                                        </ul>--}}
-{{--                                    </li>--}}
-{{--                                    <li class="list-group-item dropdown clearfix">--}}
-{{--                                        <a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sport  </a>--}}
-{{--                                        <ul class="dropdown-menu">--}}
-{{--                                            <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sport 1</a></li>--}}
-{{--                                            <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Sport 2</a></li>--}}
-{{--                                        </ul>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </li>--}}
-{{--                            <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Trainers</a></li>--}}
-{{--                            <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Jeans</a></li>--}}
-{{--                            <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> Chinos</a></li>--}}
-{{--                            <li><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> T-Shirts</a></li>--}}
-{{--                        </ul>--}}
                     </li>
                 </ul>
             </div>
@@ -86,7 +62,11 @@
                                 <img src="{{asset('system/homePages/assets/pages/img/products/k1.jpg')}}" class="img-responsive" alt="Berry Lace Dress">
                                 <div>
                                     <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    <a
+                                        href="{{route('home.product.detail', $product->id)}}"
+                                        class="btn btn-default fancybox-fast-view">
+                                            View
+                                    </a>
                                 </div>
                             </div>
                             <h3><a href="shop-item.html">{{$product->ten_sp}}</a></h3>

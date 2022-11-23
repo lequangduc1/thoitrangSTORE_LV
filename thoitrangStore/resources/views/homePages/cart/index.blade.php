@@ -40,11 +40,10 @@
                                 <td class="goods-page-quantity">
                                     <div class="product-quantity">
                                         <input id="product-quantity"
-                                               type="text"
+                                               type="number"
                                                name="product_{{$product['id']}}"
                                                value="{{$product['quality']}}"
                                                data-product="{{$product['id']}}"
-                                               readonly
                                                class="form-control input-sm input__quality">
                                         <span class="quality__max">
                                             (Còn lại: {{$product['quality_max']}})
