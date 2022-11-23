@@ -73,12 +73,19 @@ class ProductController extends Controller
                 $newProductDetail = new chitietsanpham();
                 $data['created_at'] = $date;
             }
+
+            // xử lí lưu ảnh
+            if($request->file('anhsanpham')){
+                $file = $request->file('anhsanpham');
+                $fileName = time().$file->getClientOriginalName();
+                $file->move(public_path('uploads/product'), $fileName);
+                $data['anhsanpham'] = 'uploads/product/'.$fileName;
+            }
             $newProduct->fill($data);
             $newProduct->save();
 
             $data['idsanpham'] = $newProduct->id;
             $data['soluong'] = 0;
-            $data['anhsanpham'] = 'asdasdasd';
             $newProductDetail->fill($data);
             $newProductDetail->save();
 
@@ -86,6 +93,7 @@ class ProductController extends Controller
             return redirect()->route('admin.products.index');
 
         }catch (Exception $exception){
+            dd($exception);
             Toastr::error('Lưu thất bại',$exception);
             return back();
         }

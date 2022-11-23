@@ -45,13 +45,13 @@
                             </div>
                             @if($phieunhap->trangthai == 0)
                                 <div class="form-group mb-4">
-                                    <label class="col-md-12 p-0"><b>Xác nhận đơn nhập hàng: </b>
-                                        <a class="btn btn-success" href="{{route('admin.importcoupon.confirm')}}">Xác nhận đơn thất bại</a>
-                                       <form class="form-horizontal form-material" action="{{route('admin.importcoupon.confirm')}}" method="POST">
-                                           <button class="btn btn-success" value="2">Xác nhận đơn thành công</button>
-                                           <button class="btn btn-danger" value="1">Xác nhận đơn thất bại</button>
-                                       </form>
-                                    </label>
+                                    <label class="col-md-12 p-0"><b>Xác nhận đơn nhập hàng: </b></label>
+                                    <form class="form-horizontal form-material" action="{{route('admin.importcoupon.confirm')}}" method="POST">
+                                        @csrf
+                                        <input name="id" value="{{$phieunhap->id}}" hidden />
+                                        <button class="btn btn-success" value="2" name="trangthai">Xác nhận đơn thành công</button>
+                                        <button class="btn btn-danger" value="1" name="trangthai">Xác nhận đơn thất bại</button>
+                                    </form>
                                 </div>
                             @endif
                         </div>

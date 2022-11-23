@@ -22,6 +22,17 @@
                 <div class="card-body">
                     <form class="form-horizontal form-material" action="{{route('admin.products.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <div class="form-group col-sm-6 mb-4" style="float: left">
+                            <label class="col-sm-12"><b>Màu sản phẩm</b><span class="input__required">*</span></label>
+                            <div class="col-sm-12 border-bottom">
+                                <select name="idmau" class="form-select shadow-none p-0 border-0 form-control-line">
+                                    <option>chọn màu sản phẩm</option>
+                                    @foreach($sanphams as $value)
+                                        <option value="{{$value->sanphams->id}}">{{$value->sanphams->ten_sp}} <i style="color: {{$value->maus->tenmau}}">a</i></option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group mb-4">
                             <label class="col-md-12 p-0"><b>Tên sản phẩm</b><span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">
@@ -46,57 +57,15 @@
                                 <input type="text" class="form-control p-0 border-0" name="giasanpham"> </div>
                         </div>
                         <div class="form-group col-sm-6 mb-4" style="float: left">
-                            <label class="col-sm-12">
-                                <b>Màu sản phẩm</b><span class="input__required">*</span> /
-                                <a
-                                    href="{{route('admin.productcolor.create')}}"
-                                    style="color: #0a53be"
-                                >Thêm màu <i class="fa fa-plus-circle"></i>
-                                </a>
-                            </label>
+                            <label class="col-sm-12"><b>Kích thước sản phẩm</b><span class="input__required">*</span></label>
                             <div class="col-sm-12 border-bottom">
-                                <select name="idmau" class="form-select shadow-none p-0 border-0 form-control-line">
-                                    <option>chọn màu sản phẩm</option>
-                                    @foreach($productColor as $value)
-                                        <option value="{{$value->id}}">{{$value->tenmau}}</option>
-                                    @endforeach
-                                </select>
+
                             </div>
                         </div>
                         <div class="form-group col-sm-6 mb-4" style="float: left">
-                            <label class="col-sm-12">
-                                <b>Kích thước sản phẩm</b><span class="input__required">*</span> /
-                                <a
-                                    href="{{route('admin.productsize.create')}}"
-                                    style="color: #0a53be"
-                                > Thêm kích thước <i class="fa fa-plus-circle"></i>
-                                </a>
-                            </label>
+                            <label class="col-sm-12"><b>Loại sản phẩm</b><span class="input__required">*</span></label>
                             <div class="col-sm-12 border-bottom">
-                                <select name="idsize" class="form-select shadow-none p-0 border-0 form-control-line">
-                                    <option>chọn kích thước</option>
-                                    @foreach($productSize as $value)
-                                        <option value="{{$value->id}}">{{$value->tensize}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group col-sm-6 mb-4" style="float: left">
-                            <label class="col-sm-12">
-                                <b>Loại sản phẩm</b><span class="input__required">*</span> /
-                                <a
-                                    href="{{route('admin.producttype.create')}}"
-                                    style="color: #0a53be"
-                                > Thêm loại <i class="fa fa-plus-circle"></i>
-                                </a>
-                            </label>
-                            <div class="col-sm-12 border-bottom">
-                                <select name="idloaisanpham" class="form-select shadow-none p-0 border-0 form-control-line">
-                                    <option>chọn loại sản phẩm</option>
-                                    @foreach($productType as $value)
-                                        <option value="{{$value->id}}">{{$value->tenloai}}</option>
-                                    @endforeach
-                                </select>
+
                             </div>
                         </div>
                         <div class="form-group col-sm-6 mb-4" style="float: left">

@@ -17,14 +17,16 @@ class ProductColor extends Seeder
         DB::statement("ALTER TABLE `mau` AUTO_INCREMENT = 1");
 
         DB::table('mau')->insert([
-            'tenmau'=>"#000000",
+            'tenmau'=>"Đen",
+            'code'=>"#000000",
             'trangthai'=>1,
             'created_at'=>date(today()),
             'updated_at'=>date(today()),
         ]);
 
         DB::table('mau')->insert([
-            'tenmau'=>"#040304",
+            'tenmau'=>"trắng",
+            'code'=>"#fff",
             'trangthai'=>0,
             'created_at'=>date(today()),
             'updated_at'=>date(today()),

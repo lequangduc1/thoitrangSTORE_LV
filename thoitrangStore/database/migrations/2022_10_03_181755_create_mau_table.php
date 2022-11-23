@@ -16,6 +16,7 @@ class CreateMauTable extends Migration
         Schema::create('mau', function (Blueprint $table) {
             $table->id();
             $table->string('tenmau');
+            $table->string('code');
             $table->integer('trangthai');
             $table->timestamps();
         });
