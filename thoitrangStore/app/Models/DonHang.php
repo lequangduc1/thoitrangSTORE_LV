@@ -17,6 +17,7 @@ class DonHang extends Model
         'tongtien_dh',
         'trangthai_dh',
         'phuongthuc_tt',
+        'trangthai_tt',
         'ghichu'
     ];
 
