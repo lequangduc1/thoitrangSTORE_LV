@@ -214,6 +214,13 @@
                                                 value="1"
                                             > Trả tiền mặt
                                         </label>
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="payment_method"
+                                                value="2"
+                                            > Momo
+                                        </label>
                                     </div>
                                 </div>
                             </div>

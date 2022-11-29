@@ -38,11 +38,17 @@
                                 </td>
                                 <td>{{$detail->soluong_sp}}</td>
                                 <td>{{number_format($detail->dongia)}}VNĐ</td>
-                                <td>{{number_format($detail->soluong_sp * $detail->dongia)}}VNĐ</td>
+                                <td>{{number_format($detail->soluong_sp * $detail->dongia)}}VNĐ
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                    <button @class(['btn btn-success'=>$order->trangthai_tt == 1,
+                                   'btn btn-danger' => $order->trangthai_tt == 0
+                                   ])
+                    >
+                        {{$order->trangthai_tt == 0 ? 'Chưa thanh toán' : 'Đã thanh toán'}}
+                    </button>
                     @if($order->trangthai_dh == 0)
                         <a
                             href="{{route('home.account.order-destroy', $order->id)}}"
