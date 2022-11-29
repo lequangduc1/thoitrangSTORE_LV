@@ -98,12 +98,15 @@
                                 <img src="{{asset('system/homePages/assets/pages/img/products/model1.jpg')}}" class="img-responsive" alt="Berry Lace Dress">
                                 <div>
                                     <a href="assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                    <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                    <a href="{{route('home.product.detail', $product->id)}}" class="btn btn-default fancybox-fast-view">View</a>
                                 </div>
                             </div>
                             <h3><a href="shop-item.html">{{$product->ten_sp}}</a></h3>
                             <div class="pi-price">{{number_format($product->giasanpham) .' VNĐ'}}</div>
-                            <a href="javascript:;" class="btn btn-default add2cart">Thêm vào giỏ</a>
+                            <a
+                                href="{{route('home.cart.add-to-cart', $product->id)}}"
+                                class="btn btn-default add2cart"
+                            >Thêm vào giỏ</a>
                         </div>
                     </div>
                     @endforeach
