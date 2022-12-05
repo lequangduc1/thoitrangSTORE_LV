@@ -82,7 +82,7 @@
                         <div id="payment-address-content" class="panel-collapse collapse in">
                             <div class="panel-body row">
                                 <div class="col-md-6 col-sm-6">
-                                    <h3>Thông tin nhận hàng</h3>
+                                    <h3>Thông tin khách hàng</h3>
                                     <div class="form-group">
                                         <label for="firstname">Họ và tên<span class="require">*</span></label>
                                         <input
@@ -113,50 +113,35 @@
                                                class="form-control">
                                     </div>
                                 </div>
-{{--                                <div class="col-md-6 col-sm-6">--}}
-{{--                                    <h3>Địa chỉ nhận hàng</h3>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="company">Company</label>--}}
-{{--                                        <input type="text" id="company" class="form-control">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="address1">Address 1</label>--}}
-{{--                                        <input type="text" id="address1" class="form-control">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="address2">Address 2</label>--}}
-{{--                                        <input type="text" id="address2" class="form-control">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="city">City <span class="require">*</span></label>--}}
-{{--                                        <input type="text" id="city" class="form-control">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="post-code">Post Code <span class="require">*</span></label>--}}
-{{--                                        <input type="text" id="post-code" class="form-control">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="country">Country <span class="require">*</span></label>--}}
-{{--                                        <select class="form-control input-sm" id="country">--}}
-{{--                                            <option value=""> --- Please Select --- </option>--}}
-{{--                                            <option value="244">Aaland Islands</option>--}}
-{{--                                            <option value="1">Afghanistan</option>--}}
-{{--                                            <option value="2">Albania</option>--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="region-state">Region/State <span class="require">*</span></label>--}}
-{{--                                        <select class="form-control input-sm" id="region-state">--}}
-{{--                                            <option value=""> --- Please Select --- </option><option value="3513">Aberdeen</option><option value="3514">Aberdeenshire</option><option value="3515">Anglesey</option>--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <hr>--}}
-                                <div class="col-md-12">
-                                    <button class="btn btn-primary  pull-right" type="submit" data-toggle="collapse" data-parent="#checkout-page" data-target="#shipping-address-content" id="button-payment-address">
-                                        Thay đổi
-                                    </button>
-
+                                <div class="col-md-6 col-sm-6">
+                                    <h3>Thông tin nhận hàng</h3>
+                                    <div class="form-group">
+                                        <label for="company">Người nhận</label>
+                                        <input
+                                            type="text"
+                                            value="{{$user->hovaten}}"
+                                            name="name_order"
+                                            required
+                                            class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address1">Số điện thoại</label>
+                                        <input
+                                            type="text"
+                                            name="phone_order"
+                                            required
+                                            value="{{$user->sodienthoai}}"
+                                            class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address2">Địa chỉ nhận hàng</label>
+                                        <input
+                                            type="text"
+                                            name="address_order"
+                                            required
+                                            value="{{$user->diachi}}"
+                                            class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -220,6 +205,13 @@
                                                 name="payment_method"
                                                 value="2"
                                             > Momo
+                                        </label>
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="payment_method"
+                                                value="3"
+                                            > Thanh toán online
                                         </label>
                                     </div>
                                 </div>

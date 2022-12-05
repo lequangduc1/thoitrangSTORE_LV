@@ -18,6 +18,9 @@ class CreateDondathangTable extends Migration
             $table->integer('makhachhang');
             $table->text('makhuyenmai')->nullable();
             $table->integer('manhanvien')->nullable();
+            $table->string('diachinhanhang');
+            $table->string('dienthoainhanhang');
+            $table->string('nguoinhan');
             $table->integer('tongtien_dh');
             $table->integer('trangthai_dh');
             $table->integer('phuongthuc_tt');
