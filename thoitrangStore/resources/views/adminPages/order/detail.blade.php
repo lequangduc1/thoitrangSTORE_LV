@@ -17,10 +17,11 @@
                         <div class="col-sm-4">
                             <h4>Thông tin nhận hàng</h4>
                             <ul>
-                                <li>Tên khách hàng: Trần Thanh Hoài</li>
-                                <li>Số điện thoại: 0387855869</li>
-                                <li>Email: hoaitran@gmail.com</li>
-                                <li>Địa chỉ: Hồ Chí Minh</li>
+                                <li>Tên khách hàng: {{$order->nguoinhan}}</li>
+                                <li>Số điện thoại: {{$order->dienthoainhanhang}}</li>
+                                <li>Email: {{$order->customer->email}}</li>
+                                <li>Địa chỉ: {{$order->diachinhanhang}}</li>
+                                <li>Thanh toán: {{$order->trangthai_tt == 0 ? 'Chưa thanh toán' : 'Đã thanh toán'}}</li>
                             </ul>
                         </div>
                         <div class="col-sm-8">
@@ -74,30 +75,32 @@
                         </div>
                         <div class="order__detail__action">
                             @if($order->trangthai_dh != 4)
-                            <a
-                                href="{{route('admin.order.update-status',[$order->id, 0])}}"
-                                class="btn btn-info">
-                                @if($order->trangthai_dh == 0)
-                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
-                                @endif
-                                Đơn mới
-                            </a>
-                            <a
-                                href="{{route('admin.order.update-status',[$order->id, 1])}}"
-                                class="btn btn-warning">
-                                @if($order->trangthai_dh == 1)
-                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
-                                @endif
-                                Đang xử lý
-                            </a>
-                            <a
-                                href="{{route('admin.order.update-status',[$order->id, 2])}}"
-                                class="btn btn-success">
-                                @if($order->trangthai_dh == 2)
-                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
-                                @endif
-                                Đã xác nhận
-                            </a>
+                            @if($order->trangthai_dh != 3)
+                                <a
+                                    href="{{route('admin.order.update-status',[$order->id, 0])}}"
+                                    class="btn btn-info">
+                                    @if($order->trangthai_dh == 0)
+                                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                    @endif
+                                    Đơn mới
+                                </a>
+                                <a
+                                    href="{{route('admin.order.update-status',[$order->id, 1])}}"
+                                    class="btn btn-warning">
+                                    @if($order->trangthai_dh == 1)
+                                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                    @endif
+                                    Đang xử lý
+                                </a>
+                                <a
+                                    href="{{route('admin.order.update-status',[$order->id, 2])}}"
+                                    class="btn btn-success">
+                                    @if($order->trangthai_dh == 2)
+                                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                    @endif
+                                    Đã xác nhận
+                                </a>
+                            @endif
                             <a
                                 href="{{route('admin.order.update-status',[$order->id, 3])}}"
                                 class="btn btn-primary">
@@ -107,6 +110,7 @@
                                 Hoàn thành
                             </a>
                             @endif
+                            @if($order->trangthai_dh != 3)
                             <a
                                 href="{{$order->trangthai_dh == 4 ? 'javascript:void(0)':route('admin.order.update-status',[$order->id, 4])}}"
                                 class="btn btn-danger">
@@ -115,6 +119,7 @@
                                 @endif
                                 Hủy
                             </a>
+                            @endif
                         </div>
                     </div>
 
