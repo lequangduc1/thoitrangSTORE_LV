@@ -17,12 +17,12 @@ class CreateDondathangTable extends Migration
             $table->id();
             $table->integer('makhachhang');
             $table->text('makhuyenmai')->nullable();
-            $table->integer('manhanvien')->nullable();
+            $table->integer('manhanvien');
             $table->integer('tongtien_dh');
             $table->integer('trangthai_dh');
             $table->integer('phuongthuc_tt');
             $table->integer('trangthai_tt');
-            $table->string('ghichu');
+            $table->string('ghichu')->nullable();
             $table->timestamps();
         });
     }
