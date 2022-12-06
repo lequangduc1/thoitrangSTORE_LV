@@ -91,6 +91,9 @@ class OrderController extends Controller
                 "makhachhang"=>$customer_id,
                 'tongtien_dh'=> $total,
                 'trangthai_dh'=> 0,
+                'diachinhanhang'=>$data['address_order'],
+                'dienthoainhanhang'=>$data['phone_order'],
+                'nguoinhan'=>$data['name_order'],
                 'phuongthuc_tt'=>$data['payment_method'],
                 'trangthai_tt'=>$data['payment_method'] == 1 ? 0 : 1,
                 'ghichu'=>''

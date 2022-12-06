@@ -8,12 +8,15 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 
 class AuthController extends Controller
 {
 
     public function login_form(){
+        $url_previous = url()->previous();
+        Session::put('url_previous', $url_previous);
         return view('homePages.auth.login');
     }
 
@@ -28,7 +31,6 @@ class AuthController extends Controller
 
     public function login(Request $request){
         $data = $request->input();
-
         $credentials = [
             'email'=>$data['email'],
             'password'=>$data['password']
@@ -42,7 +44,8 @@ class AuthController extends Controller
 
         if(Auth::guard('customer')->attempt($credentials)){
             if($account->trangthai==1){
-                return redirect()->route('home.home');
+                $url_previous = Session::get('url_previous');
+                return redirect()->to($url_previous);
             }else{
                 Auth::logout();
                 return redirect()->route('home.auth.login_form')->withErrors(['login_fail'=>'Tài khoản bị vô hiệu hóa']);
