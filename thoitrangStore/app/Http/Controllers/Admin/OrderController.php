@@ -37,6 +37,9 @@ class OrderController extends Controller
                 return redirect()->back();
             }
             $order->trangthai_dh = $status;
+            if($status == 3){
+                $order->trangthai_tt = 1;
+            }
             $order->save();
 
             if($order->trangthai_dh == 4){
