@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\ChiTietDonHang;
 use App\Models\chitietsanpham;
 use App\Models\DonHang;
+use App\Models\khuyenmai;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\Session;
@@ -82,14 +84,25 @@ class OrderController extends Controller
 
     public function checkout(Request $request){
         try{
+
             $data = $request->input();
             $customer_id = Auth::guard('customer')->user()->id;
             $total = getCart()['total'];
             $allProductInCart = getCart()['allProductInCart'];
+//          check sale
+            $total_sale = 0;
+            if($data['code_sale']){
+                $sale = khuyenmai::where('ma_km', $data['code_sale'])->first();
+                $quality = $sale->conlai - 1;
+                khuyenmai::find($sale->id)->update(['conlai'=>$quality]);
+                $total_sale = ($total*$sale->phantramgiam) / 100;
 
+            }
             $orderNewData = [
+                "makhuyenmai"=>$data['code_sale'] ?? null,
                 "makhachhang"=>$customer_id,
                 'tongtien_dh'=> $total,
+                'tongtien_km'=>$total_sale,
                 'trangthai_dh'=> 0,
                 'diachinhanhang'=>$data['address_order'],
                 'dienthoainhanhang'=>$data['phone_order'],
@@ -124,9 +137,26 @@ class OrderController extends Controller
             //clear session cart
             Session::forget('cart');
             if($data['payment_method'] == 2){
-                return $this->momoPayment($orderNew->id, $total);
+                return $this->momoPayment($orderNew->id, $total_sale ? $total-$total_sale : $total);
             }
             return redirect()->route('home.account.order-detail', $orderNew->id)->with(['success'=>'Đặt hàng thành công !!']);
+        }catch (\Exception $e){
+            dd($e);
+        }
+    }
+
+    public function checkCodeSale($code){
+        try{
+            $dayNow = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
+            $sale = khuyenmai::where('ma_km', $code)
+                            ->where('ngaybatdau_km', '<=', $dayNow)
+                            ->where('ngayketthuc_km', '>=', $dayNow)
+                            ->where('conlai', '>', 0)
+                            ->where('trangthai', 1)
+                            ->first();
+            if($sale){
+                return response()->json($sale);
+            }
         }catch (\Exception $e){
             dd($e);
         }

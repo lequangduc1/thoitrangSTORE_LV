@@ -16,8 +16,9 @@
                     <ul class="scroller" style="height: 250px;">
                         @foreach(getCart()['allProductInCart'] as $product)
                         <li>
-                            <a href="shop-item.html">
-                                <img src="{{asset('system/homePages/assets/pages/img/cart-img.jpg')}}" alt="Rolex Classic Watch" width="37" height="34">
+                            <a href="javascript:void(0)">
+                                <img src="{{asset($product['img'])}}"
+                                     alt="{{$product['name']}}" width="37" height="34">
                             </a>
                             <span class="cart-content-count">x {{$product['quality']}}</span>
                             <strong><a href="shop-item.html">{{$product['name']}}</a></strong>

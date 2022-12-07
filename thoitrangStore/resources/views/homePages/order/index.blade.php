@@ -5,6 +5,7 @@
         <form action="{{route('home.order.checkout')}}" method="POST">
             @csrf
         <!-- BEGIN SIDEBAR & CONTENT -->
+        <input type="hidden" value="" name="code_sale" id="order_code"/>
         <div class="row margin-bottom-40">
             <!-- BEGIN CONTENT -->
             <div class="col-md-12 col-sm-12">
@@ -245,7 +246,7 @@
                                                 <tr>
                                                     <td class="goods-page-image">
                                                         <a href="javascript:;">
-                                                            <img src="{{asset('system/homePages/assets/pages/img/products/model3.jpg')}}"
+                                                            <img src="{{asset($product['img'])}}"
                                                                  alt="Berry Lace Dress">
                                                         </a>
                                                     </td>
@@ -293,12 +294,35 @@
                                                     0 VNĐ
                                                 </strong>
                                             </li>
+                                            <li>
+                                                <em>Giảm giá</em>
+                                                <strong class="price" id="price_sale">
+                                                    0 VNĐ
+                                                </strong>
+                                            </li>
                                             <li class="shopping-total-price">
                                                 <em>Phải trả</em>
-                                                <strong class="price">
+                                                <strong class="price" id="price_left">
                                                     {{number_format($total)}}
                                                     VNĐ
                                                 </strong>
+                                            </li>
+                                            <li class="shopping-total-price" id="code-sale-wrapper">
+                                                <div class="input-group mb-3" id="input_code_sale">
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="Mã giảm giá"
+                                                        id="sale_code"
+                                                        aria-label="Recipient's username"
+                                                        aria-describedby="button-addon2">
+                                                    <button
+                                                        class="btn btn-outline-secondary"
+                                                        type="button"
+                                                        onclick="handleApplySale({{$total}})"
+                                                        id="btn-apply">Áp dụng</button>
+                                                </div>
+
                                             </li>
                                         </ul>
                                     </div>

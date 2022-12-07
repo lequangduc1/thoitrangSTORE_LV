@@ -26,7 +26,7 @@
                                         {{$order->created_at}}
                                     </td>
                                     <td>
-                                        {{number_format($order->tongtien_dh)}} VNĐ
+                                        {{number_format( $order->tongtien_km ? $order->tongtien_dh-$order->tongtien_km : $order->tongtien_dh )}} VNĐ
                                     </td>
                                     <td class="text-center">
                                         <span

@@ -38,7 +38,8 @@
                                 </td>
                                 <td>{{$detail->soluong_sp}}</td>
                                 <td>{{number_format($detail->dongia)}}VNĐ</td>
-                                <td>{{number_format($detail->soluong_sp * $detail->dongia)}}VNĐ
+                                <td>{{number_format($detail->soluong_sp * $detail->dongia)}}VNĐ</td>
+                                <td>{{number_format($detail->soluong_sp * $detail->dongia)}}VNĐ</td>
                             </tr>
                         @endforeach
                         </tbody>
