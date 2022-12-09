@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\Admin\CheckLoginMiddleware;
 use App\Http\Middleware\Admin\CheckUnLoginMiddleware;
 use App\Http\Middleware\Home\CheckLogin;
+use App\Http\Middleware\isCustomerVerifyEmail;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -67,6 +68,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin.auth'=>CheckLoginMiddleware::class,
         'admin.not.auth'=>CheckUnLoginMiddleware::class,
-        'home.auth'=>CheckLogin::class
+        'home.auth'=>CheckLogin::class,
+        'home.verify_email'=>isCustomerVerifyEmail::class
     ];
 }
