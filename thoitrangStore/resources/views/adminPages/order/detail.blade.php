@@ -63,10 +63,16 @@
                                             0 VNĐ
                                         </strong>
                                     </li>
+                                    <li>
+                                        <em>Giảm</em>
+                                        <strong class="price">
+                                            - {{number_format($order->tongtien_km)}} VNĐ
+                                        </strong>
+                                    </li>
                                     <li class="shopping-total-price">
                                         <em>Phải trả</em>
                                         <strong class="price">
-                                            {{number_format($order->tongtien_dh)}} VNĐ
+                                            {{number_format($order->tongtien_km ? $order->tongtien_dh - $order->tongtien_km : $order->tongtien_dh)}} VNĐ
                                         </strong>
                                     </li>
                                 </ul>

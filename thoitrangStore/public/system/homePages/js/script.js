@@ -53,4 +53,62 @@ function filter(){
 
 }
 
+function handleApplySale(total){
+    const code = $('#sale_code').val();
+    $.ajax({
+        type: 'GET',
+        url: '/order/check-code-sale/'+code,
+        success: (res) => {
+            if(res){
+                const sale = (total*res.phantramgiam)/100;
+                $('#price_sale').html(formatCurrent(sale));
+                $('#sale_code').val('');
+                $('#price_left').html(formatCurrent(total-sale));
+                $('#order_code').val(code);
+                $('#code-sale-wrapper').html(
+                    `<div class="code_sale_apply">
+                    <span>Mã hợp lệ Giảm ${res.phantramgiam} %</span>
+                    <a class="del-goods" onclick="hanleDestroyCodeSale(`+total+`)">&nbsp;
+                    </a>
+                </div>`
+                )
+            }else{
+                $('#code-sale-wrapper').html(
+                    `<div class="code_sale_apply_error">
+                    <span>Mã không hợp lệ hoặc hết hạn</span>
+                    <a class="del-goods" onclick="hanleDestroyCodeSale(`+total+`)">&nbsp;
+                    </a>
+                </div>`
+                )
+            }
+        }
+    })
+}
+
+function hanleDestroyCodeSale(total){
+    $('#price_sale').html(formatCurrent(0));
+    $('#price_left').html(formatCurrent(total));
+    $('#order_code').val('');
+    $('#code-sale-wrapper').html(
+        `<div class="input-group mb-3" id="input_code_sale">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Mã giảm giá"
+                id="sale_code"
+                aria-label="Recipient's username"
+                aria-describedby="button-addon2">
+            <button
+                class="btn btn-outline-secondary"
+                type="button"
+                onclick="handleApplySale(`+total+`)"
+                id="btn-apply">Áp dụng</button>
+        </div>`
+    )
+}
+
+function formatCurrent(number){
+    return number.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+}
+
 

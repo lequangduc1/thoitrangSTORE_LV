@@ -4,6 +4,7 @@ namespace App\Http\Controllers\HomePages;
 
 use App\Http\Controllers\Controller;
 use App\Models\chitietsanpham;
+use App\Models\DanhGia;
 use App\Models\kickthuocsanpham;
 use App\Models\loaisanpham;
 use App\Models\mausanpham;
@@ -51,8 +52,27 @@ class ProductController extends Controller
                                                     ->where('idloaisanpham', $params['productDetail']->idloaisanpham)
                                                     ->where('chitietsanpham.id', '<>', $produceCode)
                                                     ->get();
+        $params['comments'] = DanhGia::where('trangthai', 1)
+                                    ->where('masanpham', $params['productDetail']->id)
+                                    ->get();
 
         return view('homePages.product.product_detail', $params);
+    }
+
+    public function addComment(Request $request) {
+        try{
+            $id_product = $request->id_product;
+            $id_user = $request->id_user;
+            $newComment = new DanhGia();
+            $newComment->makhachhang = $id_user;
+            $newComment->masanpham = $id_product;
+            $newComment->noidung = $request->content;
+            $newComment->save();
+
+            return redirect()->back()->with(['success'=>'Thêm đánh giá thành công!!']);
+        }catch (\Exception $e){
+            dd($e);
+        }
     }
 
 }

@@ -25,8 +25,8 @@
                             <tr>
                                 <td class="goods-page-image">
                                     <a href="javascript:;">
-                                        <img src="{{asset('system/homePages/assets/pages/img/products/model3.jpg')}}"
-                                             alt="Berry Lace Dress">
+                                        <img src="{{asset($product['img'])}}"
+                                             alt="{{$product['name']}}">
                                     </a>
                                 </td>
                                 <td class="goods-page-description">

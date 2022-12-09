@@ -79,7 +79,13 @@
                         </div>
                     </ul>
                 </li>
-
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.comment.index')}}"
+                       aria-expanded="false">
+                        <i class="fas fa-comment" aria-hidden="true"></i>
+                        <span class="hide-menu">Quản lý đánh giá</span>
+                    </a>
+                </li>
                 <li class="text-center p-20 upgrade-btn" style="padding: 20px">
                     <a href="{{route('admin.logout')}}"
                        class="btn d-grid btn-danger text-white"
