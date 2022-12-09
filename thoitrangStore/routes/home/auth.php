@@ -8,5 +8,6 @@ Route::prefix('/auth')->name('auth.')->group(function(){
     Route::get('/logout',[\App\Http\Controllers\HomePages\AuthController::class,'logout'])->name('logout');
     Route::post('/login', [\App\Http\Controllers\HomePages\AuthController::class,'login'])->name('login');
     Route::post('/register',[\App\Http\Controllers\HomePages\AuthController::class,'register'])->name('register');
+    Route::get('/verify', [\App\Http\Controllers\HomePages\AuthController::class, 'verify'])->name('verify');
 
 });
