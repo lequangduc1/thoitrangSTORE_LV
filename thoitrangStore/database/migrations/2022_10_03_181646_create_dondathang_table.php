@@ -22,6 +22,7 @@ class CreateDondathangTable extends Migration
             $table->string('dienthoainhanhang');
             $table->string('nguoinhan');
             $table->integer('tongtien_dh');
+            $table->integer('tongtien_km');
             $table->integer('trangthai_dh');
             $table->integer('phuongthuc_tt');
             $table->integer('trangthai_tt');

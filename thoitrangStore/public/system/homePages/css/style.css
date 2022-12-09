@@ -124,6 +124,48 @@ input::-webkit-inner-spin-button {
 }
 
 /*End order status style*/
+/* Style code sale */
+.code_sale_apply{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    background-color: rgba(84, 204, 255, 0.54);
+    padding: 10px 5px;
+    border-radius: 5px !important;
+}
+
+.code_sale_apply strong{
+    color: black;
+    font-size: 16px;
+}
+
+.code_sale_apply a{
+    margin: auto 0;
+    padding: 0;
+    color: black;
+}
+
+.code_sale_apply_error{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    background-color: rgba(252, 138, 45, 0.54);
+    padding: 10px 5px;
+    border-radius: 5px !important;
+}
+
+.code_sale_apply_error strong{
+    color: #fffdfd;
+    font-size: 16px;
+}
+
+.code_sale_apply_error a{
+    margin: auto 0;
+    padding: 0;
+    color: #ffffff;
+}
+
+/* End style code sale */
 
 
 

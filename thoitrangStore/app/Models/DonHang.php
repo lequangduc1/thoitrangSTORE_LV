@@ -15,6 +15,7 @@ class DonHang extends Model
         'makhachhang',
         'makhuyenmai',
         'tongtien_dh',
+        'tongtien_km',
         'diachinhanhang',
         'dienthoainhanhang',
         'nguoinhan',
