@@ -28,13 +28,16 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="product-main-image">
-                                <img src="{{asset('system/homePages/assets/pages/img/products/model7.jpg')}}" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="assets/pages/img/products/model7.jpg">
+                                <img src="{{asset($productDetail->anhsanpham)}}"
+                                     alt="{{$productDetail->ten_sp}}"
+                                     class="img-responsive"
+                                     data-BigImgsrc="{{asset($productDetail->anhsanpham)}}">
                             </div>
-                            <div class="product-other-images">
-                                <a href="assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="{{asset('system/homePages/assets/pages/img/products/model3.jpg')}}"></a>
-                                <a href="assets/pages/img/products/model4.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="{{asset('system/homePages/assets/pages/img/products/model4.jpg')}}"></a>
-                                <a href="assets/pages/img/products/model5.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="{{asset('system/homePages/assets/pages/img/products/model5.jpg')}}"></a>
-                            </div>
+{{--                            <div class="product-other-images">--}}
+{{--                                <a href="assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="{{asset('system/homePages/assets/pages/img/products/model3.jpg')}}"></a>--}}
+{{--                                <a href="assets/pages/img/products/model4.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="{{asset('system/homePages/assets/pages/img/products/model4.jpg')}}"></a>--}}
+{{--                                <a href="assets/pages/img/products/model5.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="{{asset('system/homePages/assets/pages/img/products/model5.jpg')}}"></a>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <h1>{{$productDetail->ten_sp}}</h1>
@@ -85,8 +88,11 @@
                         </div>
                         <div class="product-page-content">
                             <ul id="myTab" class="nav nav-tabs">
-                                <li><a href="#Description" data-toggle="tab">Description</a></li>
-                                <li class="active"><a href="#Reviews" data-toggle="tab">Reviews (2)</a></li>
+                                <li><a href="#Description" data-toggle="tab">Mô tả</a></li>
+                                <li class="active">
+                                    <a href="#Reviews" data-toggle="tab">Đánh giá ({{count($comments)}})</a>
+
+                                </li>
                             </ul>
                             <div id="myTabContent" class="tab-content">
                                 <div class="tab-pane fade" id="Description">
@@ -96,48 +102,45 @@
                                 </div>
                                 <div class="tab-pane fade in active" id="Reviews">
                                     <!--<p>There are no reviews for this product.</p>-->
+                                    @foreach($comments as $comment)
                                     <div class="review-item clearfix">
                                         <div class="review-item-submitted">
-                                            <strong>Bob</strong>
-                                            <em>30/12/2013 - 07:37</em>
+                                            <strong>{{$comment->khachhang[0]->hovaten}}</strong>
+                                            <em>{{$comment->created_at}}</em>
                                             <div class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
                                         </div>
                                         <div class="review-item-content">
-                                            <p>Sed velit quam, auctor id semper a, hendrerit eget justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis vel arcu pulvinar dolor tempus feugiat id in orci. Phasellus sed erat leo. Donec luctus, justo eget ultricies tristique, enim mauris bibendum orci, a sodales lectus purus ut lorem.</p>
+                                            <p>{{$comment->noidung}}</p>
                                         </div>
                                     </div>
-                                    <div class="review-item clearfix">
-                                        <div class="review-item-submitted">
-                                            <strong>Mary</strong>
-                                            <em>13/12/2013 - 17:49</em>
-                                            <div class="rateit" data-rateit-value="2.5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
-                                        </div>
-                                        <div class="review-item-content">
-                                            <p>Sed velit quam, auctor id semper a, hendrerit eget justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis vel arcu pulvinar dolor tempus feugiat id in orci. Phasellus sed erat leo. Donec luctus, justo eget ultricies tristique, enim mauris bibendum orci, a sodales lectus purus ut lorem.</p>
-                                        </div>
-                                    </div>
-
+                                    @endforeach
                                     <!-- BEGIN FORM-->
-                                    <form action="#" class="reviews-form" role="form">
-                                        <h2>Write a review</h2>
+                                    @if(\Illuminate\Support\Facades\Auth::guard('customer')->check())
+                                    <form method="POST" action="{{route('home.product.add_comment')}}" class="reviews-form" role="form">
+                                        @php
+                                            $name = \Illuminate\Support\Facades\Auth::guard('customer')->user()->hovaten;
+                                            $email = \Illuminate\Support\Facades\Auth::guard('customer')->user()->email;
+                                            $id_user = \Illuminate\Support\Facades\Auth::guard('customer')->user()->id;
+                                            $id_product = $productDetail->id;
+                                        @endphp
+                                        @csrf
+                                        <input value="{{$id_user}}" type="hidden" name="id_user"/>
+                                        <input value="{{$id_product}}" type="hidden" name="id_product"/>
+                                        <h2>Đánh giá</h2>
                                         <div class="form-group">
-                                            <label for="name">Name <span class="require">*</span></label>
-                                            <input type="text" class="form-control" id="name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="text" class="form-control" id="email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="review">Review <span class="require">*</span></label>
-                                            <textarea class="form-control" rows="8" id="review"></textarea>
+                                            <label for="review">Nội dung <span class="require">*</span></label>
+                                            <textarea name="content" class="form-control" rows="8" id="review"></textarea>
                                         </div>
                                         <div class="padding-top-20">
-                                            <button type="submit" class="btn btn-primary">Send</button>
+                                            <button type="submit" class="btn btn-primary">Gởi</button>
                                         </div>
                                     </form>
+                                    @else
+                                        <strong>Bạn cần <a href="{{route('home.auth.login_form')}}">login</a> để được bình luận!</strong>
+                                    @endif
                                     <!-- END FORM-->
                                 </div>
+
                             </div>
                         </div>
                     </div>

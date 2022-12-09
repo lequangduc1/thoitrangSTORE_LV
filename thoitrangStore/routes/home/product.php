@@ -5,5 +5,7 @@ Route::prefix('/product')->name('product.')->group(function(){
 
     Route::get('/', [\App\Http\Controllers\HomePages\ProductController::class, 'index'])->name('list');
     Route::get('/{code}', [\App\Http\Controllers\HomePages\ProductController::class, 'detail'])->name('detail');
+    Route::post('/add-comment', [\App\Http\Controllers\HomePages\ProductController::class, 'addComment'])->name('add_comment');
+
 
 });
