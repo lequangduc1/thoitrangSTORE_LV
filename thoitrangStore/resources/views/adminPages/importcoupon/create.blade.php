@@ -52,25 +52,30 @@
                         </div>
                     </form>
                     @if(is_array($allProductInCart))
-                        <div class="card-body" style="border: 1px solid #000; margin-top: 10px; border-radius: 10px" >
+                        <div class="card-body" style="border: 1px solid #000; margin-top: 10px; border-radius: 10px; float: left;  width: 100%" >
                             <label class="col-md-12 p-0 text-center"><b>Sản phẩm ({{count($allProductInCart)}})</b></label>
                             @foreach($allProductInCart as $key => $value)
-                                <div class="card-body col-md-6" style="border: 1px solid #000; margin-top: 10px; border-radius: 10px; float: left" >
+                                <div class="card-body col-md-3" style="border: 1px solid #000; margin-top: 10px; border-radius: 10px; float: left" >
                                     <div class="form-horizontal form-material">
-{{--                                        <div class="form-group col-md-12" style="float: left">--}}
-{{--                                            <label class="col-md-12 p-0"><b>Tên sản phẩm: </b>  {{$value->ten_sp}}</label>--}}
-{{--                                        </div>--}}
                                         <div class="form-group col-md-12" style="float: left">
-                                            <label class="col-md-12 p-0"><b>Tên sản phẩm: </b>  {{$value['soluongnhap']}}</label>
+                                            <label class="col-md-12 p-0"><b>Tên sản phẩm: </b> {{$value['tensanp0ham']}}  </label>
                                         </div>
                                         <div class="form-group col-md-12" style="float: left">
-                                            <label class="col-md-12 p-0"><b>Tên sản phẩm: </b>  {{$value['gianhp']}}</label>
+                                            <label class="col-md-12 p-0"><b>Số lượng: </b>  {{$value['soluongnhap']}}</label>
+                                        </div>
+                                        <div class="form-group col-md-12" style="float: left">
+                                            <label class="col-md-12 p-0"><b>Giá nhập: </b>  {{$value['gianhp']}}</label>
                                         </div>
                                     </div>
                                 </div>
+
                             @endforeach
+                            <div class="card-body col-md-12 align-right" style="float: left" >
+                                        <button class="btn btn-success" >Thêm sản phẩm</button>
+                            </div>
+
                         </div>
-                    @endif
+                        @endif
 
                 </div>
             </div>
