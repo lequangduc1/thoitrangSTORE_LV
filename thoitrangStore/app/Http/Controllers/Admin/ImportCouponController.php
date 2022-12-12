@@ -8,6 +8,7 @@ use App\Models\chitietphieunhap;
 use App\Models\chitietsanpham;
 use App\Models\sanpham;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Yoeunes\Toastr\Facades\Toastr;
 
 class ImportCouponController extends Controller
@@ -65,7 +66,9 @@ class ImportCouponController extends Controller
 
     public function create(){
         try {
+            $params['allProductInCart'] = getCartImport()['allProductInCartImport'];
             $params['sanphams'] = chitietsanpham::all();
+            $params['sanPhamDonHang'] = [];
 //            $params['chitietphieunhap'] = chitietphieunhap::where('idphieunhap', $id)->get();
             return view('adminPages.importcoupon.create',$params);
 //            return view('adminPages.importcoupon.create');
@@ -74,7 +77,36 @@ class ImportCouponController extends Controller
             Toastr::error('Lỗi Lấy dữ liệu');
             return view('adminPages.importcoupon.index',$params);
         }
+    }
 
+    public function  addToCart(Request $request){
+        $productId = $request->idsanpham;
+        try{
+            $productInformation = chitietsanpham::join('sanpham', 'chitietsanpham.id', '=', 'sanpham.id')
+                ->where('sanpham.trangthai', 1)
+                ->where('sanpham.id', $productId)
+                ->first();
+            $sessionCurrent = Session::get('cartImport') ?? array();
+            if(array_key_exists('product_'.$productId, $sessionCurrent)){
+                $sessionCurrent['product_'.$productId]['soluongnhap'] += $request->soluongnhap;
+                Session::push('cartImport',$sessionCurrent);
+            }else{
+                $productNew = [
+                    'id'=> $productInformation->id,
+                    'idsanpham'=>$productInformation->idsanpham,
+                    'tensanp0ham' =>$productInformation->ten_sp,
+                    'soluongnhap'=>$request->soluongnhap,
+                    'gianhp'=>$productInformation->giasanpham,
+                ];
+
+                $sessionCurrent['product_'.$productId] = $productNew;
+                Session::push('cartImport',$sessionCurrent);
+            }
+            Session::put('cartImport', $sessionCurrent);
+            return redirect()->back();
+        }catch (\Exception $e){
+            dd($e);
+        }
     }
 
     public function search(Request $request){

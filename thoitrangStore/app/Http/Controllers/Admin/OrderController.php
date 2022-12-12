@@ -51,7 +51,7 @@ class OrderController extends Controller
                 }
             }
             Toastr::success('Cập nhật trạng thái thành công!!');
-            return redirect()->back();
+            return redirect()->route('admin.order.index');
         }catch(\Exception $e){
             dd($e);
         }

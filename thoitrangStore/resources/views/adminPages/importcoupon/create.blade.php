@@ -20,75 +20,58 @@
                     @endforeach
                 @endif
                 <div class="card-body">
-                    <form class="form-horizontal form-material" action="{{route('admin.products.store')}}" method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal form-material" action="{{route('admin.importcoupon.addToCart')}}" method="POST" enctype="multipart/form-data" style="border-bottom: 1px solid #000">
                         @csrf
-                        <div class="form-group col-sm-6 mb-4" style="float: left">
-                            <label class="col-sm-12"><b>Màu sản phẩm</b><span class="input__required">*</span></label>
+                        <div class="form-group col-sm-4 mb-4" style="float: left">
+                            <label class="col-sm-12"><b>Sản phẩm</b><span class="input__required">*</span></label>
                             <div class="col-sm-12 border-bottom">
-                                <select name="idmau" class="form-select shadow-none p-0 border-0 form-control-line">
-                                    <option>chọn màu sản phẩm</option>
+                                <select name="idsanpham" class="form-select shadow-none p-0 border-0 form-control-line">
+                                    <option>--- chọn sản phẩm ---</option>
                                     @foreach($sanphams as $value)
                                         <option value="{{$value->sanphams->id}}">{{$value->sanphams->ten_sp}} <i style="color: {{$value->maus->tenmau}}">a</i></option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group mb-4">
-                            <label class="col-md-12 p-0"><b>Tên sản phẩm</b><span class="input__required">*</span></label>
+                        <div class="form-group col-sm-2 mb-4" style="float: left; margin-left: 10px">
+                            <label class="col-md-12 p-0"><b>Số lượng</b><span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">
-                                <input type="text" class="form-control p-0 border-0" name="ten_sp" />
+                                <input type="number" class="form-control p-0 border-0" name="soluongnhap" />
                             </div>
                         </div>
-                        <div class="form-group mb-4">
-                            <label class="col-md-12 p-0"><b>Ảnh sản phẩm</b><span class="input__required">*</span></label>
+                        <div class="form-group col-sm-2 mb-4" style="float: left; margin-left: 10px">
+                            <label class="col-md-12 p-0"><b>Giá nhập</b><span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">
-                                <input type="file" class="form-control p-0 border-0" name="anhsanpham" accept="image/png, image/jpeg" multiple />
-                            </div>
-                        </div>
-                        <div class="form-group mb-4 col-sm-6" style="float: left">
-                            <label class="col-md-12 p-0"><b>Mã code sản phẩm</b><span class="input__required">*</span></label>
-                            <div class="col-md-12 border-bottom p-0">
-                                <input type="text" class="form-control p-0 border-0" name="macodesanpham" />
-                            </div>
-                        </div>
-                        <div class="form-group mb-4 col-sm-6" style="float: left">
-                            <label class="col-md-12 p-0"><b>Giá sản phẩm</b><span class="input__required">*</span></label>
-                            <div class="col-md-12 border-bottom p-0">
-                                <input type="text" class="form-control p-0 border-0" name="giasanpham"> </div>
-                        </div>
-                        <div class="form-group col-sm-6 mb-4" style="float: left">
-                            <label class="col-sm-12"><b>Kích thước sản phẩm</b><span class="input__required">*</span></label>
-                            <div class="col-sm-12 border-bottom">
-
-                            </div>
-                        </div>
-                        <div class="form-group col-sm-6 mb-4" style="float: left">
-                            <label class="col-sm-12"><b>Loại sản phẩm</b><span class="input__required">*</span></label>
-                            <div class="col-sm-12 border-bottom">
-
-                            </div>
-                        </div>
-                        <div class="form-group col-sm-6 mb-4" style="float: left">
-                            <label class="col-sm-12"><b>Trạng thái</b><span class="input__required">*</span></label>
-                            <div class="col-sm-12 border-bottom">
-                                <select name="trangthai" class="form-select shadow-none p-0 border-0 form-control-line">
-                                    <option value="1">Hiện</option>
-                                    <option value="0">Ẩn</option>
-                                </select>
+                                <input type="number" class="form-control p-0 border-0" name="gianhap" />
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label class="col-md-12 p-0"><b>Mô tả sản phẩm</b><span class="input__required">*</span></label>
-                            <div class="col-md-12 border-bottom p-0">
-                                <input type="text" class="form-control p-0 border-0" name="mota" />
-                            </div>
-                        </div>
-                        <div class="form-group mb-4">
-                            <div class="col-sm-12">
-                                <button class="btn btn-success">Lưu</button>
+                            <div class="col-sm-12" >
+                                <button class="btn btn-success" style="margin-top: 31px; margin-left: 20px">Thêm sản phẩm</button>
                             </div>
                         </div>
                     </form>
+                    @if(is_array($allProductInCart))
+                        <div class="card-body" style="border: 1px solid #000; margin-top: 10px; border-radius: 10px" >
+                            <label class="col-md-12 p-0 text-center"><b>Sản phẩm ({{count($allProductInCart)}})</b></label>
+                            @foreach($allProductInCart as $key => $value)
+                                <div class="card-body col-md-6" style="border: 1px solid #000; margin-top: 10px; border-radius: 10px; float: left" >
+                                    <div class="form-horizontal form-material">
+{{--                                        <div class="form-group col-md-12" style="float: left">--}}
+{{--                                            <label class="col-md-12 p-0"><b>Tên sản phẩm: </b>  {{$value->ten_sp}}</label>--}}
+{{--                                        </div>--}}
+                                        <div class="form-group col-md-12" style="float: left">
+                                            <label class="col-md-12 p-0"><b>Tên sản phẩm: </b>  {{$value['soluongnhap']}}</label>
+                                        </div>
+                                        <div class="form-group col-md-12" style="float: left">
+                                            <label class="col-md-12 p-0"><b>Tên sản phẩm: </b>  {{$value['gianhp']}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>

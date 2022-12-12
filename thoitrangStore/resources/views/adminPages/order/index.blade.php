@@ -29,7 +29,7 @@
                                     <option value="2" {{$trangthai == 2 ? 'selected' : ''}}>Đơn thành công</option>
                                     <option value="1" {{$trangthai == 1 ? 'selected' : ''}}>Đơn đang xử lí</option>
                                     <option value="0" {{$trangthai == 0 ? 'selected' : ''}}>Đơn mới</option>
-                                    <option value="0" {{$trangthai == 3 ? 'selected' : ''}}>Đơn hoàn thành</option>
+                                    <option value="3" {{$trangthai == 3 ? 'selected' : ''}}>Đơn hoàn thành</option>
                                 </select>
                             </div>
                             <div class="col-md-1" style="float: left; margin-left: 10px; margin-top: 39px">
