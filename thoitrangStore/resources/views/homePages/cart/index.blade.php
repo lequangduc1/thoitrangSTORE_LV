@@ -32,9 +32,11 @@
                                 <td class="goods-page-description">
                                     <h3><a href="javascript:;">{{$product['name']}}</a></h3>
                                     <p>
-                                        <strong>Thông tin: </strong>
+                                        <strong>Thông tin: </strong><br>
 {{--                                        Color: <span class="filter__color" style="background-color: {{$product['color']}}"></span>;--}}
-                                        Size: {{$product['size']}}
+                                        Size: {{$product['size']}}<br>
+                                        Màu: {{$product['color']}}<br>
+                                        Mã: {{$product['code']}}
                                     </p>
                                 </td>
                                 <td class="goods-page-quantity">

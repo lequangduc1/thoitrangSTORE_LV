@@ -20,6 +20,7 @@ class CreateKhachhangTable extends Migration
             $table->string('diachi')->default('HCM');
             $table->string('sodienthoai');
             $table->string('password');
+            $table->string('remember_token')->default(null);
             $table->integer('email_verify')->default(0);
             $table->integer('trangthai')->default(1);
             $table->timestamps();

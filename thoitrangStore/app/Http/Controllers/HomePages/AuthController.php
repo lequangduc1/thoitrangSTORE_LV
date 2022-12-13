@@ -6,11 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\HomePages\AuthRequest;
 use App\Models\Customer;
 use App\Models\VerifyCustomer;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\ValidationException;
 use Psy\Util\Str;
 
 
@@ -64,13 +68,20 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
-        try{
 
             $request->validate([
-                'hovaten'=>'required',
-                'email'=>'required|email',
-                'password'=>'required',
-                'sodienthoai'=>'required'
+                'hovaten'=> 'required',
+                'email'=>'required',
+                'password'=>'required|min:8',
+                'sodienthoai'=>'required|size:10|numeric'
+            ],[
+                'hovaten.required'=>'Họ và tên là bắt buộc',
+                'email.required'=>'Email là bắt buộc',
+                'password.min'=>'Mật khẩu phải có nhiều hơn hoặc bằng 8 ký tự',
+                'sodienthoai.required'=>'Số điện thoại là bắt buộc',
+                'sodienthoai.size'=>'Số điện thoại phải là 10 ký tự',
+                'sodienthoai.numeric'=>'Số điện thoại phải là số'
+
             ]);
 
             $account = Customer::where('email', $request->email)->first();
@@ -114,11 +125,6 @@ class AuthController extends Controller
             });
 
             return redirect()->route('home.auth.login_form')->with(['login_success'=>'Đăng ký thành công, Bạn cần xác nhận email để hoàn tất, Làm ơn hãy kiểm tra email']);
-        }catch (\Exception $exception){
-            dd($exception);
-            return redirect()->route('home.auth.register_form')->withErrors(['login_fail'=>'Có lỗi trong quá trình đăng ký']);
-        }
-
     }
 
     public function verify(Request $request){
@@ -136,6 +142,30 @@ class AuthController extends Controller
         }catch(\Exception $e){
             dd($e);
         }
+    }
+
+    public function forgetForm(){
+        return view('homePages.auth.forget');
+    }
+
+    public function forget(Request $request){
+        $customer = Customer::where('email', $request->email)->first();
+        if(!$customer){
+            return redirect()->back()->withErrors(['error'=>'Email chưa được đăng ký']);
+        }
+        $id = $customer->id;
+        $token = $id.hash('sha256', \Illuminate\Support\Str::random(120));
+        $verifyURL = route('home.auth.reset_password', ['token'=>$token, 'service'=>'Email_verification']);
+
+        $update = Customer::find($id);
+        $update->remember_token = $token;
+        $update->save();
+
+
+    }
+
+    public function resetPassword(Request $request){
+
     }
 
 }

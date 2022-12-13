@@ -22,6 +22,7 @@ class ProductSeeder extends Seeder
             'macodesanpham'=>"GTT102",
             'mota'=>"GTT102",
             'trangthai'=>1,
+            'idloaisanpham' => 2,
             'created_at'=>date(today()),
             'updated_at'=>date(today()),
         ]);
@@ -30,6 +31,7 @@ class ProductSeeder extends Seeder
             'macodesanpham'=>"ATT102",
             'mota'=>"ATT102",
             'trangthai'=>1,
+            'idloaisanpham' => 1,
             'created_at'=>date(today()),
             'updated_at'=>date(today()),
         ]);
@@ -38,26 +40,22 @@ class ProductSeeder extends Seeder
         DB::statement("ALTER TABLE `chitietsanpham` AUTO_INCREMENT = 1");
         DB::table('chitietsanpham')->insert([
             'idsanpham'=>1,
-            'idloaisanpham'=>1,
             'idsize'=>1,
             'idsanpham'=>1,
             'idmau'=>1,
-            'idbinhluan'=>null,
             'soluong'=>12,
-            'anhsanpham'=>'public/',
+            'anhsanpham'=>'',
             'giasanpham'=>125000,
             'created_at'=>date(today()),
             'updated_at'=>date(today()),
         ]);
         DB::table('chitietsanpham')->insert([
             'idsanpham'=>2,
-            'idloaisanpham'=>2,
             'idsize'=>2,
             'idsanpham'=>2,
             'idmau'=>2,
-            'idbinhluan'=>null,
             'soluong'=>12,
-            'anhsanpham'=>'public/',
+            'anhsanpham'=>'',
             'giasanpham'=>125000,
             'created_at'=>date(today()),
             'updated_at'=>date(today()),
