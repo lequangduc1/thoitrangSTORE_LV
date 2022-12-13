@@ -39,7 +39,7 @@ class ProductController extends Controller
         $params['allCategory'] = loaisanpham::where('trangthai', 1)->get();
         //get product information
         $params['productDetail'] = chitietsanpham::join('sanpham', 'sanpham.id', '=', 'chitietsanpham.id')
-                                                ->where('trangthai', 1)
+                                                ->where('chitietnsanpham.trangthai', 1)
                                                 ->where('chitietsanpham.id', $produceCode)
                                                 ->first();
 
