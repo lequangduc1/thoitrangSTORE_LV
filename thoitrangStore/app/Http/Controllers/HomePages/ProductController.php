@@ -44,6 +44,7 @@ class ProductController extends Controller
                                                 ->first();
 
         $params['sizes']  = kickthuocsanpham::where('trangthai', 1)->get();
+        $params['colors'] = mausanpham::where('trangthai', 1)->get();
         $params['size_id'] = $params['productDetail']->idsize;
         $params['color_id'] = $params['productDetail']->idmau;
         $params['categoryId'] = $params['productDetail']->idloaisanpham;
@@ -71,6 +72,23 @@ class ProductController extends Controller
 
             return redirect()->back()->with(['success'=>'Thêm đánh giá thành công!!']);
         }catch (\Exception $e){
+            dd($e);
+        }
+    }
+
+    public function filterOption(Request $request){
+        try{
+            $color = $request->color;
+            $size = $request->size;
+            $product_id = $request->product_id;
+
+            $productDetail = chitietsanpham::where('idsize', $size)
+                                            ->where('idmau', $color)
+                                            ->where('idsanpham', $product_id)
+                                            ->first();
+
+            return response()->json($productDetail);
+        }catch(\Exception $e){
             dd($e);
         }
     }

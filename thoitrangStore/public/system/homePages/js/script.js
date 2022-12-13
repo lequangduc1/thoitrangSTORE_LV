@@ -107,7 +107,36 @@ function hanleDestroyCodeSale(total){
     )
 }
 
+
+function hanleChangeOptionProductDetail(){
+    const color = $('#product_detail_color').val();
+    const size = $('#product_detail_size').val();
+    const productId = $('#product_detail_size').data('productid')
+    var csrf_token = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            _token: csrf_token,
+            color,
+            size,
+            product_id: productId
+        },
+        url: '/product/filter-option',
+        success: (res)=>{
+            if(res){
+                $('#product_detail_img').attr('src','/'+res.anhsanpham);
+                $('#product_detail_price').html(formatCurrent(res.giasanpham));
+            }
+        }
+    })
+
+}
+
+
 function formatCurrent(number){
+    number = parseInt(number);
     return number.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
 }
 

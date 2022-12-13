@@ -1,5 +1,5 @@
 @extends('adminPages.index')
-@section('title','Thêm tài khoản')
+@section('title','Thêm sản phẩm biến thể')
 @section('content')
     <div class="page-breadcrumb bg-white">
         <div class="row align-items-center">
@@ -22,28 +22,41 @@
                 <div class="card-body">
                     <form class="form-horizontal form-material" action="{{route('admin.products.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group mb-4">
-                            <label class="col-md-12 p-0"><b>Tên sản phẩm</b><span class="input__required">*</span></label>
-                            <div class="col-md-12 border-bottom p-0">
-                                <input type="text" class="form-control p-0 border-0" name="ten_sp" />
+                        <div class="form-group col-sm-12 mb-6" style="float: left">
+                            <label class="col-sm-12">
+                                <b>Sản phẩm</b><span class="input__required">*</span> /
+                                <a
+                                    href="{{route('admin.product_master.create')}}"
+                                    style="color: #0a53be"
+                                >Thêm sản phẩm <i class="fa fa-plus-circle"></i>
+                                </a>
+                            </label>
+                            <div class="col-sm-12 border-bottom">
+                                <select name="idsanpham" class="form-select shadow-none p-0 border-0 form-control-line" required>
+                                    @foreach($productMaster as $value)
+                                        <option value="{{$value->id}}">{{$value->ten_sp}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group mb-4">
                             <label class="col-md-12 p-0"><b>Ảnh sản phẩm</b><span class="input__required">*</span></label>
-                            <div class="col-md-12 border-bottom p-0">
-                                <input type="file" class="form-control p-0 border-0" name="anhsanpham" accept="image/png, image/jpeg" multiple />
+                            <div class="col-md-12">
+                                <input type="file" class="form-control p-0 border-0" name="anhsanpham" accept="image/png, image/jpeg" id="imageCreate" />
                             </div>
-                        </div>
-                        <div class="form-group mb-4 col-sm-6" style="float: left">
-                            <label class="col-md-12 p-0"><b>Mã code sản phẩm</b><span class="input__required">*</span></label>
-                            <div class="col-md-12 border-bottom p-0">
-                                <input type="text" class="form-control p-0 border-0" name="macodesanpham" />
+                            <div class="col-md-12 d-flex justify-content-center border-bottom p-1 m-1">
+                                <img src="" style="max-height: 400px;" id="previewImageCreate" />
                             </div>
                         </div>
                         <div class="form-group mb-4 col-sm-6" style="float: left">
                             <label class="col-md-12 p-0"><b>Giá sản phẩm</b><span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="text" class="form-control p-0 border-0" name="giasanpham"> </div>
+                        </div>
+                        <div class="form-group mb-4 col-sm-6" style="float: left">
+                            <label class="col-md-12 p-0"><b>Số lượng</b><span class="input__required">*</span></label>
+                            <div class="col-md-12 border-bottom p-0">
+                                <input type="text" class="form-control p-0 border-0" name="soluong" required> </div>
                         </div>
                         <div class="form-group col-sm-6 mb-4" style="float: left">
                             <label class="col-sm-12">
@@ -55,7 +68,7 @@
                                 </a>
                             </label>
                             <div class="col-sm-12 border-bottom">
-                                <select name="idmau" class="form-select shadow-none p-0 border-0 form-control-line">
+                                <select name="idmau" class="form-select shadow-none p-0 border-0 form-control-line" required>
                                     <option>chọn màu sản phẩm</option>
                                     @foreach($productColor as $value)
                                         <option value="{{$value->id}}">{{$value->tenmau}}</option>
@@ -73,7 +86,7 @@
                                 </a>
                             </label>
                             <div class="col-sm-12 border-bottom">
-                                <select name="idsize" class="form-select shadow-none p-0 border-0 form-control-line">
+                                <select name="idsize" class="form-select shadow-none p-0 border-0 form-control-line" required>
                                     <option>chọn kích thước</option>
                                     @foreach($productSize as $value)
                                         <option value="{{$value->id}}">{{$value->tensize}}</option>
@@ -82,27 +95,9 @@
                             </div>
                         </div>
                         <div class="form-group col-sm-6 mb-4" style="float: left">
-                            <label class="col-sm-12">
-                                <b>Loại sản phẩm</b><span class="input__required">*</span> /
-                                <a
-                                    href="{{route('admin.producttype.create')}}"
-                                    style="color: #0a53be"
-                                > Thêm loại <i class="fa fa-plus-circle"></i>
-                                </a>
-                            </label>
-                            <div class="col-sm-12 border-bottom">
-                                <select name="idloaisanpham" class="form-select shadow-none p-0 border-0 form-control-line">
-                                    <option>chọn loại sản phẩm</option>
-                                    @foreach($productType as $value)
-                                        <option value="{{$value->id}}">{{$value->tenloai}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group col-sm-6 mb-4" style="float: left">
                             <label class="col-sm-12"><b>Trạng thái</b><span class="input__required">*</span></label>
                             <div class="col-sm-12 border-bottom">
-                                <select name="trangthai" class="form-select shadow-none p-0 border-0 form-control-line">
+                                <select name="trangthai" class="form-select shadow-none p-0 border-0 form-control-line" required>
                                     <option value="1">Hiện</option>
                                     <option value="0">Ẩn</option>
                                 </select>
@@ -111,12 +106,12 @@
                         <div class="form-group mb-4">
                             <label class="col-md-12 p-0"><b>Mô tả sản phẩm</b><span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">
-                                <input type="text" class="form-control p-0 border-0" name="mota" />
+                                <input type="text" class="form-control p-0 border-0" name="mota" required/>
                             </div>
                         </div>
                         <div class="form-group mb-4">
                             <div class="col-sm-12">
-                                <button class="btn btn-success">Lưu</button>
+                                <button class="btn btn-success"> Thêm </button>
                             </div>
                         </div>
                     </form>
@@ -124,4 +119,16 @@
             </div>
         </div>
     </div>
+    @push('script')
+        <script type="text/javascript">
+            $('#imageCreate').change(function(){
+            let reader = new FileReader();
+            reader.onload = (e) => {
+            $('#previewImageCreate').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+
+        </script>
+    @endpush
 @endsection

@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\chitietsanpham;
-use App\Models\loaisanpham;
-use App\Models\mausanpham;
-use App\Models\kickthuocsanpham;
 use App\Models\sanpham;
+use App\Models\loaisanpham;
 use Illuminate\Http\Request;
 use Yoeunes\Toastr\Facades\Toastr;
 
@@ -15,49 +13,29 @@ class ProductController extends Controller
 {
     public function index(){
         try {
-            $params['products'] = chitietsanpham::orderBy('id','desc')->get();
-            return view('adminPages.products.index',$params);
+            $params['products'] = sanpham::orderBy('id','desc')->get();
+            $params['productType'] = loaisanpham::all();
+            return view('adminPages.productmaster.index',$params);
         } catch (Exception $e) {
             $params['products'] = null;
             Toastr::error('Lỗi Lấy dữ liệu');
-            return view('adminPages.products.index',$params);
+            return view('adminPages.productmaster.index',$params);
         }
-
     }
 
     public function create(){
-        try {
-            $params['productColor'] = mausanpham::all();
-            $params['productSize'] = kickthuocsanpham::all();
-            $params['productType'] = loaisanpham::all();
-            return view('adminPages.products.create',$params);
-        } catch (Exception $e) {
-
-        }
+        $params['productType'] = loaisanpham::all();
+        return view('adminPages.productmaster.create',$params);
     }
 
     public function update($id){
         try {
-            $params['productColor'] = mausanpham::all();
-            $params['productSize'] = kickthuocsanpham::all();
             $params['productType'] = loaisanpham::all();
-            $params['products'] = chitietsanpham::where('id',$id)->first();
-            return view('adminPages.products.update',$params);
+            $params['products'] = sanpham::where('id',$id)->first();
+            return view('adminPages.productmaster.update',$params);
         } catch (Exception $e) {
 
         }
-//        try {
-//            $params['productColor'] = mausanpham::where('id',$id)->first();
-//            if(isset($params['productColor'])){
-//                return view('adminPages.productcolor.update',$params);
-//            }else{
-//                Toastr::error(`Không tìm thấy Loại Sản phẩm có id = $id`);
-//                return redirect()->route('admin.productcolor.index');
-//            }
-//        } catch (Exception $e) {
-//            Toastr::error('lỗi khi tải trang khách hàng');
-//            return redirect()->route('admin.productcolor.index');
-//        }
     }
 
     public function store(Request $request){
@@ -65,37 +43,65 @@ class ProductController extends Controller
             $data = $request->input();
             $date = date(today());
             if(isset($data['id'])){
-                $newProduct = sanpham::find($data['id']);
-                $newProductDetail = chitietsanpham::find($data['id']);
-                $data['updated_at'] = $date;
+                $masterProduct = sanpham::find($data['id']);
+                // $data['updated_at'] = $date;
             }else{
-                $newProduct = New sanpham();
-                $newProductDetail = new chitietsanpham();
-                $data['created_at'] = $date;
+                $masterProduct = New sanpham();
+                // $data['created_at'] = $date;
             }
 
-            // xử lí lưu ảnh
-            if($request->file('anhsanpham')){
-                $file = $request->file('anhsanpham');
-                $fileName = time().$file->getClientOriginalName();
-                $file->move(public_path('uploads/product'), $fileName);
-                $data['anhsanpham'] = 'uploads/product/'.$fileName;
+            if(isset($data['macodesanpham'])) {
+                $masterProduct->macodesanpham = $data['macodesanpham'];
             }
-            $newProduct->fill($data);
-            $newProduct->save();
+            if(isset($data['ten_sp'])) {
+                $masterProduct->ten_sp = $data['ten_sp'];
+            }
+            if(isset($data['trangthai'])) {
+                $masterProduct->trangthai = $data['trangthai'];
+            }
+            if(isset($data['idloaisanpham'])) {
+                $masterProduct->idloaisanpham = $data['idloaisanpham'];
+            }
+            if(isset($data['mota'])) {
+                $masterProduct->mota = $data['mota'];
+            }
 
-            $data['idsanpham'] = $newProduct->id;
-            $data['soluong'] = 0;
-            $newProductDetail->fill($data);
-            $newProductDetail->save();
+            $masterProduct->save();
 
-            Toastr::success('Lưu thành công');
-            return redirect()->route('admin.products.index');
+            if(isset($data['id'])) {
+                Toastr::success('Cập nhật sản phẩm chủ thể thành công');
+            }
+            else {
+                Toastr::success('Thêm sản phẩm chủ thể thành công');
+            }
+            return redirect()->route('admin.product_master.index');
 
         }catch (Exception $exception){
-            dd($exception);
             Toastr::error('Lưu thất bại',$exception);
             return back();
         }
+    }
+
+	public function destroy($id) {
+        try {
+            $product = sanpham::find($id);
+            if($product) {
+                $timChiTietSanPham = chitietsanpham::where('idsanpham',$product->id)->get();
+                if(count($timChiTietSanPham) > 0) {
+                    Toastr::warning('Cần xóa các sản phẩm biến thể trước khi xóa sản phẩm');
+                }
+                else {
+                    $product->delete();
+                    Toastr::success('Xóa sản phẩm chủ thể thành công');
+                }
+            }
+            else {
+                Toastr::error('Xóa sản phẩm chủ thể thất bại');
+            }
+        }
+        catch(Exception $exception) {
+            Toastr::error('Xóa sản phẩm chủ thể thất bại');
+        }
+        return back();
     }
 }

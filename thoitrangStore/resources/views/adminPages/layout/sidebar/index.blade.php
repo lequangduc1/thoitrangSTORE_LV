@@ -57,6 +57,13 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.comment.index')}}"
+                       aria-expanded="false">
+                        <i class="fas fa-comment" aria-hidden="true"></i>
+                        <span class="hide-menu">Quản lý đánh giá</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <ul class=" w3-dropdown-hover">
                         <a class="sidebar-link sidebar-item " href="#"
                            aria-expanded="false">
@@ -64,8 +71,11 @@
                             <span class="hide-menu">Quản lí sản phẩm</span>
                         </a>
                         <div class="w3-dropdown-content w3-bar-block ">
+                            <a href="{{route('admin.product_master.index')}}" class="sidebar-link sidebar-item">
+                                <i class="fas fa-angle-double-right"> Danh Mục Sản phẩm</i>
+                            </a>
                             <a href="{{route('admin.products.index')}}" class="sidebar-link sidebar-item">
-                                <i class="fas fa-angle-double-right"> Sản phẩm</i>
+                                <i class="fas fa-angle-double-right"> Sản phẩm Biến Thể</i>
                             </a>
                             <a href="{{route('admin.producttype.index')}}" class="sidebar-link sidebar-item">
                                 <i class="fas fa-angle-double-right"> Loại sản phẩm</i>
@@ -78,13 +88,6 @@
                             </a>
                         </div>
                     </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.comment.index')}}"
-                       aria-expanded="false">
-                        <i class="fas fa-comment" aria-hidden="true"></i>
-                        <span class="hide-menu">Quản lý đánh giá</span>
-                    </a>
                 </li>
                 <li class="text-center p-20 upgrade-btn" style="padding: 20px">
                     <a href="{{route('admin.logout')}}"

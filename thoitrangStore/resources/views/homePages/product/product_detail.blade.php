@@ -1,6 +1,7 @@
 @extends('homePages.index')
 @section('title','Chi tiết sản phẩm')
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container">
         <ul class="breadcrumb">
             <li><a href="index.html">Trang chủ</a></li>
@@ -31,6 +32,7 @@
                                 <img src="{{asset($productDetail->anhsanpham)}}"
                                      alt="{{$productDetail->ten_sp}}"
                                      class="img-responsive"
+                                     id="product_detail_img"
                                      data-BigImgsrc="{{asset($productDetail->anhsanpham)}}">
                             </div>
 {{--                            <div class="product-other-images">--}}
@@ -43,7 +45,7 @@
                             <h1>{{$productDetail->ten_sp}}</h1>
                             <div class="price-availability-block clearfix">
                                 <div class="price">
-                                    <strong>{{number_format($productDetail->giasanpham)}} VNĐ</strong>
+                                    <strong id="product_detail_price">{{number_format($productDetail->giasanpham)}} VNĐ</strong>
 {{--                                    <em>$<span>62.00</span></em>--}}
                                 </div>
                                 <div class="availability">
@@ -59,9 +61,29 @@
                             <div class="product-page-options">
                                 <div class="pull-left">
                                     <label class="control-label">Size:</label>
-                                    <select class="form-control input-sm">
+                                    <select
+                                        class="form-control input-sm"
+                                        onchange="hanleChangeOptionProductDetail()"
+                                        data-productid="{{$productDetail->sanphams->id}}"
+                                        id="product_detail_size">
                                         @foreach($sizes as $size)
-                                            <option {{$size->id == $size_id ? 'selected' : ''}}>{{$size->tensize}}</option>
+                                            <option
+                                                {{$size->id == $size_id ? 'selected' : ''}}
+                                                value="{{$size->id}}"
+                                            >{{$size->tensize}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="pull-left">
+                                    <label class="control-label">Color:</label>
+                                    <select
+                                        class="form-control input-sm"
+                                        onchange="hanleChangeOptionProductDetail()"
+                                        id="product_detail_color">
+                                        @foreach($colors as $color)
+                                            <option {{$color->id == $color_id ? 'selected' : ''}} value="{{$color->id}}">
+                                                {{$color->tenmau}}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -91,7 +113,6 @@
                                 <li><a href="#Description" data-toggle="tab">Mô tả</a></li>
                                 <li class="active">
                                     <a href="#Reviews" data-toggle="tab">Đánh giá ({{count($comments)}})</a>
-
                                 </li>
                             </ul>
                             <div id="myTabContent" class="tab-content">
@@ -125,7 +146,7 @@
                                         @endphp
                                         @csrf
                                         <input value="{{$id_user}}" type="hidden" name="id_user"/>
-                                        <input value="{{$id_product}}" type="hidden" name="id_product"/>
+                                        <input value="{{$id_product}}" type="hidden" name="id_product" id="id_product"/>
                                         <h2>Đánh giá</h2>
                                         <div class="form-group">
                                             <label for="review">Nội dung <span class="require">*</span></label>
