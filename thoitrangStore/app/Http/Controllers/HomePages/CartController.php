@@ -35,6 +35,7 @@ class CartController extends Controller
             }else{
                 $productNew = [
                     'id'=> $productInformation->id,
+                    'code'=>$productInformation->macodesanpham,
                     'product_id'=>$productInformation->idsanpham,
                     'img' => $productInformation->anhsanpham,
                     'quality'=>$query ?? 1,

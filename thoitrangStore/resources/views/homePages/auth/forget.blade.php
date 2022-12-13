@@ -19,30 +19,26 @@
 </head>
 <body>
 <div id="wrapper">
-    <form action="{{route('home.auth.login')}}" method="POST" >
-        <h3>Đăng nhập</h3>
+    <form action="{{route('home.auth.forget')}}" method="POST" >
+        <h3>Quên mật khẩu</h3>
 
         @csrf
         <div class="form-group">
             <input type="email" name="email" autocomplete="off" required >
             <label for="">Email</label>
         </div>
-        <div class="form-group">
-            <input type="password" name="password" autocomplete="new-password" required >
-            <label for="">Mật khẩu</label>
-        </div>
+
         @if($errors->any())
-        <div class="alert alert-danger" role="alert">
-            {{ $errors->first() }}
-        </div>
+            <div class="alert alert-danger" role="alert">
+                {{ $errors->first() }}
+            </div>
         @endif
         @if(Session::has('login_success'))
             <div class="alert alert-primary" role="alert">
                 {{ Session::get('login_success') }}
             </div>
         @endif
-        <input type="submit" value="Đăng nhập" id="btn-login">
-        <span style="font-size: 14px; margin: 5px 0px;display: block"><a href="{{route('home.auth.forget_form')}}">Quên mật khẩu</a></span>
+        <input type="submit" value="Xác nhận" id="btn-login">
         <span style="font-size: 14px; margin: 5px 0px;display: block">Bạn chưa có tài khoản <a href="{{route('home.auth.register_form')}}">Đăng ký</a></span> <br>
 
     </form>
