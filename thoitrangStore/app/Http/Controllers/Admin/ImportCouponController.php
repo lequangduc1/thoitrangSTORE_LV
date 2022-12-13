@@ -24,7 +24,6 @@ class ImportCouponController extends Controller
             Toastr::error('Lỗi Lấy dữ liệu');
             return view('adminPages.importcoupon.index',$params);
         }
-
     }
 
     public function detail($id){
@@ -66,6 +65,8 @@ class ImportCouponController extends Controller
 
     public function create(){
         try {
+//            dd(Session::get('cartImport'));
+
             $params['allProductInCart'] = getCartImport()['allProductInCartImport'];
             $params['sanphams'] = chitietsanpham::all();
             $params['sanPhamDonHang'] = [];
@@ -73,6 +74,41 @@ class ImportCouponController extends Controller
 //            $params['chitietphieunhap'] = chitietphieunhap::where('idphieunhap', $id)->get();
             return view('adminPages.importcoupon.create',$params);
 //            return view('adminPages.importcoupon.create');
+        } catch (Exception $e) {
+            $params['products'] = null;
+            Toastr::error('Lỗi Lấy dữ liệu');
+            return view('adminPages.importcoupon.index',$params);
+        }
+    }
+
+
+    public function postCreate(Request $request){
+        try {
+            $params['allProductInCart'] = getCartImport()['allProductInCartImport'];
+            $date = date(today());
+            $tongtien = 0;
+            foreach ($params['allProductInCart'] as $value){
+                $tongtien += $value['gianhp']*$value['soluongnhap'];
+            }
+            $importCoupon = New phieunhap();
+            $importCoupon->tongtien = $tongtien;
+            $importCoupon->tencuahang = $request->tencuahang;
+            $importCoupon->trangthai = 0;
+            $importCoupon->created_at = $date;
+            $importCoupon->save();
+
+            foreach ($params['allProductInCart'] as $value){
+                $importCoupondetail = New chitietphieunhap();
+                $importCoupondetail->idphieunhap =  $importCoupon->id;
+                $importCoupondetail->idchitietsanpham =  $value['idsanpham'];
+                $importCoupondetail->soluongnhap =  $value['soluongnhap'];
+                $importCoupondetail->gianhap =  $value['gianhp'];
+                $importCoupondetail->created_at =  $date;
+                $importCoupondetail->save();
+            }
+            Session::push('cartImport','');
+            Toastr::success('Tạo đơn thành công!!');
+            return redirect()->route('admin.importcoupon.index');
         } catch (Exception $e) {
             $params['products'] = null;
             Toastr::error('Lỗi Lấy dữ liệu');

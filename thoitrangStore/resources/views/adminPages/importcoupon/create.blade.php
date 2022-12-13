@@ -70,14 +70,42 @@
                                 </div>
 
                             @endforeach
-                            <div class="card-body col-md-12 align-right" style="float: left" >
-                                        <button class="btn btn-success" >Thêm sản phẩm</button>
-                            </div>
 
                         </div>
-                        @endif
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Launch demo modal
+                        </button>
 
-                </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-horizontal form-material" action="{{route('admin.importcoupon.postCreate')}}" method="POST" enctype="multipart/form-data" style="border-bottom: 1px solid #000">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Tên Đơn Vị Nhập Hàng</label>
+                                                <input type="text" class="form-control" name="tencuahang">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    @endif
+
+
+                    <!-- Button trigger modal -->
+
             </div>
         </div>
     </div>
