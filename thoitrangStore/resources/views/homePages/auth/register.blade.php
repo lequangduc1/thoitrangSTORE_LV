@@ -24,23 +24,23 @@
         <h3>Đăng ký</h3>
         @csrf
         <div class="form-group">
-            <input type="text" name="hovaten" autocomplete="off" required >
+            <input type="text" name="hovaten"  value="{{ old('hovaten') }}"  autocomplete="off" >
             <label for="">Họ và Tên<span class="input__required">*</span></label>
         </div>
         <div class="form-group">
-            <input type="email" name="email" autocomplete="off" required >
+            <input type="email" name="email" value="{{ old('email') }}"  autocomplete="off" >
             <label for="">Email<span class="input__required">*</span></label>
         </div>
         <div class="form-group">
-            <input type="password" name="password" autocomplete="new-password" required >
+            <input type="password" name="password"  autocomplete="new-password">
             <label for="">Mật khẩu<span class="input__required">*</span></label>
         </div>
         <div class="form-group">
-            <input type="password" name="repassword" autocomplete="new-password" required >
+            <input type="password" name="repassword" autocomplete="new-password"  >
             <label for="">Nhập lại mật khẩu<span class="input__required">*</span></label>
         </div>
         <div class="form-group">
-            <input type="text" name="sodienthoai" autocomplete="off" required >
+            <input type="text" value="{{old('sodienthoai') ?? ''}}" name="sodienthoai" autocomplete="off" >
             <label for="">Số điện thoại<span class="input__required">*</span></label>
         </div>
         @if($errors->any())
