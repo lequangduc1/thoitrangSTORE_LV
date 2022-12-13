@@ -40,12 +40,11 @@
                                 <a
                                     href="{{route('admin.producttype.create')}}"
                                     style="color: #0a53be"
-                                > Thêm loại <i class="fa fa-plus-circle"></i>
+                                > Thêm loại Sản Phẩm <i class="fa fa-plus-circle"></i>
                                 </a>
                             </label>
                             <div class="col-sm-12 border-bottom">
                                 <select name="idloaisanpham" class="form-select shadow-none p-0 border-0 form-control-line">
-                                    <option>chọn loại sản phẩm</option>
                                     @foreach($productType as $value)
                                         <option value="{{$value->id}}">{{$value->tenloai}}</option>
                                     @endforeach
