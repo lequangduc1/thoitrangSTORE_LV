@@ -41,7 +41,6 @@ function getCartImport() : array{
     foreach ($cartInformation as $product) {
         $total +=(int)$product['gianhp'] * (int)$product['soluongnhap'];
     }
-    dd($total);
     return [
         'count'=>count($cartInformation),
         'total'=>$total,

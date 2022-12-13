@@ -106,7 +106,7 @@ class ImportCouponController extends Controller
                 $importCoupondetail->created_at =  $date;
                 $importCoupondetail->save();
             }
-            Session::push('cartImport','');
+            Session::forget('cartImport');
             Toastr::success('Tạo đơn thành công!!');
             return redirect()->route('admin.importcoupon.index');
         } catch (Exception $e) {
