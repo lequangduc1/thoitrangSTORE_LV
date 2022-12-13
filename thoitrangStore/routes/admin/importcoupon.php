@@ -10,5 +10,6 @@ Route::prefix('/importcoupon')->name('importcoupon.')->group(function(){
 
     Route::get('/create',[ImportCouponController::class,'create'])->name('create');
     Route::post('/search',[ImportCouponController::class,'search'])->name('search');
+    Route::post('/addToCart',[ImportCouponController::class,'addToCart'])->name('addToCart');
 
 });

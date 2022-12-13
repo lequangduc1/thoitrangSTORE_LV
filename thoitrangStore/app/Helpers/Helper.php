@@ -20,6 +20,7 @@ function getCart() : array{
     ];
 }
 
+
 if(! function_exists('getNameProductTypeByID')) {
     function getNameProductTypeByID($list, $id) {
         $res = '';
