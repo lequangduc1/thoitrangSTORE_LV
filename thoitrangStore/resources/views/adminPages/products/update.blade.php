@@ -64,7 +64,6 @@
                             <label class="col-sm-12"><b>Màu sản phẩm</b><span class="input__required">*</span></label>
                             <div class="col-sm-12 border-bottom">
                                 <select name="idmau" class="form-select shadow-none p-0 border-0 form-control-line">
-                                    <option>chọn màu sản phẩm</option>
                                     @foreach($productColor as $value)
                                         <option value="{{$value->id}}" {{ (int)$products->idmau ==  (int)$value->id ? 'selected' : ''}}>{{$value->tenmau}}</option>
                                     @endforeach
@@ -75,7 +74,6 @@
                             <label class="col-sm-12"><b>Kích thước sản phẩm</b><span class="input__required">*</span></label>
                             <div class="col-sm-12 border-bottom">
                                 <select name="idsize" class="form-select shadow-none p-0 border-0 form-control-line">
-                                    <option>chọn kích thước</option>
                                     @foreach($productSize as $value)
                                         <option value="{{$value->id}}" {{ (int)$products->idsize ==  (int)$value->id ? 'selected' : ''}}>{{$value->tensize}}</option>
                                     @endforeach

@@ -65,14 +65,15 @@
                 <div class="owl-carousel owl-carousel3">
                     @foreach($allProduct as $product)
                         @php
-                            $img_url = $product->anhsanpham;
+                            $img_url = $product->chitiet[0]->anhsanpham;
+                            $price = $product->chitiet[0]->giasanpham;
                         @endphp
                     <div>
                         <div class="product-item">
                             <div class="pi-img-wrapper">
                                 <img src="{{asset($img_url)}}"
                                      class="img-responsive"
-                                     alt="{{$product->sanphams->ten_sp}}">
+                                     alt="{{$product->ten_sp}}">
                                 <div>
                                     <a href="{{asset($img_url)}}" class="btn btn-default fancybox-button">Zoom</a>
                                     <a
@@ -83,7 +84,7 @@
                                 </div>
                             </div>
                             <h3><a href="shop-item.html">{{$product->ten_sp}}</a></h3>
-                            <div class="pi-price">{{number_format($product->giasanpham).' VNĐ' }}</div>
+                            <div class="pi-price">{{number_format($price).' VNĐ' }}</div>
                             <a href="{{route('home.cart.add-to-cart', $product->id)}}"
                                class="btn btn-default add2cart"
                             >Thêm vào giỏ</a>
