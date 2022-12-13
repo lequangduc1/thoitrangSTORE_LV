@@ -17,6 +17,7 @@ class CreateSanphamTable extends Migration
             $table->id();
             $table->string('macodesanpham');
             $table->string('ten_sp');
+            $table->integer('idloaisanpham');
             $table->longText('mota');
             $table->integer('trangthai');
             $table->timestamps();

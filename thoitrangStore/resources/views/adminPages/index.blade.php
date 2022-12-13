@@ -125,6 +125,7 @@
     src="{{asset('system/admin/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js')}}"></script>
 <script src="{{asset('system/admin/js/pages/dashboards/dashboard1.js')}}"></script>
 
+@stack('script');
 
 </body>
 </html>
