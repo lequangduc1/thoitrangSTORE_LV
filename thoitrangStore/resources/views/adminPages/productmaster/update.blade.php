@@ -39,7 +39,6 @@
                             <label class="col-sm-12"><b>Loại sản phẩm</b><span class="input__required">*</span></label>
                             <div class="col-sm-12 border-bottom">
                                 <select name="idloaisanpham" class="form-select shadow-none p-0 border-0 form-control-line">
-                                    <option>chọn loại sản phẩm</option>
                                     @foreach($productType as $value)
                                         <option value="{{$value->id}}" {{ (int)$products->idloaisanpham ==  (int)$value->id ? 'selected' : ''}}>{{$value->tenloai}}</option>
 

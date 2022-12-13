@@ -69,7 +69,6 @@
                             </label>
                             <div class="col-sm-12 border-bottom">
                                 <select name="idmau" class="form-select shadow-none p-0 border-0 form-control-line" required>
-                                    <option>chọn màu sản phẩm</option>
                                     @foreach($productColor as $value)
                                         <option value="{{$value->id}}">{{$value->tenmau}}</option>
                                     @endforeach
@@ -87,7 +86,6 @@
                             </label>
                             <div class="col-sm-12 border-bottom">
                                 <select name="idsize" class="form-select shadow-none p-0 border-0 form-control-line" required>
-                                    <option>chọn kích thước</option>
                                     @foreach($productSize as $value)
                                         <option value="{{$value->id}}">{{$value->tensize}}</option>
                                     @endforeach
