@@ -11,5 +11,6 @@ Route::prefix('/auth')->name('auth.')->group(function(){
     Route::get('/verify', [\App\Http\Controllers\HomePages\AuthController::class, 'verify'])->name('verify');
     Route::get('/forget', [\App\Http\Controllers\HomePages\AuthController::class,'forgetForm'])->name('forget_form');
     Route::post('/forget', [\App\Http\Controllers\HomePages\AuthController::class,'forget'])->name('forget');
-
+    Route::get('/reset-password', [\App\Http\Controllers\HomePages\AuthController::class,'formResetPassword'])->name('form_reset_password');
+    Route::post('/reset-password', [\App\Http\Controllers\HomePages\AuthController::class, 'resetPassword'])->name('reset_password');
 });
