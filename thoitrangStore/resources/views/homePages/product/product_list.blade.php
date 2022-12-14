@@ -127,7 +127,7 @@
                             $listSize = [];
                         @endphp
                     <div class="col-md-4 col-sm-6 col-xs-12 product-wrapper">
-                        <div class="product-item">
+                        <div class="product-item" data-size="size_{{$product->idsize}}" data-color="color_{{$product->idmau}}">
                             <div class="pi-img-wrapper">
                                 <img src="{{asset($img_url)}}"
                                      class="img-responsive"
@@ -180,6 +180,7 @@
                             <div class="pi-price" id="price_{{$keyProduct}}">{{number_format($price,0,',','.').' VNĐ' }}</div>
                             <a href="{{route('home.cart.add-to-cart', $products->id)}}"
                                class="btn btn-default add2cart"
+                               id="link_{{$keyProduct}}"
                             >Thêm vào giỏ</a>
                         </div>
                     </div>

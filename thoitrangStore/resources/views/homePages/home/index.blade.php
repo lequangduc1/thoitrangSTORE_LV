@@ -130,6 +130,7 @@
                             <div class="pi-price" id="price_{{$keyProduct}}">{{number_format($price,0,',','.').' VNĐ' }}</div>
                             <a href="{{route('home.cart.add-to-cart', $products->id)}}"
                                class="btn btn-default add2cart"
+                               id="link_{{$keyProduct}}"
                             >Thêm vào giỏ</a>
                         </div>
                     </div>
@@ -214,7 +215,7 @@
 
     @push('script')
         <script type="text/javascript">
-            
+
         </script>
     @endpush
 @endsection

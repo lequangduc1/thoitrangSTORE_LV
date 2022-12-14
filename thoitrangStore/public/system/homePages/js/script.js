@@ -119,8 +119,8 @@ function hanleChangeOptionProductDetail(productId){
         },
         url: '/product/filter-option',
         success: (res) => {
-            console.log(res.productDetail);
             if(res){
+                $('#product_left_text').html('<span id="product_left_text">Còn lại ('+res.productDetail.soluong+')</span>')
                 $('#product_detail_img').attr('src', '/' + res.productDetail.anhsanpham);
                 $(".zoomImg").attr(
                     "src",
@@ -177,6 +177,7 @@ function getProductInformation(productId, type, productKey) {
         var size_id = "size_" + productKey;
         var color_id = "color_" + productKey;
         var price_id = "price_" + productKey;
+        var link_id = "link_"+ productKey;
         var keyProduct = productKey;
         $.ajax({
             url: "/product_detail/" + productId,
@@ -186,6 +187,7 @@ function getProductInformation(productId, type, productKey) {
                 id: productId,
             },
         }).done((data) => {
+            $(`#${link_id}`).attr('href', '/cart/'+data.product.id);
             $("#" + img_id).attr("src", data.product.anhsanpham);
             let price = formatCurrency(data.product.giasanpham);
             $("#" + price_id).html(price);
@@ -226,6 +228,7 @@ function getProductInformation(productId, type, productKey) {
         var img_id = "img_" + productKey;
         var color_id = "color_" + productKey;
         var price_id = "price_" + productKey;
+        var link_id = "link_"+ productKey;
         var keyProduct = productKey;
         $.ajax({
             url: "/product_detail/" + productId,
@@ -236,7 +239,7 @@ function getProductInformation(productId, type, productKey) {
             },
         }).done((data) => {
             $("#" + img_id).attr("src", data.product.anhsanpham);
-
+            $(`#${link_id}`).attr('href', '/cart/'+data.product.id);
             let price = formatCurrency(data.product.giasanpham);
             $("#" + price_id).html(price);
 
@@ -258,6 +261,7 @@ function getProductInformation(productId, type, productKey) {
                         : "";
             }
             $("#" + color_id).html(html);
+
         });
     }
 }
