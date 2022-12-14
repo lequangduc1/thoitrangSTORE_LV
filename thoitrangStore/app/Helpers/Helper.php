@@ -33,3 +33,16 @@ if(! function_exists('getNameProductTypeByID')) {
         return $res;
     }
 }
+
+function getCartImport() : array{
+    $cartInformation = \Illuminate\Support\Facades\Session::get('cartImport') ?? [];
+    $total = 0;
+    foreach ($cartInformation as $product) {
+        $total +=(int)$product['gianhp'] * (int)$product['soluongnhap'];
+    }
+    return [
+        'count'=>count($cartInformation),
+        'total'=>$total,
+        'allProductInCartImport'=>$cartInformation
+    ];
+}

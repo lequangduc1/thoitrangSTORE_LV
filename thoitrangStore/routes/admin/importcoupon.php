@@ -9,6 +9,7 @@ Route::prefix('/importcoupon')->name('importcoupon.')->group(function(){
     Route::post('/confirm',[ImportCouponController::class,'confirm'])->name('confirm');
 
     Route::get('/create',[ImportCouponController::class,'create'])->name('create');
+    Route::post('/postCreate',[ImportCouponController::class,'postCreate'])->name('postCreate');
     Route::post('/search',[ImportCouponController::class,'search'])->name('search');
     Route::post('/addToCart',[ImportCouponController::class,'addToCart'])->name('addToCart');
 
