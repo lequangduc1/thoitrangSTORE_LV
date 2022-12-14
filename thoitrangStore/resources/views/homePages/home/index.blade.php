@@ -18,6 +18,7 @@
                                     <img
                                         src="{{asset($img_url)}}"
                                         class="img-responsive"
+                                        style="max-height: 190px;"
                                         alt="{{$product->sanphams->ten_sp}}">
                                     <div>
                                         <a href="{{asset($img_url)}}" class="btn btn-default fancybox-button">Zoom</a>
@@ -27,7 +28,11 @@
                                         </a>
                                     </div>
                                 </div>
-                                <h3><a href="shop-item.html">{{$product->ten_sp}}</a></h3>
+                                <h3>
+                                    <a href="shop-item.html">
+                                    {{$product->ten_sp.' '.$product->sizes->tensize.' '.$product->maus->tenmau}}
+                                    </a>
+                                </h3>
                                 <div class="pi-price">{{number_format($product->giasanpham). ' VNĐ'}}</div>
                                 <a
                                     href="{{route('home.cart.add-to-cart', $product->id)}}"
@@ -63,34 +68,73 @@
             <div class="col-md-9 col-sm-8">
                 <h2>Tất cả sản phẩm</h2>
                 <div class="owl-carousel owl-carousel3">
-                    @foreach($allProduct as $product)
+                @foreach($allMasterProduct as $keyProduct => $products)
+                    @if(count($products->chitiet->where('trangthai', 1)) >0)
                         @php
-                            $img_url = $product->chitiet[0]->anhsanpham;
-                            $price = $product->chitiet[0]->giasanpham;
+                            $listProductDetail = $products->chitiet->where('trangthai', 1);
+                            $img_url = $listProductDetail[0]->anhsanpham;
+                            $price = $listProductDetail[0]->giasanpham;
+                            $listSize = [];
                         @endphp
                     <div>
                         <div class="product-item">
                             <div class="pi-img-wrapper">
                                 <img src="{{asset($img_url)}}"
                                      class="img-responsive"
-                                     alt="{{$product->ten_sp}}">
+                                     style="max-height: 250px;"
+                                     alt="{{$products->ten_sp}}"
+                                     id="img_{{$keyProduct}}">
                                 <div>
                                     <a href="{{asset($img_url)}}" class="btn btn-default fancybox-button">Zoom</a>
                                     <a
-                                        href="{{route('home.product.detail', $product->id)}}"
+                                        href="{{route('home.product.detail', $products->id)}}"
                                         class="btn btn-default fancybox-fast-view">
                                             View
                                     </a>
                                 </div>
                             </div>
-                            <h3><a href="shop-item.html">{{$product->ten_sp}}</a></h3>
-                            <div class="pi-price">{{number_format($price).' VNĐ' }}</div>
-                            <a href="{{route('home.cart.add-to-cart', $product->id)}}"
+                            <h3><a href="shop-item.html">{{$products->ten_sp}}</a></h3>
+                            <div>
+                                <h6 id="size_{{$keyProduct}}">Size:
+                                    @foreach($listProductDetail as $key => $product)
+                                        @php
+                                            $tensize = $sizeProduct->where('id',$product->idsize)->first()->tensize;
+                                        @endphp
+                                        @if(!in_array($product->idsize, $listSize))
+                                            @php
+                                                $listSize[] = $product->idsize;
+                                            @endphp
+                                            <button
+                                            class="btn btn-secondary"
+                                            {{ ($key == 0) ? 'disabled' : '' }} onclick="getProductInformation({{$product->id}}, 'size', {{$keyProduct}})">
+                                                {{  $tensize  }}
+                                            </button>
+                                        @endif
+                                    @endforeach
+                                </h6>
+                                <h6 id="color_{{$keyProduct}}">Màu:
+                                    @foreach($listProductDetail as $key => $product)
+                                        @php
+                                            $codeColor = $colorProduct->where('id',$product->idmau)->first()->code;
+                                        @endphp
+                                        @if($product->idsize == $listProductDetail[0]->idsize)
+                                            <button {{ $key == 0 ? 'disabled' : '' }}
+                                            onclick="getProductInformation({{$product->id}}, 'color', {{$keyProduct}})"
+                                            style="background-color: {{$codeColor}}"
+                                            class="color__button"> </button>
+                                        @endif
+                                    @endforeach
+                                </h6>
+                            </div>
+
+                            <div class="pi-price" id="price_{{$keyProduct}}">{{number_format($price,0,',','.').' VNĐ' }}</div>
+                            <a href="{{route('home.cart.add-to-cart', $products->id)}}"
                                class="btn btn-default add2cart"
                             >Thêm vào giỏ</a>
                         </div>
                     </div>
-                    @endforeach
+                    @endif
+                @endforeach
                 </div>
             </div>
             <!-- END CONTENT -->
@@ -167,4 +211,10 @@
 {{--        </div>--}}
         <!-- END TWO PRODUCTS & PROMO -->
     </div>
+
+    @push('script')
+        <script type="text/javascript">
+            
+        </script>
+    @endpush
 @endsection
