@@ -61,9 +61,9 @@ function handleApplySale(total){
         success: (res) => {
             if(res){
                 const sale = (total*res.phantramgiam)/100;
-                $('#price_sale').html(formatCurrent(sale));
+                $('#price_sale').html(formatCurrency(sale));
                 $('#sale_code').val('');
-                $('#price_left').html(formatCurrent(total-sale));
+                $('#price_left').html(formatCurrency(total-sale));
                 $('#order_code').val(code);
                 $('#code-sale-wrapper').html(
                     `<div class="code_sale_apply">
@@ -86,8 +86,8 @@ function handleApplySale(total){
 }
 
 function hanleDestroyCodeSale(total){
-    $('#price_sale').html(formatCurrent(0));
-    $('#price_left').html(formatCurrent(total));
+    $('#price_sale').html(formatCurrency(0));
+    $('#price_left').html(formatCurrency(total));
     $('#order_code').val('');
     $('#code-sale-wrapper').html(
         `<div class="input-group mb-3" id="input_code_sale">
@@ -108,26 +108,55 @@ function hanleDestroyCodeSale(total){
 }
 
 
-function hanleChangeOptionProductDetail(){
-    const color = $('#product_detail_color').val();
-    const size = $('#product_detail_size').val();
-    const productId = $('#product_detail_size').data('productid')
+function hanleChangeOptionProductDetail(productId){
     var csrf_token = $('meta[name="csrf-token"]').attr('content');
-
     $.ajax({
         type: 'POST',
         dataType: 'json',
         data: {
             _token: csrf_token,
-            color,
-            size,
             product_id: productId
         },
         url: '/product/filter-option',
-        success: (res)=>{
+        success: (res) => {
+            console.log(res.productDetail);
             if(res){
-                $('#product_detail_img').attr('src','/'+res.anhsanpham);
-                $('#product_detail_price').html(formatCurrent(res.giasanpham));
+                $('#product_detail_img').attr('src', '/' + res.productDetail.anhsanpham);
+                $(".zoomImg").attr(
+                    "src",
+                    "/" + res.productDetail.anhsanpham
+                );
+                $('#product_detail_price').html(formatCurrency(res.productDetail.giasanpham));
+
+                let html1 = 'Size: ';
+                let html2 = "Size: ";
+                for (const product of res.productDetail.sanphams.chitiet) {
+                    html1 += `
+                    <button
+                    class="btn btn-secondary"
+                    ${product.id == res.productDetail.id ? "disabled" : ""}
+                    onclick="hanleChangeOptionProductDetail(${product.id})">
+                        ${ product.tensize }
+                    </button>
+                    `;
+                    if (product.idsize == res.productDetail.idsize)
+                        html2 += `<button ${
+                            product.id == res.productDetail.id ? "disabled" : ""
+                        }  class="color__button"
+                    style="background-color: ${product.code}"
+                    onclick="hanleChangeOptionProductDetail(${product.id})"
+                    >
+                    </button>`;
+                }
+
+
+                $('#size_detail').html(html1);
+
+                $('#color_detail').html(html2);
+
+                let html3 = `Size: <strong>${res.tensize}</strong><br>
+                                    Color: <strong style="color: ${res.code}"> In Stock</strong>`;
+                $('#status_detail').html(html3);
             }
         }
     })
@@ -135,9 +164,100 @@ function hanleChangeOptionProductDetail(){
 }
 
 
-function formatCurrent(number){
+function formatCurrency(number){
     number = parseInt(number);
     return number.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
 }
 
 
+function getProductInformation(productId, type, productKey) {
+    var csrf_token = $('meta[name="csrf-token"]').attr("content");
+    if (type == "size") {
+        var img_id = "img_" + productKey;
+        var size_id = "size_" + productKey;
+        var color_id = "color_" + productKey;
+        var price_id = "price_" + productKey;
+        var keyProduct = productKey;
+        $.ajax({
+            url: "/product_detail/" + productId,
+            method: "POST",
+            data: {
+                _token: csrf_token,
+                id: productId,
+            },
+        }).done((data) => {
+            $("#" + img_id).attr("src", data.product.anhsanpham);
+            let price = formatCurrency(data.product.giasanpham);
+            $("#" + price_id).html(price);
+            let html1 = "Size: ";
+            for (let item of data.listDetailProduct) {
+                html1 += `<button
+                                    class="btn btn-secondary"
+                                    ${
+                                        data.product.idsize == item.idsize
+                                            ? "disabled"
+                                            : ""
+                                    }
+                                    onclick="getProductInformation(${
+                                        item.id
+                                    }, 'size', ${keyProduct})">${
+                    item.tensize
+                }</button>`;
+            }
+            $("#" + size_id).html(html1);
+
+            let html2 = "Color: ";
+            for (let item of data.listDetailProduct) {
+                html2 +=
+                    item.idsize == data.product.idsize
+                        ? `<button ${
+                              data.product.idmau == item.idmau ? "disabled" : ""
+                          }
+                            onclick="getProductInformation(${
+                                item.id
+                            }, 'color', ${keyProduct})"
+                            style="background-color: ${item.code}"
+                                            class="color__button"> </button>`
+                        : "";
+            }
+            $("#" + color_id).html(html2);
+        });
+    } else if (type == "color") {
+        var img_id = "img_" + productKey;
+        var color_id = "color_" + productKey;
+        var price_id = "price_" + productKey;
+        var keyProduct = productKey;
+        $.ajax({
+            url: "/product_detail/" + productId,
+            method: "POST",
+            data: {
+                _token: csrf_token,
+                id: productId,
+            },
+        }).done((data) => {
+            $("#" + img_id).attr("src", data.product.anhsanpham);
+
+            let price = formatCurrency(data.product.giasanpham);
+            $("#" + price_id).html(price);
+
+            let html = "Color: ";
+            for (let item of data.listDetailProduct) {
+                html +=
+                    item.idsize == data.product.idsize
+                        ? `<button
+                            ${
+                                data.product.idmau == item.idmau
+                                    ? "disabled"
+                                    : ""
+                            }
+                            onclick="getProductInformation(${
+                                item.id
+                            }, 'color', ${keyProduct})"
+                            style="background-color: ${item.code}"
+                                            class="color__button"> </button>`
+                        : "";
+            }
+            $("#" + color_id).html(html);
+        });
+    }
+}

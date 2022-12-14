@@ -25,6 +25,7 @@ class CustomerSeeder extends Seeder
             'diachi'=>"HCM",
             'password'=>Hash::make('password'),
             'trangthai'=>1,
+            'remember_token'  => '$2y$10$SYecMIpD8DZK6ATjsyQDjer903iEo3FtQXBDrlM/uS4SNcPX1IDpy',
             'created_at'=>date(today()),
         ]);
         DB::table('khachhang')->insert([
@@ -34,6 +35,7 @@ class CustomerSeeder extends Seeder
             'diachi'=>"HCM",
             'password'=>Hash::make('password'),
             'trangthai'=>0,
+            'remember_token'  => '$2y$10$SYecMIpD8DZK6ATjsyQDjer903iEo3FtQXBDrlM/uS4SNcPX1IDpy',
             'created_at'=>date(today()),
         ]);
     }

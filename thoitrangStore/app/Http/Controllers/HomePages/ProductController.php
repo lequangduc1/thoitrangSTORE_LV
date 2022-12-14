@@ -16,15 +16,19 @@ class ProductController extends Controller
 
     public function index(Request $request){
         $query = $request->query('category');
+        
+        $params['allMasterProduct'] = sanpham::where('trangthai', 1)->orderby('created_at', 'desc')->limit(12)->get();
+        $params['sizeProduct'] = kickthuocsanpham::all();
+        $params['colorProduct'] = mausanpham::all();
         if($query){
             $params['allProduct'] = chitietsanpham::join('sanpham', 'sanpham.id', '=', 'chitietsanpham.id')
-                ->where('trangthai', 1)
+                ->where('chitietsanpham.trangthai', 1)
                 ->where('idloaisanpham', $query)
                 ->get();
             $params['categoryId'] = $query;
         }else{
             $params['allProduct'] = chitietsanpham::join('sanpham', 'sanpham.id', '=', 'chitietsanpham.id')
-                ->where('trangthai', 1)
+                ->where('chitietsanpham.trangthai', 1)
                 ->get();
         }
         $params['allCategory'] = loaisanpham::where('trangthai', 1)->get();
@@ -39,17 +43,16 @@ class ProductController extends Controller
         $params['allCategory'] = loaisanpham::where('trangthai', 1)->get();
         //get product information
         $params['productDetail'] = chitietsanpham::join('sanpham', 'sanpham.id', '=', 'chitietsanpham.id')
-                                                ->where('chitietnsanpham.trangthai', 1)
+                                                ->where('chitietsanpham.trangthai', 1)
                                                 ->where('chitietsanpham.id', $produceCode)
                                                 ->first();
 
-        $params['sizes']  = kickthuocsanpham::where('trangthai', 1)->get();
-        $params['colors'] = mausanpham::where('trangthai', 1)->get();
+        $params['listProductDetail']  = $params['productDetail']->sanphams->chitiet;
         $params['size_id'] = $params['productDetail']->idsize;
         $params['color_id'] = $params['productDetail']->idmau;
         $params['categoryId'] = $params['productDetail']->idloaisanpham;
         $params['productRelated'] = chitietsanpham::join('sanpham', 'sanpham.id', '=', 'chitietsanpham.id')
-                                                    ->where('trangthai', 1)
+                                                    ->where('chitietsanpham.trangthai', 1)
                                                     ->where('idloaisanpham', $params['productDetail']->idloaisanpham)
                                                     ->where('chitietsanpham.id', '<>', $produceCode)
                                                     ->get();
@@ -77,17 +80,18 @@ class ProductController extends Controller
     }
 
     public function filterOption(Request $request){
+
         try{
-            $color = $request->color;
-            $size = $request->size;
             $product_id = $request->product_id;
 
-            $productDetail = chitietsanpham::where('idsize', $size)
-                                            ->where('idmau', $color)
-                                            ->where('idsanpham', $product_id)
-                                            ->first();
-
-            return response()->json($productDetail);
+            $params['productDetail'] = chitietsanpham::find($product_id);
+            $params['tensize'] = $params['productDetail']->sizes->tensize;
+            $params['code'] = $params['productDetail']->maus->code;
+            foreach($params['productDetail']->sanphams->chitiet as $item) {
+                $item['tensize'] = $item->sizes->tensize;
+                $item['code'] = $item->maus->code;
+            }
+            return $params;
         }catch(\Exception $e){
             dd($e);
         }
