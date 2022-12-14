@@ -33,22 +33,20 @@
                                      alt="{{$productDetail->ten_sp}}"
                                      class="img-responsive"
                                      id="product_detail_img"
-                                     data-BigImgsrc="{{asset($productDetail->anhsanpham)}}">
+                                     dataBigImgsrc="{{asset($productDetail->anhsanpham)}}">
                             </div>
 {{--                            <div class="product-other-images">--}}
 {{--                                <a href="assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="{{asset('system/homePages/assets/pages/img/products/model3.jpg')}}"></a>--}}
-{{--                                <a href="assets/pages/img/products/model4.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="{{asset('system/homePages/assets/pages/img/products/model4.jpg')}}"></a>--}}
-{{--                                <a href="assets/pages/img/products/model5.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="{{asset('system/homePages/assets/pages/img/products/model5.jpg')}}"></a>--}}
 {{--                            </div>--}}
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <h1>{{$productDetail->ten_sp}}</h1>
                             <div class="price-availability-block clearfix">
                                 <div class="price">
-                                    <strong id="product_detail_price">{{number_format($productDetail->giasanpham)}} VNĐ</strong>
+                                    <strong id="product_detail_price">{{number_format($productDetail->giasanpham,0,',','.')}} VNĐ</strong>
 {{--                                    <em>$<span>62.00</span></em>--}}
                                 </div>
-                                <div class="availability">
+                                <div class="availability" id="status_detail">
                                     Size: <strong>{{$productDetail->sizes->tensize}}</strong><br>
                                     Color: <strong>In Stock</strong>
                                 </div>
@@ -59,32 +57,28 @@
                                 </p>
                             </div>
                             <div class="product-page-options">
-                                <div class="pull-left">
-                                    <label class="control-label">Size:</label>
-                                    <select
-                                        class="form-control input-sm"
-                                        onchange="hanleChangeOptionProductDetail()"
-                                        data-productid="{{$productDetail->sanphams->id}}"
-                                        id="product_detail_size">
-                                        @foreach($sizes as $size)
-                                            <option
-                                                {{$size->id == $size_id ? 'selected' : ''}}
-                                                value="{{$size->id}}"
-                                            >{{$size->tensize}}</option>
+                                <div class="pull-left" id="size_detail">
+                                    Size:
+                                        @foreach($listProductDetail as $product)
+                                            <button
+                                            class="btn btn-secondary"
+                                            {{ ($product->sizes->id == $size_id) ? 'disabled' : '' }}
+                                            onclick="hanleChangeOptionProductDetail({{ $product->id }})">
+                                                {{  $product->sizes->tensize  }}
+                                            </button>
                                         @endforeach
-                                    </select>
                                 </div>
-                                <div class="pull-left">
-                                    <label class="control-label">Color:</label>
-                                    <select
-                                        class="form-control input-sm"
-                                        onchange="hanleChangeOptionProductDetail()"
-                                        id="product_detail_color">
-                                        @foreach($colors as $color)
-                                            <option {{$color->id == $color_id ? 'selected' : ''}} value="{{$color->id}}">
-                                                {{$color->tenmau}}
-                                            </option>
-                                        @endforeach
+                                <div class="pull-left" id="color_detail">
+                                    Màu:
+                                    @foreach($listProductDetail as $product)
+                                        @if($product->idsize == $size_id)
+                                        <button {{ ($product->maus->id == $color_id) ? 'disabled' : ''}}  class="color__button"
+                                        style="background-color: {{$product->maus->code}}"
+                                        onclick="hanleChangeOptionProductDetail({{ $product->id }})"
+                                        >
+                                        </button>
+                                        @endif
+                                    @endforeach
                                     </select>
                                 </div>
                             </div>

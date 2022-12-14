@@ -91,7 +91,7 @@
                 <!-- BEGIN PRODUCT LIST -->
                 <div class="row product-list" style="min-height: 500px">
                     <!-- PRODUCT ITEM START -->
-                    @foreach($allProduct as $product)
+                    <!-- @foreach($allProduct as $product)
                         @php
                             $img_url = $product->anhsanpham;
                         @endphp
@@ -116,7 +116,76 @@
                             >Thêm vào giỏ</a>
                         </div>
                     </div>
-                    @endforeach
+                    @endforeach -->
+
+                    @foreach($allMasterProduct as $keyProduct => $products)
+                    @if(count($products->chitiet->where('trangthai', 1)) >0)
+                        @php
+                            $listProductDetail = $products->chitiet->where('trangthai', 1);
+                            $img_url = $listProductDetail[0]->anhsanpham;
+                            $price = $listProductDetail[0]->giasanpham;
+                            $listSize = [];
+                        @endphp
+                    <div class="col-md-4 col-sm-6 col-xs-12 product-wrapper">
+                        <div class="product-item">
+                            <div class="pi-img-wrapper">
+                                <img src="{{asset($img_url)}}"
+                                     class="img-responsive"
+                                     style="max-height: 250px;"
+                                     alt="{{$products->ten_sp}}"
+                                     id="img_{{$keyProduct}}">
+                                <div>
+                                    <a href="{{asset($img_url)}}" class="btn btn-default fancybox-button">Zoom</a>
+                                    <a
+                                        href="{{route('home.product.detail', $products->id)}}"
+                                        class="btn btn-default fancybox-fast-view">
+                                            View
+                                    </a>
+                                </div>
+                            </div>
+                            <h3><a href="shop-item.html">{{$products->ten_sp}}</a></h3>
+                            <div>
+                                <h6 id="size_{{$keyProduct}}">Size:
+                                    @foreach($listProductDetail as $key => $product)
+                                        @php
+                                            $tensize = $sizeProduct->where('id',$product->idsize)->first()->tensize;
+                                        @endphp
+                                        @if(!in_array($product->idsize, $listSize))
+                                            @php
+                                                $listSize[] = $product->idsize;
+                                            @endphp
+                                            <button
+                                            class="btn btn-secondary"
+                                            {{ ($key == 0) ? 'disabled' : '' }} onclick="getProductInformation({{$product->id}}, 'size', {{$keyProduct}})">
+                                                {{  $tensize  }}
+                                            </button>
+                                        @endif
+                                    @endforeach
+                                </h6>
+                                <h6 id="color_{{$keyProduct}}">Màu:
+                                    @foreach($listProductDetail as $key => $product)
+                                        @php
+                                            $codeColor = $colorProduct->where('id',$product->idmau)->first()->code;
+                                        @endphp
+                                        @if($product->idsize == $listProductDetail[0]->idsize)
+                                            <button {{ $key == 0 ? 'disabled' : '' }}
+                                            onclick="getProductInformation({{$product->id}}, 'color', {{$keyProduct}})"
+                                            style="background-color: {{$codeColor}}"
+                                            class="color__button"> </button>
+                                        @endif
+                                    @endforeach
+                                </h6>
+                            </div>
+
+                            <div class="pi-price" id="price_{{$keyProduct}}">{{number_format($price,0,',','.').' VNĐ' }}</div>
+                            <a href="{{route('home.cart.add-to-cart', $products->id)}}"
+                               class="btn btn-default add2cart"
+                            >Thêm vào giỏ</a>
+                        </div>
+                    </div>
+                    @endif
+                @endforeach
+
                     <!-- PRODUCT ITEM END -->
                 </div>
 

@@ -34,7 +34,6 @@ if(! function_exists('getNameProductTypeByID')) {
     }
 }
 
-
 function getCartImport() : array{
     $cartInformation = \Illuminate\Support\Facades\Session::get('cartImport') ?? [];
     $total = 0;
