@@ -99,7 +99,7 @@
                                     </div>
                                     <button class="btn btn-primary" type="submit">Thêm vào giỏ</button>
                                 </form>
-                                <span>Còn lại ({{$productDetail->soluong}})</span>
+                                <span id="product_left_text">Còn lại ({{$productDetail->soluong}})</span>
                             </div>
                         </div>
                         <div class="product-page-content">

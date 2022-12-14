@@ -19,10 +19,9 @@ class CartController extends Controller
     public function  addToCart($productId, Request $request){
         try{
             $query = $request->query('quality');
-
-            $productInformation = chitietsanpham::join('sanpham', 'chitietsanpham.id', '=', 'sanpham.id')
+            $productInformation = chitietsanpham::join('sanpham', 'chitietsanpham.idsanpham', '=', 'sanpham.id')
                                     ->where('sanpham.trangthai', 1)
-                                    ->where('sanpham.id', $productId)
+                                    ->where('chitietsanpham.id', $productId)
                                     ->first();
 
             $sessionCurrent = Session::get('cart') ?? array();
