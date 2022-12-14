@@ -29,7 +29,7 @@
                                     </div>
                                 </div>
                                 <h3>
-                                    <a href="shop-item.html">
+                                    <a href="{{route('home.product.detail', $product->id)}}">
                                     {{$product->ten_sp.' '.$product->sizes->tensize.' '.$product->maus->tenmau}}
                                     </a>
                                 </h3>
@@ -93,7 +93,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <h3><a href="shop-item.html">{{$products->ten_sp}}</a></h3>
+                            <h3><a href="{{route('home.product.detail', $products->id)}}">{{$products->ten_sp}}</a></h3>
                             <div>
                                 <h6 id="size_{{$keyProduct}}">Size:
                                     @foreach($listProductDetail as $key => $product)
@@ -131,7 +131,7 @@
                             <a href="{{route('home.cart.add-to-cart', $products->id)}}"
                                class="btn btn-default add2cart"
                                id="link_{{$keyProduct}}"
-                            >Thêm vào giỏ</a>
+                            >Thêm vào giỏ</a>e
                         </div>
                     </div>
                     @endif
