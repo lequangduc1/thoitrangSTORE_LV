@@ -23,6 +23,9 @@ class AuthController extends Controller
 
     public function login_form(){
         $url_previous = url()->previous();
+        if(strpos($url_previous, 'auth')){
+            $url_previous = 'http://127.0.0.1:8000';
+        }
         Session::put('url_previous', $url_previous);
         return view('homePages.auth.login');
     }
@@ -55,6 +58,9 @@ class AuthController extends Controller
             }
             if($account->trangthai==1){
                 $url_previous = Session::get('url_previous');
+                if($url_previous === 'http://127.0.0.1:8000/auth'){
+                    return redirect()->to('http://127.0.0.1:8000');
+                }
                 return redirect()->to($url_previous);
             }else{
                 Auth::logout();
@@ -73,16 +79,18 @@ class AuthController extends Controller
                 'hovaten'=> 'required',
                 'email'=>'required',
                 'password'=>'required|min:8',
-                'sodienthoai'=>'required|size:10|numeric'
+                'sodienthoai'=>'required|numeric'
             ],[
                 'hovaten.required'=>'Họ và tên là bắt buộc',
                 'email.required'=>'Email là bắt buộc',
                 'password.min'=>'Mật khẩu phải có nhiều hơn hoặc bằng 8 ký tự',
                 'sodienthoai.required'=>'Số điện thoại là bắt buộc',
-                'sodienthoai.size'=>'Số điện thoại phải là 10 ký tự',
                 'sodienthoai.numeric'=>'Số điện thoại phải là số'
 
             ]);
+            if(strlen($request->sodienthoai) != 10){
+                return redirect()->back()->withErrors(['login_fail'=>'Số điện thoại phải là 11 ký tự']);
+            }
 
             $account = Customer::where('email', $request->email)->first();
             if($account){
@@ -155,16 +163,59 @@ class AuthController extends Controller
         }
         $id = $customer->id;
         $token = $id.hash('sha256', \Illuminate\Support\Str::random(120));
-        $verifyURL = route('home.auth.reset_password', ['token'=>$token, 'service'=>'Email_verification']);
+        $verifyURL = route('home.auth.form_reset_password', ['email'=>$request->email,'token'=>$token, 'service'=>'Email_verification']);
 
         $update = Customer::find($id);
         $update->remember_token = $token;
         $update->save();
 
+        $message = "Gởi <b>{{$customer->hovaten}}</b>";
+        $message .= "Bạn quên mật khẩu của mình, Hãy sử dụng liên kết để đặt lại mật khẩu";
+        $email_data = [
+            'recipient'=>$request->email,
+            'fromEmail'=>$request->email,
+            'fromName'=>$request->email,
+            'subject'=>'Đổi mật khẩu',
+            'body'=>$message,
+            'actionLink'=>$verifyURL
+        ];
+
+        Mail::send('email_template_reset_password', $email_data, function($message) use ($email_data){
+            $message->to($email_data['recipient'])
+                ->from($email_data['recipient'], $email_data['fromName'])
+                ->subject($email_data['subject']);
+        });
+
+
+        return redirect()->back()->with(['forget_success'=>'Kiểm tra email để lấy lại mật khẩu']);
 
     }
 
+    public function formResetPassword(Request $request){
+        $params['email'] = $request->email;
+        return view('homePages.auth.reset_password', $params);
+    }
+
     public function resetPassword(Request $request){
+        $request->validate([
+            'password'=>'required|min:8'
+        ],[
+            'password.required'=>'Password là bắt buôc',
+            'password.min'=>'Password phải nhiều hơn hoặc bằng 8 ký tự'
+        ]);
+
+        $email = $request->email;
+        $password = $request->password;
+        $repassword = $request->repassword;
+
+
+        if($password !== $repassword){
+            return redirect()->back()->withErrors(['login_fail'=>'Mật khẩu không trùng khớp']);
+        }
+
+        $update = Customer::where('email', $email)->first();
+        $update->password =  Hash::make($password);
+        return redirect()->route('home.auth.login_form')->with(['login_success'=>'Lấy lại mật khẩu thành công!']);
 
     }
 

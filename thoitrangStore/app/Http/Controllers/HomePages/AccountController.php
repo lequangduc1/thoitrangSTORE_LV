@@ -19,6 +19,19 @@ class AccountController extends Controller
     }
 
     public function updateAccount(Request $request){
+        $request->validate([
+            'hovaten'=>'required',
+            'sodienthoai'=>'required|digits:10|numeric',
+            'diachi'=>'min:15'
+        ],
+        [
+            'hovaten.required'=>'Họ và tên là bắt buộc',
+            'sodienthoai.size'=>'Số điện thoại phải là 10 ký tự',
+            'sodienthoai.numeric'=>'Số điện thoại không hợp lệ',
+            'diachi.min'=>'Địa chỉ chứa ít nhất 15 ký tự và thể hiện chính xác địa chỉ giao hàng'
+        ]
+        );
+
         try{
             $userCurrent = Customer::find(Auth::guard('customer')->user()->id);
             $data = $request->input();

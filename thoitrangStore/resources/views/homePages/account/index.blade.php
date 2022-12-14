@@ -24,6 +24,7 @@
                             <input
                                 type="email"
                                 name="email"
+                                disabled
                                 value="{{$userCurrent->email}}"
                                 class="form-control">
                         </div>
