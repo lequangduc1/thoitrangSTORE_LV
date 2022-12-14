@@ -143,7 +143,8 @@
                                     </a>
                                 </div>
                             </div>
-                            <h3><a href="shop-item.html">{{$products->ten_sp}}</a></h3>
+                            <h3><a href="{{route('home.product.detail', $products->id)}}">{{$products->ten_sp}}</a></h3>
+
                             <div>
                                 <h6 id="size_{{$keyProduct}}">Size:
                                     @foreach($listProductDetail as $key => $product)
