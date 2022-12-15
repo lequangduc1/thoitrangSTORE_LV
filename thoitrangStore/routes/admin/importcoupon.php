@@ -12,5 +12,6 @@ Route::prefix('/importcoupon')->name('importcoupon.')->group(function(){
     Route::post('/postCreate',[ImportCouponController::class,'postCreate'])->name('postCreate');
     Route::post('/search',[ImportCouponController::class,'search'])->name('search');
     Route::post('/addToCart',[ImportCouponController::class,'addToCart'])->name('addToCart');
+    Route::get('/removeCart/{id}', [ImportCouponController::class, 'removeCart'])->name('removeCart');
 
 });
