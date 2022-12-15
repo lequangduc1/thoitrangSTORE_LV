@@ -126,6 +126,7 @@ class ImportCouponController extends Controller
             $sessionCurrent = Session::get('cartImport') ?? array();
             if(array_key_exists('product_'.$productId, $sessionCurrent)){
                 $sessionCurrent['product_'.$productId]['soluongnhap'] += $request->soluongnhap;
+                $sessionCurrent['product_'.$productId]['gianhp'] = $request->gianhap;
                 Session::push('cartImport',$sessionCurrent);
             }else{
                 $productNew = [
@@ -133,16 +134,18 @@ class ImportCouponController extends Controller
                     'idsanpham'=>$productInformation->idsanpham,
                     'tensanp0ham' =>$productInformation->ten_sp,
                     'soluongnhap'=>$request->soluongnhap,
-                    'gianhp'=>$productInformation->giasanpham,
+                    'gianhp'=>$request->gianhap,
                 ];
 
                 $sessionCurrent['product_'.$productId] = $productNew;
                 Session::push('cartImport',$sessionCurrent);
             }
             Session::put('cartImport', $sessionCurrent);
+            Toastr::success('Thêm sản phẩm thành công');
             return redirect()->back();
         }catch (\Exception $e){
-            dd($e);
+            Toastr::error('Thêm sản phẩm thất bại');
+            return redirect()->back();
         }
     }
 
@@ -166,6 +169,18 @@ class ImportCouponController extends Controller
             return view('adminPages.importcoupon.index',$params);
         }
 
+    }
+    public function removeCart($productId){
+        try{
+            $sessionCurrent = Session::get('cartImport') ?? array();
+            if(array_key_exists('product_'.$productId, $sessionCurrent)){
+                unset($sessionCurrent['product_'.$productId]);
+                Session::put('cartImport', $sessionCurrent);
+                return redirect()->back();
+            }
+        }catch(\Exception $e){
+            dd($e);
+        }
     }
 
 }

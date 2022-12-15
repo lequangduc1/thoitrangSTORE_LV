@@ -64,17 +64,26 @@
                                             <label class="col-md-12 p-0"><b>Số lượng: </b>  {{$value['soluongnhap']}}</label>
                                         </div>
                                         <div class="form-group col-md-12" style="float: left">
-                                            <label class="col-md-12 p-0"><b>Giá nhập: </b>  {{$value['gianhp']}}</label>
+                                            <label class="col-md-12 p-0"><b>Giá nhập: </b> {{number_format($value['gianhp'])}} VNĐ</label>
                                         </div>
                                     </div>
+                                    <a
+                                        href="{{route('admin.importcoupon.removeCart', $value['id'])}}"
+                                        class="btn btn-danger">
+                                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                        Xóa sản phẩm
+                                    </a>
                                 </div>
 
                             @endforeach
 
                         </div>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Launch demo modal
-                        </button>
+                        @if(count($allProductInCart) > 0)
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="fas fa-check-circle" aria-hidden="true"></i>Xác nhận đơn hàng
+                            </button>
+                        @endif
+
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
