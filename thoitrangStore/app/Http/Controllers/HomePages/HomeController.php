@@ -15,6 +15,7 @@ class HomeController extends Controller
     public function home(){
         $newProduct = $this->getNewMasterProduct();
         $allProduct = $this->getALlMasterProduct();
+
         $params['allMasterProduct'] = $this->getAllMasterProductValid($allProduct);
         $params['newMasterProduct'] = $this->getAllMasterProductValid($newProduct);
 
@@ -48,11 +49,9 @@ class HomeController extends Controller
                 $listDetailProduct = $masterProduct->chitiet->where('trangthai', 1);
                 if(count($listDetailProduct) > 0) {
                     foreach($listDetailProduct as $product) {
-                        if($product->sizes->trangthai == 1 && $product->maus->trangthai == 1) {
-                            $resArr[$count0][$count1] = $product;
-                            $count1++;
-                            $checkLate = true;
-                        }
+                        $resArr[$count0][$count1] = $product;
+                        $count1++;
+                        $checkLate = true;
                     }
                     if($checkLate) {
                         $count0++;
