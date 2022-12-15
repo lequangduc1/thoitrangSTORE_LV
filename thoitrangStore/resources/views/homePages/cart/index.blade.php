@@ -33,7 +33,6 @@
                                     <h3><a href="javascript:;">{{$product['name']}}</a></h3>
                                     <p>
                                         <strong>Thông tin: </strong><br>
-{{--                                        Color: <span class="filter__color" style="background-color: {{$product['color']}}"></span>;--}}
                                         Size: {{$product['size']}}<br>
                                         Màu: {{$product['color']}}<br>
                                         Mã: {{$product['code']}}
