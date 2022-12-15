@@ -130,23 +130,28 @@ function hanleChangeOptionProductDetail(productId){
 
                 let html1 = 'Size: ';
                 let html2 = "Size: ";
+                let listsize = [];
                 for (const product of res.productDetail.sanphams.chitiet) {
-                    html1 += `
-                    <button
-                    class="btn btn-secondary"
-                    ${product.id == res.productDetail.id ? "disabled" : ""}
-                    onclick="hanleChangeOptionProductDetail(${product.id})">
-                        ${ product.tensize }
-                    </button>
-                    `;
+                    if (!listsize.includes(product.idsize)) {
+                        listsize.push(product.idsize);
+                        html1 += `
+                        <button
+                        class="btn btn-secondary"
+                        ${product.id == res.productDetail.id ? "disabled" : ""}
+                        onclick="hanleChangeOptionProductDetail(${product.id})">
+                            ${product.tensize}
+                        </button>
+                        `;
+                    }
                     if (product.idsize == res.productDetail.idsize)
                         html2 += `<button ${
                             product.id == res.productDetail.id ? "disabled" : ""
                         }  class="color__button"
-                    style="background-color: ${product.code}"
-                    onclick="hanleChangeOptionProductDetail(${product.id})"
-                    >
-                    </button>`;
+                        style="background-color: ${product.code}"
+                        onclick="hanleChangeOptionProductDetail(${product.id})"
+                        >
+                        </button>`;
+
                 }
 
 
@@ -194,10 +199,13 @@ function getProductInformation(productId, type, productKey) {
             $("#" + price_id).html(price);
             let html1 = "Size: ";
             for (let item of data.listDetailProduct) {
-                html1 += `<button class="btn btn-secondary"
-                ${data.product.idsize == item.idsize ? "disabled": ""}
-                onclick="getProductInformation(${item.id}, 'size', ${keyProduct})">${item.tensize}
+                    html1 += `<button class="btn btn-secondary"
+                ${data.product.idsize == item.idsize ? "disabled" : ""}
+                onclick="getProductInformation(${
+                    item.id
+                }, 'size', ${keyProduct})">${item.tensize}
                 </button>`;
+
             }
             $("#" + size_id).html(html1);
 
