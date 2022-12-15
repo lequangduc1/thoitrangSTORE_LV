@@ -292,7 +292,7 @@ function getNewProductInformation(productId, type, productKey) {
             for (let item of data.listDetailProduct) {
                 html1 += `<button class="btn btn-secondary"
                 ${data.product.idsize == item.idsize ? "disabled" : ""}
-                onclick="getProductInformation(${
+                onclick="getNewProductInformation(${
                     item.id
                 }, 'size', ${keyProduct})">${item.tensize}
                 </button>`;
@@ -306,7 +306,7 @@ function getNewProductInformation(productId, type, productKey) {
                         ? `<button ${
                               data.product.idmau == item.idmau ? "disabled" : ""
                           }
-                            onclick="getProductInformation(${
+                            onclick="getNewProductInformation(${
                                 item.id
                             }, 'color', ${keyProduct})"
                             style="background-color: ${item.code}"
@@ -344,7 +344,7 @@ function getNewProductInformation(productId, type, productKey) {
                                     ? "disabled"
                                     : ""
                             }
-                            onclick="getProductInformation(${
+                            onclick="getNewProductInformation(${
                                 item.id
                             }, 'color', ${keyProduct})"
                             style="background-color: ${item.code}"
