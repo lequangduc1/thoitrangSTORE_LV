@@ -86,7 +86,7 @@
                         <div class="form-group mb-4">
                             <label class="col-md-12 p-0">Số điện thoại</label>
                             <div class="col-md-12 border-bottom p-0">
-                                <input type="text"
+                                <input type="number"
                                        value="{{getInformation('dien_thoai')}}"
                                        class="form-control p-0 border-0"
                                        name="dien_thoai" required>
