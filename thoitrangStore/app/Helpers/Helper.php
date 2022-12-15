@@ -46,3 +46,25 @@ function getCartImport() : array{
         'allProductInCartImport'=>$cartInformation
     ];
 }
+
+if(function_exists("checkShowProduct")) {
+    function checkShowProduct($listProductDetail) {
+        if(count($listProductDetail->where('trangthai','1')) > 0) {
+            $sizeStatus = false;
+            foreach($listProductDetail as $product) {
+                if($product->sizes->trangthai == 1 && $product->maus->trangthai == 1) {
+                    $sizeStatus = true;
+                }
+            }
+            if($sizeStatus == true) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+}

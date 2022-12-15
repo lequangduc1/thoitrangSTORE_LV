@@ -187,24 +187,17 @@ function getProductInformation(productId, type, productKey) {
                 id: productId,
             },
         }).done((data) => {
+            console.log(data);
             $(`#${link_id}`).attr('href', '/cart/'+data.product.id);
             $("#" + img_id).attr("src", data.product.anhsanpham);
             let price = formatCurrency(data.product.giasanpham);
             $("#" + price_id).html(price);
             let html1 = "Size: ";
             for (let item of data.listDetailProduct) {
-                html1 += `<button
-                                    class="btn btn-secondary"
-                                    ${
-                                        data.product.idsize == item.idsize
-                                            ? "disabled"
-                                            : ""
-                                    }
-                                    onclick="getProductInformation(${
-                                        item.id
-                                    }, 'size', ${keyProduct})">${
-                    item.tensize
-                }</button>`;
+                html1 += `<button class="btn btn-secondary"
+                ${data.product.idsize == item.idsize ? "disabled": ""}
+                onclick="getProductInformation(${item.id}, 'size', ${keyProduct})">${item.tensize}
+                </button>`;
             }
             $("#" + size_id).html(html1);
 
@@ -262,6 +255,95 @@ function getProductInformation(productId, type, productKey) {
             }
             $("#" + color_id).html(html);
 
+        });
+    }
+}
+function getNewProductInformation(productId, type, productKey) {
+    var csrf_token = $('meta[name="csrf-token"]').attr("content");
+    if (type == "size") {
+        var img_id = "img_new" + productKey;
+        var size_id = "size_new" + productKey;
+        var color_id = "color_new" + productKey;
+        var price_id = "price_new" + productKey;
+        var link_id = "link_new" + productKey;
+        var keyProduct = productKey;
+        $.ajax({
+            url: "/product_detail/" + productId,
+            method: "POST",
+            data: {
+                _token: csrf_token,
+                id: productId,
+            },
+        }).done((data) => {
+            console.log(data);
+            $(`#${link_id}`).attr("href", "/cart/" + data.product.id);
+            $("#" + img_id).attr("src", data.product.anhsanpham);
+            let price = formatCurrency(data.product.giasanpham);
+            $("#" + price_id).html(price);
+            let html1 = "Size: ";
+            for (let item of data.listDetailProduct) {
+                html1 += `<button class="btn btn-secondary"
+                ${data.product.idsize == item.idsize ? "disabled" : ""}
+                onclick="getProductInformation(${
+                    item.id
+                }, 'size', ${keyProduct})">${item.tensize}
+                </button>`;
+            }
+            $("#" + size_id).html(html1);
+
+            let html2 = "Color: ";
+            for (let item of data.listDetailProduct) {
+                html2 +=
+                    item.idsize == data.product.idsize
+                        ? `<button ${
+                              data.product.idmau == item.idmau ? "disabled" : ""
+                          }
+                            onclick="getProductInformation(${
+                                item.id
+                            }, 'color', ${keyProduct})"
+                            style="background-color: ${item.code}"
+                                            class="color__button"> </button>`
+                        : "";
+            }
+            $("#" + color_id).html(html2);
+        });
+    } else if (type == "color") {
+        var img_id = "img_new" + productKey;
+        var color_id = "color_new" + productKey;
+        var price_id = "price_new" + productKey;
+        var link_id = "link_new" + productKey;
+        var keyProduct = productKey;
+        $.ajax({
+            url: "/product_detail/" + productId,
+            method: "POST",
+            data: {
+                _token: csrf_token,
+                id: productId,
+            },
+        }).done((data) => {
+            $("#" + img_id).attr("src", data.product.anhsanpham);
+            $(`#${link_id}`).attr("href", "/cart/" + data.product.id);
+            let price = formatCurrency(data.product.giasanpham);
+            $("#" + price_id).html(price);
+
+            let html = "Color: ";
+            for (let item of data.listDetailProduct) {
+                html +=
+                    item.idsize == data.product.idsize
+                        ? `<button
+                            ${
+                                data.product.idmau == item.idmau
+                                    ? "disabled"
+                                    : ""
+                            }
+                            onclick="getProductInformation(${
+                                item.id
+                            }, 'color', ${keyProduct})"
+                            style="background-color: ${item.code}"
+                                            class="color__button"> </button>`
+                        : "";
+            }
+            $("#" + color_id).html(html);
         });
     }
 }

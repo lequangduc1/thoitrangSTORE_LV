@@ -43,16 +43,16 @@ class ProductTypeController extends Controller
     public function store(Request $request){
         try{
             $data = $request->input();
-            $checkName =  loaisanpham::where('tenloai',  $data['tenloai'])->first();
-            if(isset($checkName)){
-                Toastr::error('Lưu thất bại: tên loại đã tồn tại !!!');
-                return back();
-            }
             $date = date(today());
             if(isset($data['id'])){
                 $newProductType = loaisanpham::find($data['id']);
                 $data['updated_at'] = $date;
             }else{
+                $checkName =  loaisanpham::where('tenloai',  $data['tenloai'])->first();
+                if (isset($checkName)) {
+                    Toastr::error('Lưu thất bại: tên loại đã tồn tại !!!');
+                    return back();
+                }
                 $newProductType = New loaisanpham();
                 $data['created_at'] = $date;
             }
