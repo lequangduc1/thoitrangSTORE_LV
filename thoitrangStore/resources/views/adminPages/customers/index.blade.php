@@ -38,7 +38,17 @@
                                         <td>{{$value->email}}</td>
                                         <td>{{$value->diachi}}</td>
                                         <td>{{$value->sodienthoai}}</td>
-                                        <td>{{$value->kichhoat}}</td>
+                                        <td>
+                                            <div class="btn {{$value->email_verify == 1 ? 'btn-success' : 'btn-danger'}}"
+                                                 style="
+                                                        color: #000;
+                                                        border-radius: 5px;
+                                                        width: 150px"
+
+                                            >
+                                                <b>{{$value->email_verify == 1 ? 'Đã kích hoạt' : 'Chưa kích hoạt'}}</b>
+                                            </div>
+                                        </td>
                                         <td>
                                             <div class="btn {{$value->trangthai == 1 ? 'btn-success' : 'btn-danger'}}"
                                                  style="
@@ -47,11 +57,11 @@
                                                         width: 100px"
 
                                             >
-                                                {{$value->trangthai == 1 ? 'Hiện' : 'Ẩn'}}
+                                                <b>{{$value->trangthai == 1 ? 'Hiện' : 'Ẩn'}}</b>
                                             </div>
                                         </td>
-                                        <td>{{$value->created_at}}</td>
-                                        <td>{{$value->updated_at}}</td>
+                                        <td>{{$value->created_at ? date_format($value->created_at,"d/m/Y") : 'null'}}</td>
+                                        <td>{{$value->updated_at ? date_format($value->updated_at,"d/m/Y") : ''}}</td>
                                         <td>
 {{--                                            <a href="#"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>--}}
                                             <a href="{{route('admin.customers.update', $value->id)}}"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>
