@@ -39,7 +39,7 @@
                         <h1>{{$productDetail->ten_sp}}</h1>
                         <div class="price-availability-block clearfix">
                             <div class="price">
-                                <strong id="product_detail_price">{{number_format($productDetail->giasanpham,0,',','.')}} VNĐ</strong>
+                                <strong id="product_detail_price">{{number_format($productDetail->giasanpham,0,',','.')}} VND</strong>
                                 {{-- <em>$<span>62.00</span></em>--}}
                             </div>
                             <div class="availability" id="status_detail">
@@ -178,8 +178,8 @@
                                 <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                             </div>
                         </div>
-                        <h3><a href="shop-item.html">{{$product->ten_sp}}</a></h3>
-                        <div class="pi-price">{{number_format($product->giasanpham)}} VNĐ</div>
+                        <h3><a href="shop-item.html">{{$product->ten_sp.' '.$product->sizes->tensize.' '.$product->maus->tenmau}}</a></h3>
+                        <div class="pi-price">{{number_format($product->giasanpham)}} VND</div>
                         <a href="{{route('home.cart.add-to-cart', $product->id)}}" class="btn btn-default add2cart">Thêm vào giỏ hàng</a>
                         <div class="sticker sticker-new"></div>
                     </div>

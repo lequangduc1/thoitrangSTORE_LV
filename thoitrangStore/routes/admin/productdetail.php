@@ -8,6 +8,6 @@ Route::prefix('/products')->name('products.')->group(function(){
     Route::get('/create',[ProductDetailController::class,'create'])->name('create');
     Route::post('/store',[ProductDetailController::class,'store'])->name('store');
     Route::get('/update/{id}',[ProductDetailController::class,'update'])->name('update');
-    Route::get('/{id}',[ProductDetailController::class,'destroy'])->name('destroy');
+    Route::get('/delete/{id}',[ProductDetailController::class,'destroy'])->name('destroy');
 
 });

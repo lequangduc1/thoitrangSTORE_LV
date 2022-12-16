@@ -1,31 +1,31 @@
 @extends('adminPages.index')
 @section('content')
-    <div class="page-breadcrumb bg-white">
-        <div class="row align-items-center">
-            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Danh sách khuyến mãi</h4>
-            </div>
-            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                <div class="d-md-flex">
-                    <ol class="breadcrumb ms-auto">
-                        <li><a href="#" class="fw-normal"></a></li>
-                    </ol>
-                    <a href="{{route('admin.promotion.create')}}" class="btn btn-primary  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
-                        Thêm khuyến mãi
-                    </a>
-                </div>
+<div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Danh sách khuyến mãi</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <div class="d-md-flex">
+                <ol class="breadcrumb ms-auto">
+                    <li><a href="#" class="fw-normal"></a></li>
+                </ol>
+                <a href="{{route('admin.promotion.create')}}" class="btn btn-primary  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+                    Thêm khuyến mãi
+                </a>
             </div>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="white-box">
-                    <h3 class="box-title"></h3>
-                    <div class="table-responsive">
-                        <table class="table text-nowrap">
-                            <thead>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <h3 class="box-title"></h3>
+                <div class="table-responsive">
+                    <table class="table text-nowrap">
+                        <thead>
                             <tr>
                                 <th class="border-top-0">#</th>
                                 <th class="border-top-0"><b>Tên khuyến mãi</b></th>
@@ -38,41 +38,56 @@
                                 <th class="border-top-0"><b>Trạng thái</b></th>
                                 <th class="border-top-0"><b>Thao tác</b></th>
                             </tr>
-                            </thead>
-                            <tbody>
+                        </thead>
+                        <tbody>
                             @if(!is_array($allPromotions))
-                                @foreach($allPromotions as $key => $value)
-                                    <tr>
-                                        <td><b>{{$key+1}}</b></td>
-                                        <td>{{$value->ten_km}}</td>
-                                        <td>{{$value->ma_km}}</td>
-                                        <td>{{$value->phantramgiam}}</td>
-                                        <td>{{$value->soluong}}</td>
-                                        <td>{{$value->conlai}}</td>
-                                        <td>{{$value->ngaybatdau_km}}</td>
-                                        <td>{{$value->ngayketthuc_km}}</td>
-                                        <td>
-                                            <div class="btn {{$value->trangthai == 1 ? 'btn-success' : 'btn-danger'}}"
-                                                 style="
+                            @foreach($allPromotions as $key => $value)
+                            <tr>
+                                <td><b>{{$key+1}}</b></td>
+                                <td>{{$value->ten_km}}</td>
+                                <td>{{$value->ma_km}}</td>
+                                <td>{{$value->phantramgiam}}</td>
+                                <td>{{$value->soluong}}</td>
+                                <td>{{$value->conlai}}</td>
+                                <td>{{$value->ngaybatdau_km}}</td>
+                                <td>{{$value->ngayketthuc_km}}</td>
+                                <td>
+                                    <div class="btn {{$value->trangthai == 1 ? 'btn-success' : 'btn-danger'}}" style="
                                                         color: #000;
                                                         border-radius: 5px;
-                                                        width: 100px"
-
-                                            >
-                                                {{$value->trangthai == 1 ? 'Hiện' : 'Ẩn'}}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="{{route('admin.promotion.update', $value->id)}}"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                                        width: 100px">
+                                        {{$value->trangthai == 1 ? 'Hiện' : 'Ẩn'}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="{{route('admin.promotion.update', $value->id)}}"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>
+                                    <a data-bs-toggle="modal" data-bs-target="#modalConfirm{{$value->id}}"><span class="icon-action"><i class="fa fa-trash" aria-hidden="true"></i></span></a>
+                                </td>
+                            </tr>
+                            <div class="modal fade" id="modalConfirm{{$value->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Xác nhận xóa khuyến mãi</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h4>Bạn có muốn tiếp tục xóa khuyến mãi {{ $value->ten_km }} này không? </h4>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a class="btn btn-secondary" data-bs-dismiss="modal">Đóng</a>
+                                            <a href="{{route('admin.promotion.destroy', $value->id)}}" class=" btn btn-primary">Tiếp Tục Xóa </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
                             @endif
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection

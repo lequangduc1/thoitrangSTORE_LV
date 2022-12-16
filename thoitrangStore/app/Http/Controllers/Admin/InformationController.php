@@ -20,7 +20,15 @@ class InformationController extends Controller
             $information = Information::all()->first();
             $newInformation = Information::find($information->id);
 
-            $data = $request->input();
+            $data = $request->validate([
+                "logo" => 'nullable',
+                "favicon" => 'nullable',
+                "ten_shop" => "required",
+                "dien_thoai" => "required|numeric",
+                "dia_chi" => "required",
+                "email" => "required|email",
+                "iframe" => 'nullable'
+            ]);
             if($request->file('logo')){
                 $file = $request->file('logo');
                 $fileName = time().$file->getClientOriginalName();
@@ -41,7 +49,6 @@ class InformationController extends Controller
             return redirect()->route('admin.information.index');
 
         }catch (\Exception $exception){
-            dd($exception);
             Toastr::error('Lưu thất bại!');
             return redirect()->route('admin.information.index');
         }

@@ -15,6 +15,20 @@
         input{
             width: 100% !important;
         }
+
+        .login__google{
+            width: 100%;
+            background-color: #ff4646;
+            color: white;
+            text-align: center;
+        }
+
+        strong{
+            display: block;
+            text-align: center;
+            margin:10px 0px;
+        }
+
     </style>
 </head>
 <body>
@@ -43,8 +57,11 @@
         @endif
         <input type="submit" value="Đăng nhập" id="btn-login">
         <span style="font-size: 14px; margin: 5px 0px;display: block"><a href="{{route('home.auth.forget_form')}}">Quên mật khẩu</a></span>
-        <span style="font-size: 14px; margin: 5px 0px;display: block">Bạn chưa có tài khoản <a href="{{route('home.auth.register_form')}}">Đăng ký</a></span> <br>
-
+        <span style="font-size: 14px; margin: 5px 0px;display: block">Bạn chưa có tài khoản <a href="{{route('home.auth.register_form')}}">Đăng ký</a></span>
+        <strong>Hoặc</strong>
+        <a href="{{ route('home.auth.login_google') }}" class="btn login__google">
+            <i class="fab fa-google fa-fw"></i> Login with Google
+        </a>
     </form>
 </div>
 </body>

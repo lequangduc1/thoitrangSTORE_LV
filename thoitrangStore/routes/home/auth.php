@@ -13,4 +13,7 @@ Route::prefix('/auth')->name('auth.')->group(function(){
     Route::post('/forget', [\App\Http\Controllers\HomePages\AuthController::class,'forget'])->name('forget');
     Route::get('/reset-password', [\App\Http\Controllers\HomePages\AuthController::class,'formResetPassword'])->name('form_reset_password');
     Route::post('/reset-password', [\App\Http\Controllers\HomePages\AuthController::class, 'resetPassword'])->name('reset_password');
+    Route::get('/login-google',[\App\Http\Controllers\HomePages\AuthController::class, 'loginWithGoogle'])->name('login_google');
+    Route::get('/callback-google', [\App\Http\Controllers\HomePages\AuthController::class, 'callbackGoogle'])->name('callback_google');
+
 });

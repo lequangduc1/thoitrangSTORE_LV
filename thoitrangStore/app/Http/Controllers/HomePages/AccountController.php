@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\chitietsanpham;
 use App\Models\Customer;
 use App\Models\DonHang;
+use App\Models\khachhang;
 use App\Models\sanpham;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
@@ -89,6 +91,41 @@ class AccountController extends Controller
             }
 
             return redirect()->back();
+        }catch (\Exception $exception){
+            dd($exception);
+        }
+    }
+
+    public function changePassword(){
+        return view('homePages.account.change-password');
+    }
+
+    public function handleChangePassword(Request $request){
+        $request->validate([
+            'oldPassword'=>'required|min:8',
+            'password'=>'required|min:8',
+        ],[
+            '*.required'=>'Phải nhập đầy đủ thông tin',
+            '*.min'=>'Mật khẩu phải lớn hơn 8 ký tự'
+        ]);
+
+        try{
+            $user_id = Auth::guard('customer')->user()->id;
+            $user = khachhang::find($user_id);
+            $isComparePassword = Hash::check($request->oldPassword, $user->password);
+            if(!$isComparePassword){
+                return redirect()->back()->withErrors(['error'=>'Mật khẩu cũ không đúng']);
+            }
+
+            $isConfrimPassword = $request->password === $request->repassword;
+            if(!$isConfrimPassword){
+                return redirect()->back()->withErrors(['error'=>'Hai mật khẩu không trùng khớp']);
+            }
+
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            return redirect()->back()->with(['success'=>'Đổi mật khẩu thành công!!']);
         }catch (\Exception $exception){
             dd($exception);
         }

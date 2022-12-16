@@ -7,5 +7,5 @@ Route::prefix('/promotion')->name('promotion.')->group(function(){
     Route::get('/create',[\App\Http\Controllers\Admin\PromotionController::class,'create'])->name('create');
     Route::post('/store',[\App\Http\Controllers\Admin\PromotionController::class,'store'])->name('store');
     Route::get('/update/{id}',[\App\Http\Controllers\Admin\PromotionController::class,'update'])->name('update');
-
+    Route::get('/delete/{id}', [\App\Http\Controllers\Admin\PromotionController::class, 'destroy'])->name('destroy');
 });
