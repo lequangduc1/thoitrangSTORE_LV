@@ -18,8 +18,9 @@ class CreateKhachhangTable extends Migration
             $table->string('hovaten');
             $table->string('email');
             $table->string('diachi')->default('HCM');
-            $table->string('sodienthoai');
+            $table->string('sodienthoai')->nullable();
             $table->string('password');
+            $table->string('google_id')->nullable();
             $table->string('remember_token')->default('');
             $table->integer('email_verify')->default(0);
             $table->integer('trangthai')->default(1);

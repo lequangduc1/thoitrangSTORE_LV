@@ -6,10 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\ChiTietDonHang;
 use App\Models\chitietsanpham;
 use App\Models\DonHang;
+use App\Models\khachhang;
 use App\Models\khuyenmai;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use \Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
@@ -84,7 +87,7 @@ class OrderController extends Controller
 
     public function checkout(Request $request){
         try{
-
+            DB::beginTransaction();
             $data = $request->input();
             $customer_id = Auth::guard('customer')->user()->id;
             $total = getCart()['total'];
@@ -96,7 +99,6 @@ class OrderController extends Controller
                 $quality = $sale->conlai - 1;
                 khuyenmai::find($sale->id)->update(['conlai'=>$quality]);
                 $total_sale = ($total*$sale->phantramgiam) / 100;
-
             }
             $orderNewData = [
                 "makhuyenmai"=>$data['code_sale'] ?? null,
@@ -133,12 +135,15 @@ class OrderController extends Controller
                 $orderDetailNew->fill($orderDetailData);
                 $orderDetailNew->save();
             }
-
+            //send mail
+            $this->sendMailConfirm($orderNew->id);
             //clear session cart
             Session::forget('cart');
             if($data['payment_method'] == 2){
                 return $this->momoPayment($orderNew->id, $total_sale ? $total-$total_sale : $total);
             }
+
+            DB::commit();
             return redirect()->route('home.account.order-detail', $orderNew->id)->with(['success'=>'Đặt hàng thành công !!']);
         }catch (\Exception $e){
             dd($e);
@@ -160,5 +165,25 @@ class OrderController extends Controller
         }catch (\Exception $e){
             dd($e);
         }
+    }
+
+    public function sendMailConfirm($orderId){
+        $orderDetail = ChiTietDonHang::where('madonhang', $orderId)->get();
+        $order = DonHang::find($orderId);
+        $customer = khachhang::find($order->makhachhang);
+        $email_data = [
+            'toEmail'=>$customer->email,
+            'fromEmail'=>env('MAIL_FROM_ADDRESS'),
+            'fromName'=>env('MAIL_FROM_ADDRESS'),
+            'subject'=>'Order successfully',
+            'orderDetail'=>$orderDetail,
+            'order'=>$order
+        ];
+
+        Mail::send('email_template_order', $email_data, function($message) use ($email_data){
+            $message->to($email_data['toEmail'])
+                ->from($email_data['toEmail'], $email_data['fromName'])
+                ->subject($email_data['subject']);
+        });
     }
 }
