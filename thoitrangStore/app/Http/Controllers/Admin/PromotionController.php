@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\khuyenmai;
 
 use App\Http\Controllers\Controller;
+use App\Models\ChiTietDonHang;
+use App\Models\chitietsanpham;
+use App\Models\DonHang;
 use Illuminate\Http\Request;
 use Yoeunes\Toastr\Facades\Toastr;
 
@@ -86,5 +89,23 @@ class PromotionController extends Controller
             Toastr::error('Lưu thất bại');
             return back();
         }
+    }
+
+    public function destroy($id) {
+        try {
+            $promotion = khuyenmai::find($id);
+            $checkHasOrderProduct = DonHang::where('makhuyenmai',$promotion->ma_km)->get();
+            if(count($checkHasOrderProduct) == 0) {
+                $promotion->delete();
+                Toastr::success('Xóa khuyến mãi'.$promotion->ma_km.' thành công.');
+            }
+            else {
+                Toastr::warning("Mã này đang được sử dụng trong đơn hàng!!!");
+            }
+        }
+        catch (Exception $e) {
+            Toastr::error("Không tìm thấy mã khuyến mãi này");
+        }
+        return back();
     }
 }
