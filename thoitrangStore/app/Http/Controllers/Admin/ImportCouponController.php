@@ -69,6 +69,7 @@ class ImportCouponController extends Controller
 
             $params['allProductInCart'] = getCartImport()['allProductInCartImport'];
             $params['sanphams'] = chitietsanpham::all();
+//            dd(   $params['sanphams']);
             $params['sanPhamDonHang'] = [];
 //            dd( $params['allProductInCart']);
 //            $params['chitietphieunhap'] = chitietphieunhap::where('idphieunhap', $id)->get();

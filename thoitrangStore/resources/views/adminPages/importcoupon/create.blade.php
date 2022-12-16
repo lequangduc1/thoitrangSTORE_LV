@@ -28,7 +28,7 @@
                                 <select name="idsanpham" class="form-select shadow-none p-0 border-0 form-control-line">
                                     <option>--- chọn sản phẩm ---</option>
                                     @foreach($sanphams as $value)
-                                        <option value="{{$value->sanphams->id}}">{{$value->sanphams->ten_sp}} <i style="color: {{$value->maus->tenmau}}">a</i></option>
+                                        <option value="{{$value->sanphams->id}}">{{$value->sanphams->ten_sp}} || size: {{$value->sizes->tensize}} - màu: {{$value->maus->tenmau}}</option>
                                     @endforeach
                                 </select>
                             </div>
