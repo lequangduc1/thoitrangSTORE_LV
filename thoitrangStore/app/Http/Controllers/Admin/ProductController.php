@@ -24,13 +24,13 @@ class ProductController extends Controller
     }
 
     public function create(){
-        $params['productType'] = loaisanpham::all();
+        $params['productType'] = loaisanpham::where('trangthai', 1)->get();;
         return view('adminPages.productmaster.create',$params);
     }
 
     public function update($id){
         try {
-            $params['productType'] = loaisanpham::all();
+            $params['productType'] = loaisanpham::where('trangthai', 1)->get();;
             $params['products'] = sanpham::where('id',$id)->first();
             return view('adminPages.productmaster.update',$params);
         } catch (Exception $e) {

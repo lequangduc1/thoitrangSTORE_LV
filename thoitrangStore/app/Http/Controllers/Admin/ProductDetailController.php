@@ -27,9 +27,9 @@ class ProductDetailController extends Controller
 
     public function create(){
         try {
-            $params['productMaster'] = sanpham::all();
-            $params['productColor'] = mausanpham::all();
-            $params['productSize'] = kickthuocsanpham::all();
+            $params['productMaster'] = sanpham::where('trangthai', 1)->get();
+            $params['productColor'] = mausanpham::where('trangthai', 1)->get();
+            $params['productSize'] = kickthuocsanpham::where('trangthai', 1)->get();
             return view('adminPages.products.create',$params);
         } catch (Exception $e) {
 
@@ -38,9 +38,9 @@ class ProductDetailController extends Controller
 
     public function update($id){
         try {
-            $params['productMaster'] = sanpham::all();
-            $params['productColor'] = mausanpham::all();
-            $params['productSize'] = kickthuocsanpham::all();
+            $params['productMaster'] = sanpham::where('trangthai', 1)->get();
+            $params['productColor'] = mausanpham::where('trangthai', 1)->get();
+            $params['productSize'] = kickthuocsanpham::where('trangthai', 1)->get();
             $params['products'] = chitietsanpham::where('id',$id)->first();
             return view('adminPages.products.update',$params);
         } catch (Exception $e) {
