@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ChiTietDonHang;
 use App\Models\chitietsanpham;
 use App\Models\loaisanpham;
 use App\Models\mausanpham;
@@ -49,7 +50,18 @@ class ProductDetailController extends Controller
 
     public function store(Request $request){
         try{
-            $data = $request->input();
+            $data = $request->validate([
+                "id" => 'nullable|numeric|min:1',
+                "idsanpham" => 'required',
+                "idmau" => 'required',
+                "idsize" => 'required',
+                "soluong" => 'required|numeric|min:1',
+                "giasanpham" => 'required|numeric|min:1000',
+                "trangthai" => 'required',
+                "anhsanpham" => 'nullable|max:2048|mimes:jpeg,png'
+            ]);
+
+
             if(isset($data['id'])){
                 $optionProduct = chitietsanpham::find($data['id']);
             }
@@ -89,6 +101,10 @@ class ProductDetailController extends Controller
                     $file->move(public_path('uploads/product'), $fileName);
                     $optionProduct->anhsanpham = 'uploads/product/'.$fileName;
                 }
+                else if(isset($data['id'])){
+                    $optionProduct->anhsanpham = '';
+                }
+
                 $optionProduct->save();
 
                 if(isset($data['id'])) {
@@ -108,9 +124,16 @@ class ProductDetailController extends Controller
     public function destroy($id) {
         try {
             $product = chitietsanpham::find($id);
+
             if($product) {
-                $product->delete();
-                Toastr::success('Xóa sản phẩm biến thể thành công');
+                $checkedHasOrderProduct = ChiTietDonHang::where('machitietsanpham',$product->id)->get();
+                if(count($checkedHasOrderProduct) == 0) {
+                    $product->delete();
+                    Toastr::success('Xóa sản phẩm biến thể thành công');
+                }
+                else {
+                    Toastr::warning('Sản phẩm hiện đang trong đơn hàng, không thể xóa');
+                }
             }
             else {
                 Toastr::warning('Hiện không có sản phẩm biến thể này');

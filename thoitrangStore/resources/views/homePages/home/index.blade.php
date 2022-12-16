@@ -50,7 +50,7 @@
                             </h6>
                         </div>
 
-                        <div class="pi-price" id="price_new{{$keyProduct}}">{{number_format($price,0,',','.').' VNĐ' }}</div>
+                        <div class="pi-price" id="price_new{{$keyProduct}}">{{number_format($price,0,',','.').' VND' }}</div>
                         <a href="{{route('home.cart.add-to-cart', $firstProduct->id)}}" class="btn btn-default add2cart" id="link_new{{$keyProduct}}">Thêm vào giỏ</a>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                             </h6>
                         </div>
 
-                        <div class="pi-price" id="price_{{$keyProduct}}">{{number_format($price,0,',','.').' VNĐ' }}</div>
+                        <div class="pi-price" id="price_{{$keyProduct}}">{{number_format($price,0,',','.').' VND' }}</div>
                         <a href="{{route('home.cart.add-to-cart', $firstProduct->id)}}" class="btn btn-default add2cart" id="link_{{$keyProduct}}">Thêm vào giỏ</a>
                     </div>
                 </div>

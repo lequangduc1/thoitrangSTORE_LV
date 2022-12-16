@@ -40,7 +40,14 @@ class ProductController extends Controller
 
     public function store(Request $request){
         try{
-            $data = $request->input();
+            $data = $request->validate([
+                "id" => 'nullable',
+                "macodesanpham" => 'required|unique:sanpham',
+                "ten_sp" => 'required|min:3',
+                "idloaisanpham" => 'required',
+                "mota" => "required|min:10",
+                "trangthai" => 'required'
+                ]);
             $date = date(today());
             if(isset($data['id'])){
                 $masterProduct = sanpham::find($data['id']);
