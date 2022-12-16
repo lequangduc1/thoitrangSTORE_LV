@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             <h3><a href="shop-item.html">{{$product->ten_sp}}</a></h3>
-                            <div class="pi-price">{{number_format($product->giasanpham) .' VNĐ'}}</div>
+                            <div class="pi-price">{{number_format($product->giasanpham) .' VND'}}</div>
                             <a
                                 href="{{route('home.cart.add-to-cart', $product->id)}}"
                                 class="btn btn-default add2cart"
@@ -155,7 +155,7 @@
                             </h6>
                         </div>
 
-                        <div class="pi-price" id="price_{{$keyProduct}}">{{number_format($price,0,',','.').' VNĐ' }}</div>
+                        <div class="pi-price" id="price_{{$keyProduct}}">{{number_format($price,0,',','.').' VND' }}</div>
                         <a href="{{route('home.cart.add-to-cart', $firstProduct->id)}}" class="btn btn-default add2cart" id="link_{{$keyProduct}}">Thêm vào giỏ</a>
                     </div>
                 </div>

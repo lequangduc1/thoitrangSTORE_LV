@@ -198,13 +198,18 @@ function getProductInformation(productId, type, productKey) {
             let price = formatCurrency(data.product.giasanpham);
             $("#" + price_id).html(price);
             let html1 = "Size: ";
+            let listSize = [];
             for (let item of data.listDetailProduct) {
+                if (!listSize.includes(item.idsize)) {
                     html1 += `<button class="btn btn-secondary"
-                ${data.product.idsize == item.idsize ? "disabled" : ""}
-                onclick="getProductInformation(${
-                    item.id
-                }, 'size', ${keyProduct})">${item.tensize}
-                </button>`;
+                    ${data.product.idsize == item.idsize ? "disabled" : ""}
+                    onclick="getProductInformation(${
+                        item.id
+                    }, 'size', ${keyProduct})">${item.tensize}
+                    </button>`;
+                    listSize.push(item.idsize);
+                }
+
 
             }
             $("#" + size_id).html(html1);
@@ -289,13 +294,16 @@ function getNewProductInformation(productId, type, productKey) {
             let price = formatCurrency(data.product.giasanpham);
             $("#" + price_id).html(price);
             let html1 = "Size: ";
+            let listSize = [];
             for (let item of data.listDetailProduct) {
-                html1 += `<button class="btn btn-secondary"
-                ${data.product.idsize == item.idsize ? "disabled" : ""}
-                onclick="getNewProductInformation(${
-                    item.id
-                }, 'size', ${keyProduct})">${item.tensize}
-                </button>`;
+                if (!listSize.includes(item.idsize)) {
+                    listSize.push(item.idsize);
+                        html1 += `<button class="btn btn-secondary"
+                    ${data.product.idsize == item.idsize ? "disabled" : ""}
+                    onclick="getNewProductInformation(${item.id
+                            }, 'size', ${keyProduct})">${item.tensize}
+                    </button>`;
+                }
             }
             $("#" + size_id).html(html1);
 

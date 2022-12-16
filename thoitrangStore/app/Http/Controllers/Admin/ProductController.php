@@ -24,13 +24,13 @@ class ProductController extends Controller
     }
 
     public function create(){
-        $params['productType'] = loaisanpham::all();
+        $params['productType'] = loaisanpham::where('trangthai', 1)->get();;
         return view('adminPages.productmaster.create',$params);
     }
 
     public function update($id){
         try {
-            $params['productType'] = loaisanpham::all();
+            $params['productType'] = loaisanpham::where('trangthai', 1)->get();;
             $params['products'] = sanpham::where('id',$id)->first();
             return view('adminPages.productmaster.update',$params);
         } catch (Exception $e) {
@@ -40,7 +40,14 @@ class ProductController extends Controller
 
     public function store(Request $request){
         try{
-            $data = $request->input();
+            $data = $request->validate([
+                "id" => 'nullable',
+                "macodesanpham" => 'required|unique:sanpham',
+                "ten_sp" => 'required|min:3',
+                "idloaisanpham" => 'required',
+                "mota" => "required|min:10",
+                "trangthai" => 'required'
+                ]);
             $date = date(today());
             if(isset($data['id'])){
                 $masterProduct = sanpham::find($data['id']);

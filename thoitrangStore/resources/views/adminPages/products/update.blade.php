@@ -80,7 +80,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group col-sm-6 mb-4" style="float: left">
+                        <div class="form-group col-sm-12 mb-4" style="float: left">
                             <label class="col-sm-12"><b>Trạng thái</b><span class="input__required">*</span></label>
                             <div class="col-sm-12 border-bottom">
                                 <select name="trangthai" class="form-select shadow-none p-0 border-0 form-control-line">
@@ -89,12 +89,12 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group mb-4">
+                        <!-- <div class="form-group mb-4">
                             <label class="col-md-12 p-0"><b>Mô tả sản phẩm</b><span class="input__required">*</span></label>
                             <div class="col-md-12 border-bottom p-0">
                                 <input type="text" class="form-control p-0 border-0" name="mota"  value="{{$products->sanphams->mota}}"/>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group mb-4">
                             <div class="col-sm-12">
                                 <button class="btn btn-success">Lưu</button>

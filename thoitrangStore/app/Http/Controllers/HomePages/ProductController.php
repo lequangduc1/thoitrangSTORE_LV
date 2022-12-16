@@ -16,9 +16,10 @@ class ProductController extends Controller
 
     public function index(Request $request){
         $query = $request->query('category');
-        $allProduct = $this->getALlMasterProduct();
 
+        $allProduct = $this->getALlMasterProduct();
         $params['allMasterProduct'] = $this->getAllMasterProductValid($allProduct);
+
         $params['sizeProduct'] = kickthuocsanpham::all();
         $params['colorProduct'] = mausanpham::all();
         if($query){
@@ -43,7 +44,7 @@ class ProductController extends Controller
         //get all category
         $params['allCategory'] = loaisanpham::where('trangthai', 1)->get();
         //get product information
-        $params['productDetail'] = chitietsanpham::join('sanpham', 'sanpham.id', '=', 'chitietsanpham.id')
+        $params['productDetail'] = chitietsanpham::join('sanpham', 'sanpham.id', '=', 'chitietsanpham.idsanpham')
                                                 ->where('chitietsanpham.trangthai', 1)
                                                 ->where('chitietsanpham.id', $produceCode)
                                                 ->first();
@@ -52,7 +53,7 @@ class ProductController extends Controller
         $params['size_id'] = $params['productDetail']->idsize;
         $params['color_id'] = $params['productDetail']->idmau;
         $params['categoryId'] = $params['productDetail']->idloaisanpham;
-        $params['productRelated'] = chitietsanpham::join('sanpham', 'sanpham.id', '=', 'chitietsanpham.id')
+        $params['productRelated'] = chitietsanpham::join('sanpham', 'sanpham.id', '=', 'chitietsanpham.idsanpham')
                                                     ->where('chitietsanpham.trangthai', 1)
                                                     ->where('idloaisanpham', $params['productDetail']->idloaisanpham)
                                                     ->where('chitietsanpham.id', '<>', $produceCode)
@@ -109,16 +110,15 @@ class ProductController extends Controller
         $count0 = 0;
         foreach ($listMasterProduct as $masterProduct) {
             if ($masterProduct->loaisanpham->trangthai == 1) {
+
                 $count1 = 0;
                 $checkLate = false;
                 $listDetailProduct = $masterProduct->chitiet->where('trangthai', 1);
                 if (count($listDetailProduct) > 0) {
                     foreach ($listDetailProduct as $product) {
-                        if ($product->sizes->trangthai == 1 && $product->maus->trangthai == 1) {
                             $resArr[$count0][$count1] = $product;
                             $count1++;
                             $checkLate = true;
-                        }
                     }
                     if ($checkLate) {
                         $count0++;
@@ -131,9 +131,7 @@ class ProductController extends Controller
     private function validateProduct($listDetailProduct) {
         $resArr = [];
         foreach($listDetailProduct as $product) {
-            if($product->maus->trangthai == 1 && $product->sizes->trangthai == 1) {
-                $resArr[] = $product;
-            }
+            $resArr[] = $product;
         }
         return $resArr;
     }
