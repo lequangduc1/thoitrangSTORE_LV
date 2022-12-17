@@ -35,7 +35,7 @@ function filter(){
 
         const dataColor = productItem[0].getAttribute('data-color');
         const dataSize = productItem[0].getAttribute('data-size');
-
+        console.log(typeof dataSize);
         if(color.length > 0 || size.length > 0){
             if(color.indexOf(dataColor) >= 0 || size.indexOf((dataSize)) >= 0 ){
                 productWrapper[i].style.display = "";

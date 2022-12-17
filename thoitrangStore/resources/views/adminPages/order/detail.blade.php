@@ -80,52 +80,67 @@
 
                         </div>
                         <div class="order__detail__action">
-                            @if($order->trangthai_dh != 4)
-                            @if($order->trangthai_dh != 3)
-                                <a
-                                    href="{{route('admin.order.update-status',[$order->id, 0])}}"
-                                    class="btn btn-info">
-                                    @if($order->trangthai_dh == 0)
-                                        <i class="fas fa-check-circle" aria-hidden="true"></i>
-                                    @endif
-                                    Đơn mới
-                                </a>
-                                <a
-                                    href="{{route('admin.order.update-status',[$order->id, 1])}}"
-                                    class="btn btn-warning">
-                                    @if($order->trangthai_dh == 1)
-                                        <i class="fas fa-check-circle" aria-hidden="true"></i>
-                                    @endif
-                                    Đang xử lý
-                                </a>
-                                <a
-                                    href="{{route('admin.order.update-status',[$order->id, 2])}}"
-                                    class="btn btn-success">
-                                    @if($order->trangthai_dh == 2)
-                                        <i class="fas fa-check-circle" aria-hidden="true"></i>
-                                    @endif
-                                    Đã xác nhận
-                                </a>
-                            @endif
+                            @php
+                                if($order->trangthai_dh == 0 || $order->trangthai_dh == 1 || $order->trangthai_dh == 2){
+                                    $newUrl = route('admin.order.update-status',[$order->id, 0]);
+                                    $processUrl = route('admin.order.update-status',[$order->id, 1]);
+                                    $confirmUrl = route('admin.order.update-status',[$order->id, 2]);
+                                    $finiedUrl = route('admin.order.update-status',[$order->id, 3]);
+                                    $detroyUrl = route('admin.order.update-status',[$order->id, 4]);
+                                }elseif($order->trangthai_dh == 3){
+                                    $newUrl = 'javascript:void(0)';
+                                    $processUrl = 'javascript:void(0)';
+                                    $confirmUrl = 'javascript:void(0)';
+                                    $finiedUrl = route('admin.order.update-status',[$order->id, 3]);
+                                    $detroyUrl = route('admin.order.update-status',[$order->id, 4]);
+                                }else{
+                                    $newUrl = 'javascript:void(0)';
+                                    $processUrl = 'javascript:void(0)';
+                                    $confirmUrl = 'javascript:void(0)';
+                                    $finiedUrl = 'javascript:void(0)';
+                                    $detroyUrl =  'javascript:void(0)';
+                                }
+                            @endphp
                             <a
-                                href="{{route('admin.order.update-status',[$order->id, 3])}}"
+                                href="{{$newUrl}}"
+                                class="btn btn-info">
+                                @if($order->trangthai_dh == 0)
+                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                @endif
+                                Đơn mới
+                            </a>
+                            <a
+                                href="{{$processUrl}}"
+                                class="btn btn-warning">
+                                @if($order->trangthai_dh == 1)
+                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                @endif
+                                Đang xử lý
+                            </a>
+                            <a
+                                href="{{$confirmUrl}}"
+                                class="btn btn-success">
+                                @if($order->trangthai_dh == 2)
+                                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                @endif
+                                Đã xác nhận
+                            </a>
+                            <a
+                                href="{{$finiedUrl}}"
                                 class="btn btn-primary">
                                 @if($order->trangthai_dh == 3)
                                     <i class="fas fa-check-circle" aria-hidden="true"></i>
                                 @endif
                                 Hoàn thành
                             </a>
-                            @endif
-                            @if($order->trangthai_dh != 3)
                             <a
-                                href="{{$order->trangthai_dh == 4 ? 'javascript:void(0)':route('admin.order.update-status',[$order->id, 4])}}"
+                                href="{{$detroyUrl}}"
                                 class="btn btn-danger">
                                 @if($order->trangthai_dh == 4)
                                     <i class="fas fa-check-circle" aria-hidden="true"></i>
                                 @endif
                                 Hủy
                             </a>
-                            @endif
                         </div>
                     </div>
 

@@ -26,7 +26,7 @@
                 <div class="checkbox-list">
                     @foreach($allColor as $color)
                     <a href="javascript:void(0)" class="filter">
-                        <span class="filter__color filter__option" data-color="color_{{$color->id}}" style="background-color: {{$color->tenmau}};"></span>
+                        <span class="filter__color filter__option" data-color="color_{{$color->id}}" style="background-color: {{$color->code}};"></span>
                     </a>
                     @endforeach
                 </div>
@@ -140,7 +140,7 @@
                                 @php
                                 $listSize[] = $product->idsize;
                                 @endphp
-                                <button class="btn btn-secondary" {{ ($key == 0) ? 'disabled' : '' }} onclick="getProductInformation({{$product->id}}, 'size', {{$keyProduct}})">
+                                <button class="btn btn-secondary"  {{ ($key == 0) ? 'disabled' : '' }} onclick="getProductInformation({{$product->id}}, 'size', {{$keyProduct}})">
                                     {{ $product->sizes->tensize  }}
                                 </button>
                                 @endif
@@ -154,8 +154,7 @@
                                 @endforeach
                             </h6>
                         </div>
-
-                        <div class="pi-price" id="price_{{$keyProduct}}">{{number_format($price,0,',','.').' VND' }}</div>
+                        <input type="hidden" id="" value=""/>
                         <a href="{{route('home.cart.add-to-cart', $firstProduct->id)}}" class="btn btn-default add2cart" id="link_{{$keyProduct}}">Thêm vào giỏ</a>
                     </div>
                 </div>
