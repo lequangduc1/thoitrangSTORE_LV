@@ -10,20 +10,23 @@ use Illuminate\Support\Facades\Session;
 class CartController extends Controller
 {
     public function index(){
+
         $params['total'] = getCart()['total'];
         $params['allProductInCart'] = getCart()['allProductInCart'];
         return view('homePages.cart.index', $params);
+
     }
 
 
     public function  addToCart($productId, Request $request){
         try{
             $query = $request->query('quality');
-            $productInformation = chitietsanpham::join('sanpham', 'chitietsanpham.idsanpham', '=', 'sanpham.id')
-                                    ->where('sanpham.trangthai', 1)
-                                    ->where('chitietsanpham.id', $productId)
-                                    ->first();
-
+            $productInformation = chitietsanpham::where('chitietsanpham.id', $productId)
+                ->select('chitietsanpham.*', 'sanpham.ten_sp as ten_sp','sanpham.macodesanpham as macodesanpham')
+                ->join('sanpham', 'sanpham.id', '=', 'chitietsanpham.idsanpham')
+                ->where('chitietsanpham.trangthai', 1)
+                ->first();
+            // dd($productInformation);
             $sessionCurrent = Session::get('cart') ?? array();
             if(array_key_exists('product_'.$productId, $sessionCurrent)){
                 if($query && ($query + $sessionCurrent['product_'.$productId]['quality'] > $productInformation->soluong)){
@@ -58,6 +61,7 @@ class CartController extends Controller
     public function removeCart($productId){
         try{
             $sessionCurrent = Session::get('cart') ?? array();
+
             if(array_key_exists('product_'.$productId, $sessionCurrent)){
                 if($sessionCurrent['product_'.$productId]['quality'] > 1){
                     $sessionCurrent['product_'.$productId]['quality'] = $sessionCurrent['product_'.$productId]['quality'] - 1;
@@ -74,6 +78,7 @@ class CartController extends Controller
 
     public function updateQuality(Request $request){
         try{
+
             $sessionCurrent = Session::get('cart') ?? array();
             $params = $request->input();
             unset($params['_token']);

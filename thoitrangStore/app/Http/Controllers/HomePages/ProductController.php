@@ -48,6 +48,7 @@ class ProductController extends Controller
                                                 ->where('chitietsanpham.trangthai', 1)
                                                 ->where('chitietsanpham.id', $produceCode)
                                                 ->first();
+
         $listDetailProduct = $params['productDetail']->sanphams->chitiet->where('trangthai', 1);
         $params['listProductDetail']  = $this->validateProduct($listDetailProduct);
         $params['size_id'] = $params['productDetail']->idsize;

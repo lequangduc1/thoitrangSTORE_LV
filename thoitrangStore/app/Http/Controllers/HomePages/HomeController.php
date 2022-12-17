@@ -66,9 +66,7 @@ class HomeController extends Controller
         $resArr = [];
         $listProduct = chitietsanpham::where('trangthai',1)->where('idsanpham', $id)->get();
         foreach($listProduct as $product) {
-            if($product->sizes->trangthai == 1 && $product->maus->trangthai == 1) {
-                $resArr[] = $product;
-            }
+            $resArr[] = $product;
         }
         foreach($resArr as $item) {
             $item['tensize'] = $item->sizes->tensize;

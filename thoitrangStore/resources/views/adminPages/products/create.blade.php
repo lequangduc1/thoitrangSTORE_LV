@@ -92,7 +92,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group col-sm-6 mb-4" style="float: left">
+                        <div class="form-group col-sm-12 mb-4" style="float: left">
                             <label class="col-sm-12"><b>Trạng thái</b><span class="input__required">*</span></label>
                             <div class="col-sm-12 border-bottom">
                                 <select name="trangthai" class="form-select shadow-none p-0 border-0 form-control-line" required>
