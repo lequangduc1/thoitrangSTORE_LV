@@ -16,13 +16,9 @@
             <div class="col-md-6 col-sm-6 additional-nav">
                 <ul class="list-unstyled list-inline pull-right">
                     <li>
-                        <a href="{{route('home.account.index')}}">Tài khoản</a>
-                    </li>
-                    <li>
-                        <a href="shop-wishlist.html">Danh sách yêu thích</a>
-                    </li>
-                    <li>
-                        <a href="shop-checkout.html">Thanh toán</a>
+                        @if(\Illuminate\Support\Facades\Auth::guard('customer')->check())
+                            <a href="{{route('home.account.index')}}">Quản lí tài khoản</a>
+                        @endif
                     </li>
                     @if(\Illuminate\Support\Facades\Auth::guard('customer')->check())
                         <li><a href="{{route('home.auth.logout')}}">Đăng xuất</a></li>

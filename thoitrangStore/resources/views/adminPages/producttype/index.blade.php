@@ -52,8 +52,8 @@
                                                 {{$value->trangthai == 1 ? 'Hiện' : 'Ẩn'}}
                                             </div>
                                         </td>
-                                        <td>{{$value->created_at}}</td>
-                                        <td>{{$value->updated_at}}</td>
+                                        <td>{{$value->created_at ? date_format($value->created_at,"d/m/Y") : 'null'}}</td>
+                                        <td>{{$value->updated_at ? date_format($value->updated_at,"d/m/Y") : 'null'}}</td>
                                         <td>
                                             <a href="{{route('admin.producttype.update', $value->id)}}"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>
                                         </td>

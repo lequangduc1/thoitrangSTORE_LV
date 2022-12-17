@@ -31,36 +31,45 @@
                         </thead>
                         <tbody>
                             @if(!is_array($khachhang))
-                            @foreach($khachhang as $key => $value)
-                            <tr>
-                                <td><b>{{$key+1}}</b></td>
-                                <td>{{$value->hovaten}}</td>
-                                <td>{{$value->email}}</td>
-                                <td>{{$value->diachi}}</td>
-                                <td>{{$value->sodienthoai}}</td>
-                                <td style="text-align:center">
-                                    @if($value->email_verify == 1)
-                                    <i class="fa fa-check text-success"></i>
-                                    @else
-                                    <i style="font-size: 20px; font-weight: 800;" class="text-danger">x</i>
-                                    @endif
-                                </td>
-                                <td>
-                                    <div class="btn {{$value->trangthai == 1 ? 'btn-success' : 'btn-danger'}}" style="
+
+                                @foreach($khachhang as $key => $value)
+                                    <tr>
+                                        <td><b>{{$key+1}}</b></td>
+                                        <td>{{$value->hovaten}}</td>
+                                        <td>{{$value->email}}</td>
+                                        <td>{{$value->diachi}}</td>
+                                        <td>{{$value->sodienthoai}}</td>
+                                        <td>
+                                            <div class="btn {{$value->email_verify == 1 ? 'btn-success' : 'btn-danger'}}"
+                                                 style="
                                                         color: #000;
                                                         border-radius: 5px;
-                                                        width: 100px">
-                                        {{$value->trangthai == 1 ? 'Hiện' : 'Ẩn'}}
-                                    </div>
-                                </td>
-                                <td>{{$value->created_at}}</td>
-                                <td>{{$value->updated_at}}</td>
-                                <td>
-                                    {{-- <a href="#"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>--}}
-                                    <a href="{{route('admin.customers.update', $value->id)}}"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>
-                                </td>
-                            </tr>
-                            @endforeach
+                                                        width: 150px"
+
+                                            >
+                                                <b>{{$value->email_verify == 1 ? 'Đã kích hoạt' : 'Chưa kích hoạt'}}</b>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="btn {{$value->trangthai == 1 ? 'btn-success' : 'btn-danger'}}"
+                                                 style="
+                                                        color: #000;
+                                                        border-radius: 5px;
+                                                        width: 100px"
+
+                                            >
+                                                <b>{{$value->trangthai == 1 ? 'Hiện' : 'Ẩn'}}</b>
+                                            </div>
+                                        </td>
+                                        <td>{{$value->created_at ? date_format($value->created_at,"d/m/Y") : 'null'}}</td>
+                                        <td>{{$value->updated_at ? date_format($value->updated_at,"d/m/Y") : ''}}</td>
+                                        <td>
+{{--                                            <a href="#"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>--}}
+                                            <a href="{{route('admin.customers.update', $value->id)}}"><span class="icon-action"><i class="fa fa-edit" aria-hidden="true"></i></span></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
                             @endif
                         </tbody>
                     </table>

@@ -36,17 +36,21 @@
                         </div>
                     </div>
 
-                    <div class="form-group mb-4">
-                        <label class="col-md-12 p-0">Phần trăm giảm<span style="color: red"> *</span></label>
-                        <div class="col-md-12 border-bottom p-0">
-                            <input type="text" name="phantramgiam" class="form-control p-0 border-0" required>
+                        <div class="form-group mb-4">
+                            <label class="col-md-12 p-0">Phần trăm giảm<span style="color: red"> *</span></label>
+                            <div class="col-md-12 border-bottom p-0">
+                                <input type="number" name="phantramgiam" class="form-control p-0 border-0" min="1" max = "100" required>
+                            </div>
+
                         </div>
                     </div>
 
-                    <div class="form-group mb-4">
-                        <label class="col-md-12 p-0">số lượng<span style="color: red"> *</span></label>
-                        <div class="col-md-12 border-bottom p-0">
-                            <input type="text" name="soluong" class="form-control p-0 border-0" required>
+
+                        <div class="form-group mb-4">
+                            <label class="col-md-12 p-0">số lượng<span style="color: red"> *</span></label>
+                            <div class="col-md-12 border-bottom p-0">
+                                <input type="number" name="soluong" class="form-control p-0 border-0" required>
+                            </div>
                         </div>
                     </div>
 
