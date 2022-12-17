@@ -7,6 +7,9 @@
         <li class="list-group-item clearfix {{ (Request::is('account/order-list') || Request::is('account/order-detail')) ? 'active' : '' }}">
             <a href="{{route('home.account.order-list')}}"><i class="fa fa-angle-right"></i>Đơn hàng</a>
         </li>
+        <li class="list-group-item clearfix {{ (Request::is('account/change-password') || Request::is('account/change-password')) ? 'active' : '' }}">
+            <a href="{{route('home.account.change_password')}}"><i class="fa fa-angle-right"></i>Đổi mật khẩu</a>
+        </li>
     </ul>
 </div>
 <!-- END SIDEBAR -->

@@ -3,19 +3,15 @@
 namespace App\Http\Controllers\HomePages;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\HomePages\AuthRequest;
 use App\Models\Customer;
+use App\Models\khachhang;
 use App\Models\VerifyCustomer;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password;
-use Illuminate\Validation\ValidationException;
-use Psy\Util\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 
 class AuthController extends Controller
@@ -218,5 +214,47 @@ class AuthController extends Controller
         return redirect()->route('home.auth.login_form')->with(['login_success'=>'Lấy lại mật khẩu thành công!']);
 
     }
+    public function loginWithGoogle(){
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function callbackGoogle(){
+        try{
+            $user = Socialite::driver('google')->user();
+            $is_user = khachhang::where('email', $user->getEmail())->first();
+
+            if(!$is_user){
+
+                $data = [
+                    'hovaten'=>$user->getName(),
+                    'email'=>$user->getEmail(),
+                    'password'=>Hash::make($user->getName()),
+                    'trangthai'=>1,
+                    'email_verify'=>1,
+                    'google_id'=>$user->getId()
+                ];
+                $newUser = new khachhang();
+                $newUser->fill($data);
+                $newUser->save();
+                Auth::guard('customer')->login($newUser);
+
+            }else{
+                $updateUser = khachhang::find($is_user->id);
+                $updateUser->google_id = $user->getId();
+                $updateUser->email_verify=1;
+                $updateUser->save();
+                Auth::guard('customer')->login($updateUser);
+            }
+
+            $url_previous = Session::get('url_previous');
+            if($url_previous === 'http://127.0.0.1:8000/auth'){
+                return redirect()->to('http://127.0.0.1:8000');
+            }
+            return redirect()->to($url_previous);
+        }catch (\Exception $exception){
+            dd($exception);
+        }
+    }
+
 
 }
