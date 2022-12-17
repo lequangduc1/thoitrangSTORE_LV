@@ -201,6 +201,7 @@ function getProductInformation(productId, type, productKey) {
             let listSize = [];
             for (let item of data.listDetailProduct) {
                 if (!listSize.includes(item.idsize)) {
+                    console.log("aa")
                     html1 += `<button class="btn btn-secondary"
                     ${data.product.idsize == item.idsize ? "disabled" : ""}
                     onclick="getProductInformation(${

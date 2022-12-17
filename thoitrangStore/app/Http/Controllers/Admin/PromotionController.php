@@ -49,32 +49,36 @@ class PromotionController extends Controller
      *   public function postUpdate($checkForm co du lieu){}
      **/
     public function store(Request $request){
+        $date = date(today());
+        $data = $request->validate([
+            'ten_km' => 'required',
+            'ma_km' => 'required',
+            'phantramgiam' => 'required|max:2',
+            'soluong' => 'required',
+            'conlai' => 'nullable',
+            'ngaybatdau_km' => 'required|date|after_or_equal:' . $date,
+            'ngayketthuc_km' => 'required|date|after:ngaybatdau_km',
+            'trangthai' => 'required'
+        ],
+        [
+                'ngaybatdau_km.after_or_equal' => "Ngày bắt đầu khuyến mãi phải bắt đầu từ hôm nay trở đi",
+                'ngayketthuc_km.after' => "Ngày kết thúc khuyến mãi phải lớn hơn ngày bắt đầu khuyến mãi"
+        ]);
         try{
             $checkForm = $request->id;
-            $date = date(today());
-//            $validator = Validator::make($request->all(), [
-//                'ten_km' => 'required',
-//                'ma_km' => 'required',
-//                'phantramgiam' => 'required|max:2',
-//                'soluong' => 'required',
-//                'conlai' => 'required',
-//                'ngaybatdau_km' => 'required',
-//                'ngayketthuc_km' => 'required',
-//            ]);
+
 //            dd($validator);
 //            if ($validator->fails()) {
 //                Toastr::error('Lưu thất bại');
 //                return redirect()->route('admin.promotion.index');
 //            }
             if(isset($checkForm)){
-                $data = $request->input();
                 $data['update_by'] = "duclq@gmail.com";
                 $data['updated_at'] = $date;
                 $promotion = khuyenmai::find($checkForm); //UPDATE
                 $promotion->fill($data);
                 $promotion->save();
             }else{
-                $data = $request->input();
                 $data['create_by'] = "duclq";
                 $data['conlai'] = $request->soluong;
                 $data['created_at'] = $date;
