@@ -9,6 +9,7 @@ use App\Models\kickthuocsanpham;
 use App\Models\loaisanpham;
 use App\Models\mausanpham;
 use App\Models\sanpham;
+use http\Params;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -135,5 +136,25 @@ class ProductController extends Controller
             $resArr[] = $product;
         }
         return $resArr;
+    }
+
+    public function filter(Request $request){
+        $produdctId = $request->query('product_id');
+        $productMaster = sanpham::where('id', $produdctId)->get();
+        $color = [];
+        $size = [];
+        foreach($productMaster as $product){
+            foreach($product->chitiet as $detail){
+                if(!in_array($detail->idmau,$color)){
+                    array_push($color, 'color_'.$detail->idmau);
+                }
+
+                if(!in_array($detail->idsize, $size)){
+                    array_push($size, 'size_'.$detail->idsize);
+                }
+            }
+        }
+
+        return response()->json([$color, $size]);
     }
 }

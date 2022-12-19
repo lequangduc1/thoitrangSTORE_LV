@@ -8,10 +8,33 @@ $(document).ready(function(){
         filter();
     })
 
+    $('#product__list__search').on('keyup', function(){
+        let word = $(this).val();
+        word = conventTitleToSLug(word);
+
+        search(word)
+
+    })
 })
 
 function addQuality(productId){
 
+}
+
+function search(word){
+    var productList = document.querySelector('.product-list');
+    var productWrapper = productList.getElementsByClassName('product-wrapper');
+
+    for( i=0; i<productWrapper.length; i++){
+        const productItem = productWrapper[i].querySelector('.product-item');
+        let productName = productItem.getAttribute('data-productname');
+        productName = conventTitleToSLug(productName);
+        if(productName.indexOf(word) >= 0){
+            productItem.parentElement.style.display = "";
+        }else{
+            productItem.parentElement.style.display = 'none';
+        }
+    }
 }
 
 function filter(){
@@ -31,23 +54,35 @@ function filter(){
     var productList = document.querySelector('.product-list');
     var productWrapper = productList.getElementsByClassName('product-wrapper');
     for( i=0; i<productWrapper.length; i++){
-        const productItem = productWrapper[i].getElementsByClassName('product-item');
-
-        const dataColor = productItem[0].getAttribute('data-color');
-        const dataSize = productItem[0].getAttribute('data-size');
-        console.log(typeof dataSize);
-        if(color.length > 0 || size.length > 0){
-            if(color.indexOf(dataColor) >= 0 || size.indexOf((dataSize)) >= 0 ){
-                productWrapper[i].style.display = "";
+        const productItem = productWrapper[i].querySelector('.product-item');
+        const productId = productItem.getAttribute('data-product');
+        $.ajax({
+            type: "GET",
+            url: '/product/filter',
+            data:{
+                product_id: productId
+            },
+            success: (res)=>{
+                if(res){
+                    const dataSize = [];
+                    const dataColor = [];
+                    dataColor.push(...res[0]);
+                    dataSize.push(...res[1]);
+                    console.log(color);
+                    if(color.length > 0 || size.length > 0){
+                        if(check_in_array(color, dataColor) || check_in_array(size, dataSize) ){
+                            productItem.parentElement.style.display = "";
+                        }
+                        if(!check_in_array(color, dataColor) && !check_in_array(size, dataSize) ){
+                            productItem.parentElement.style.display = "none";
+                        }
+                    }else{
+                        productItem.parentElement.style.display = "";
+                    }
+                }
             }
-            if(color.indexOf(dataColor) == -1 && size.indexOf((dataSize)) == -1 ){
-                productWrapper[i].style.display = "none";
-            }
-        }else{
-            productWrapper[i].style.display = "";
-        }
 
-
+        })
 
     }
 
@@ -363,4 +398,41 @@ function getNewProductInformation(productId, type, productKey) {
             $("#" + color_id).html(html);
         });
     }
+}
+
+
+function check_in_array(array1, array2){
+    var isCheck = false;
+    for(var i = 0; i < array2.length; i++){
+        if(array1.indexOf(array2[i]) >= 0){
+            isCheck = true;
+        }
+    }
+
+    return isCheck;
+}
+
+function conventTitleToSLug(str){
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, 'e');
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, 'i');
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, 'o');
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, 'u');
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y');
+    str = str.replace(/đ/g, 'd');
+    str = str.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g, 'A');
+    str = str.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g, 'E');
+    str = str.replace(/Ì|Í|Ị|Ỉ|Ĩ/g, 'I');
+    str = str.replace(/Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g, 'O');
+    str = str.replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, 'U');
+    str = str.replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g, 'Y');
+    str = str.replace(/Đ/g, 'D');
+    // Some system encode vietnamese combining accent as individual utf-8 characters
+    // Một vài bộ encode coi các dấu mũ, dấu chữ như một kí tự riêng biệt nên thêm hai dòng này
+    str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ''); // ̀ ́ ̃ ̉ ̣  huyền, sắc, ngã, hỏi, nặng
+    str = str.replace(/\u02C6|\u0306|\u031B/g, ''); // ˆ ̆ ̛  Â, Ê, Ă, Ơ, Ư
+    str = str.replace(/ /g, '-');
+    str = str.replace(/[^\w-]+/g, '');
+    str = str.toLowerCase();
+    return str;
 }
