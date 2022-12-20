@@ -90,7 +90,7 @@
                             @endif
                         </div>
                         <div class="product-page-cart">
-                            <form method="GET" action="{{route('home.cart.add-to-cart', $productDetail->id)}}">
+                            <form method="GET" id="product__page__cart__form" action="{{route('home.cart.add-to-cart', $productDetail->id)}}">
                                 <div class="product-quantity">
                                     <input id="product-quantity" type="number" style="-moz-appearance: textfield;" value="1" name="quality" class="form-control input-sm">
                                 </div>

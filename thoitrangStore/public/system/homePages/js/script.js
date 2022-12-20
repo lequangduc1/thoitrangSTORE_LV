@@ -157,6 +157,7 @@ function hanleChangeOptionProductDetail(productId){
             if(res){
                 $('#product_left_text').html('<span id="product_left_text">Còn lại ('+res.productDetail.soluong+')</span>')
                 $('#product_detail_img').attr('src', '/' + res.productDetail.anhsanpham);
+                $('#product__page__cart__form').attr('action', '/cart/'+res.productDetail.id)
                 $(".zoomImg").attr(
                     "src",
                     "/" + res.productDetail.anhsanpham
@@ -324,7 +325,6 @@ function getNewProductInformation(productId, type, productKey) {
                 id: productId,
             },
         }).done((data) => {
-            console.log(data);
             $(`#${link_id}`).attr("href", "/cart/" + data.product.id);
             $("#" + img_id).attr("src", data.product.anhsanpham);
             let price = formatCurrency(data.product.giasanpham);
