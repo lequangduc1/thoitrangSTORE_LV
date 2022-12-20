@@ -17,16 +17,16 @@ class ProductType extends Seeder
         DB::statement("ALTER TABLE `loaisanpham` AUTO_INCREMENT = 1");
 
         DB::table('loaisanpham')->insert([
-            'tenloai'=>"quần áo",
-            'trangthai'=>1,
-            'created_at'=>date(today()),
-            'updated_at'=>date(today()),
+            'tenloai' => "Áo",
+            'trangthai' => 1,
+            'created_at' => date(today()),
+            'updated_at' => date(today()),
         ]);
         DB::table('loaisanpham')->insert([
-            'tenloai'=>"Giày dép",
-            'trangthai'=>0,
-            'created_at'=>date(today()),
-            'updated_at'=>date(today()),
+            'tenloai' => "Áo Khoác",
+            'trangthai' => 1,
+            'created_at' => date(today()),
+            'updated_at' => date(today()),
         ]);
     }
 }

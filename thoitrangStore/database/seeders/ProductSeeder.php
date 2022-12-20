@@ -18,47 +18,67 @@ class ProductSeeder extends Seeder
         DB::statement("ALTER TABLE `sanpham` AUTO_INCREMENT = 1");
 
         DB::table('sanpham')->insert([
-            'ten_sp'=>"Giày thể thao",
-            'macodesanpham'=>"GTT102",
-            'mota'=>"GTT102",
-            'trangthai'=>1,
-            'idloaisanpham' => 2,
-            'created_at'=>date(today()),
-            'updated_at'=>date(today()),
+            'ten_sp' => "Áo caro",
+            'macodesanpham' => "A00",
+            'mota' => "A00",
+            'trangthai' => 1,
+            'idloaisanpham' => 1,
+            'created_at' => date(today()),
+            'updated_at' => date(today()),
         ]);
         DB::table('sanpham')->insert([
-            'ten_sp'=>"Áo thể thao",
-            'macodesanpham'=>"ATT102",
-            'mota'=>"ATT102",
-            'trangthai'=>1,
-            'idloaisanpham' => 1,
-            'created_at'=>date(today()),
-            'updated_at'=>date(today()),
+            'ten_sp' => "Áo khoác caro",
+            'macodesanpham' => "AK00",
+            'mota' => "AK00",
+            'trangthai' => 1,
+            'idloaisanpham' => 2,
+            'created_at' => date(today()),
+            'updated_at' => date(today()),
+        ]);
+        DB::table('sanpham')->insert([
+            'ten_sp' => "Áo khoác caro",
+            'macodesanpham' => "AK00",
+            'mota' => "AK00",
+            'trangthai' => 1,
+            'idloaisanpham' => 2,
+            'created_at' => date(today()),
+            'updated_at' => date(today()),
         ]);
 
         DB::statement("DELETE FROM `chitietsanpham`");
         DB::statement("ALTER TABLE `chitietsanpham` AUTO_INCREMENT = 1");
         DB::table('chitietsanpham')->insert([
-            'idsanpham'=>1,
-            'idsize'=>1,
-            'idsanpham'=>1,
-            'idmau'=>1,
-            'soluong'=>12,
-            'anhsanpham'=>'',
-            'giasanpham'=>125000,
-            'created_at'=>date(today()),
-            'updated_at'=>date(today()),
+            'idsanpham' => 1,
+            'idsize' => 1,
+            'idsanpham' => 1,
+            'idmau' => 1,
+            'soluong' => 15,
+            'anhsanpham' => '/uploads/product/new/hinh6.png',
+            'giasanpham' => 125000,
+            'created_at' => date(today()),
+            'updated_at' => date(today()),
         ]);
         DB::table('chitietsanpham')->insert([
-            'idsanpham'=>2,
-            'idsize'=>2,
-            'idsanpham'=>2,
-            'idmau'=>2,
-            'soluong'=>12,
-            'anhsanpham'=>'',
-            'giasanpham'=>125000,
-            'created_at'=>date(today()),
-            'updated_at'=>date(today()),
+            'idsanpham' => 2,
+            'idsize' => 2,
+            'idsanpham' => 2,
+            'idmau' => 1,
+            'soluong' => 25,
+            'anhsanpham' => '/uploads/product/new/hinh8.png',
+            'giasanpham' => 175000,
+            'created_at' => date(today()),
+            'updated_at' => date(today()),
+        ]);
+        DB::table('chitietsanpham')->insert([
+            'idsanpham' => 2,
+            'idsize' => 3,
+            'idsanpham' => 2,
+            'idmau' => 3,
+            'soluong' => 20,
+            'anhsanpham' => '/uploads/product/new/hinh8.png',
+            'giasanpham' => 220000,
+            'created_at' => date(today()),
+            'updated_at' => date(today()),
         ]);
     }
 }

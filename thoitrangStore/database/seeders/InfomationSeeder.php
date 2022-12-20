@@ -19,13 +19,13 @@ class InfomationSeeder extends Seeder
         DB::statement("ALTER TABLE `thongtinshop` AUTO_INCREMENT = 1");
 
         DB::table('thongtinshop')->insert([
-            'ten_shop'=>"Shop Thoi Trang",
-            'logo'=>"/uploads/logo_default.png",
-            'favicon'=>"/uploads/logo_default.png",
-            'dien_thoai'=>"038756952",
-            'dia_chi'=>"Address",
-            'email'=>"admin@gmail.com",
-            'iframe'=>"iframe",
+            'ten_shop' => "Shop Thời Trang",
+            'logo' => "/uploads/logo.png",
+            'favicon' => "/uploads/logo.png",
+            'dien_thoai' => " 0283 620 9268",
+            'dia_chi' => "147 - 149 Đường 3 tháng 2, phường 11, quận 10, TP.HCM",
+            'email' => "admin@gmail.com",
+            'iframe' => "iframe",
         ]);
     }
 }

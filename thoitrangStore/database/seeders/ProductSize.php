@@ -17,16 +17,34 @@ class ProductSize extends Seeder
         DB::statement("ALTER TABLE `size` AUTO_INCREMENT = 1");
 
         DB::table('size')->insert([
-            'tensize'=>"15cm",
-            'trangthai'=>1,
-            'created_at'=>date(today()),
-            'updated_at'=>date(today()),
+            'tensize' => "S",
+            'trangthai' => 1,
+            'created_at' => date(today()),
+            'updated_at' => date(today()),
         ]);
         DB::table('size')->insert([
-            'tensize'=>"16cm",
-            'trangthai'=>0,
-            'created_at'=>date(today()),
-            'updated_at'=>date(today()),
+            'tensize' => "M",
+            'trangthai' => 1,
+            'created_at' => date(today()),
+            'updated_at' => date(today()),
+        ]);
+        DB::table('size')->insert([
+            'tensize' => "L",
+            'trangthai' => 1,
+            'created_at' => date(today()),
+            'updated_at' => date(today()),
+        ]);
+        DB::table('size')->insert([
+            'tensize' => "XL",
+            'trangthai' => 0,
+            'created_at' => date(today()),
+            'updated_at' => date(today()),
+        ]);
+        DB::table('size')->insert([
+            'tensize' => "XXL",
+            'trangthai' => 0,
+            'created_at' => date(today()),
+            'updated_at' => date(today()),
         ]);
     }
 }
