@@ -7,6 +7,7 @@ use App\Models\chitietsanpham;
 use App\Models\sanpham;
 use App\Models\loaisanpham;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Yoeunes\Toastr\Facades\Toastr;
 
 class ProductController extends Controller
@@ -42,7 +43,10 @@ class ProductController extends Controller
         try{
             $data = $request->validate([
                 "id" => 'nullable',
-                "macodesanpham" => 'required|unique:sanpham',
+                "macodesanpham" => [
+                    'required',
+                    Rule::unique('sanpham')->ignore($request->id),
+                ],
                 "ten_sp" => 'required|min:3',
                 "idloaisanpham" => 'required',
                 "mota" => "required|min:10",

@@ -17,4 +17,8 @@ class loaisanpham extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function sanphams() {
+        return $this->hasMany(sanpham::class, 'idloaisanpham', 'id');
+    }
 }

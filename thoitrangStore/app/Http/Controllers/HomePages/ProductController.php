@@ -55,11 +55,15 @@ class ProductController extends Controller
         $params['size_id'] = $params['productDetail']->idsize;
         $params['color_id'] = $params['productDetail']->idmau;
         $params['categoryId'] = $params['productDetail']->idloaisanpham;
-        $params['productRelated'] = chitietsanpham::join('sanpham', 'sanpham.id', '=', 'chitietsanpham.idsanpham')
-                                                    ->where('chitietsanpham.trangthai', 1)
-                                                    ->where('idloaisanpham', $params['productDetail']->idloaisanpham)
-                                                    ->where('chitietsanpham.id', '<>', $produceCode)
-                                                    ->get();
+
+        $idLoaiSanPham = $params['productDetail']->sanphams->loaisanpham->id;
+        $idSanPham = $params['productDetail']->sanphams->id;
+        $productRelated = loaisanpham::find($idLoaiSanPham)
+            ->sanphams
+            ->where('id', '!=', $idSanPham)
+            ->where('trangthai', 1);
+        $params['productRelated'] = $this->getAllMasterProductValid($productRelated);
+
         $params['comments'] = DanhGia::where('trangthai', 1)
                                     ->where('masanpham', $params['productDetail']->id)
                                     ->get();
@@ -111,12 +115,14 @@ class ProductController extends Controller
         $resArr = [];
         $count0 = 0;
         foreach ($listMasterProduct as $masterProduct) {
+
             if ($masterProduct->loaisanpham->trangthai == 1) {
 
                 $count1 = 0;
                 $checkLate = false;
                 $listDetailProduct = $masterProduct->chitiet->where('trangthai', 1);
                 if (count($listDetailProduct) > 0) {
+
                     foreach ($listDetailProduct as $product) {
                             $resArr[$count0][$count1] = $product;
                             $count1++;
