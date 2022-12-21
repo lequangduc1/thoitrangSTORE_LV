@@ -59,14 +59,14 @@
                                 $listSize = [];
                                 @endphp
                                 @foreach($listProductDetail as $product)
-                                    @if(!in_array($product->idsize, $listSize))
-                                    @php
-                                    $listSize[] = $product->idsize;
-                                    @endphp
-                                    <button class="btn btn-secondary" {{ ($product->sizes->id == $size_id) ? 'disabled' : '' }} onclick="hanleChangeOptionProductDetail({{ $product->id }})">
-                                        {{ $product->sizes->tensize  }}
-                                    </button>
-                                    @endif
+                                @if(!in_array($product->idsize, $listSize))
+                                @php
+                                $listSize[] = $product->idsize;
+                                @endphp
+                                <button class="btn btn-secondary" {{ ($product->sizes->id == $size_id) ? 'disabled' : '' }} onclick="hanleChangeOptionProductDetail({{ $product->id }})">
+                                    {{ $product->sizes->tensize  }}
+                                </button>
+                                @endif
                                 @endforeach
                             </div>
                             <div class="pull-left" id="color_detail">
@@ -168,22 +168,51 @@
         <div class="col-md-12 col-sm-12">
             <h2>Các sản phẩm liên quan</h2>
             <div class="owl-carousel owl-carousel4">
-                @foreach($productRelated as $product)
-                <div>
-                    <div class="product-item">
+                @foreach($productRelated as $keyProduct => $products)
+                @php
+                $firstProduct = $products[0];
+                $img_url = $firstProduct->anhsanpham;
+                $price = $firstProduct->giasanpham;
+                $productName = $firstProduct->sanphams->ten_sp;
+                $listSize = [];
+                @endphp
+
+                    <div class="product-item" data-product="{{$firstProduct->id}}" data-productname="{{$productName}}">
                         <div class="pi-img-wrapper">
-                            <img src="{{asset('system/homePages/assets/pages/img/products/k1.jpg')}}" class="img-responsive" alt="Berry Lace Dress">
+                            <img src="{{asset($img_url)}}" class="img-responsive" style="max-height: 240px;" alt="{{$productName}}" id="img_{{$keyProduct}}">
                             <div>
-                                <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                                <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                                <a href="{{asset($img_url)}}" class="btn btn-default fancybox-button">Zoom</a>
+                                <a href="{{route('home.product.detail', $firstProduct->id)}}" class="btn btn-default fancybox-fast-view">
+                                    View
+                                </a>
                             </div>
                         </div>
-                        <h3><a href="shop-item.html">{{$product->ten_sp.' '.$product->sizes->tensize.' '.$product->maus->tenmau}}</a></h3>
-                        <div class="pi-price">{{number_format($product->giasanpham)}} VND</div>
-                        <a href="{{route('home.cart.add-to-cart', $product->id)}}" class="btn btn-default add2cart">Thêm vào giỏ hàng</a>
-                        <div class="sticker sticker-new"></div>
+                        <h3><a href="{{route('home.product.detail', $firstProduct->id)}}">{{$productName}}</a></h3>
+                        <div>
+                            <h6 id="size_{{$keyProduct}}">Size:
+                                @foreach($products as $key => $product)
+                                @if(!in_array($product->idsize, $listSize))
+                                @php
+                                $listSize[] = $product->idsize;
+                                @endphp
+                                <button class="btn btn-secondary" {{ ($key == 0) ? 'disabled' : '' }} onclick="getProductInformation({{$product->id}}, 'size', {{$keyProduct}})">
+                                    {{ $product->sizes->tensize  }}
+                                </button>
+                                @endif
+                                @endforeach
+                            </h6>
+                            <h6 id="color_{{$keyProduct}}">Màu:
+                                @foreach($products as $key => $product)
+                                @if($product->idsize == $firstProduct->idsize)
+                                <button {{ $key == 0 ? 'disabled' : '' }} onclick="getProductInformation({{$product->id}}, 'color', {{$keyProduct}})" style="background-color: {{$product->maus->code }};" class="color__button"> </button>
+                                @endif
+                                @endforeach
+                            </h6>
+                        </div>
+                        <input type="hidden" id="" value="" />
+                        <a href="{{route('home.cart.add-to-cart', $firstProduct->id)}}" class="btn btn-default add2cart" id="link_{{$keyProduct}}">Thêm vào giỏ</a>
                     </div>
-                </div>
+                
                 @endforeach
             </div>
         </div>

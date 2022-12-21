@@ -230,7 +230,7 @@ function getProductInformation(productId, type, productKey) {
         }).done((data) => {
             console.log(data);
             $(`#${link_id}`).attr('href', '/cart/'+data.product.id);
-            $("#" + img_id).attr("src", data.product.anhsanpham);
+            $("#" + img_id).attr("src",'/' + data.product.anhsanpham);
             let price = formatCurrency(data.product.giasanpham);
             $("#" + price_id).html(price);
             let html1 = "Size: ";
@@ -281,7 +281,7 @@ function getProductInformation(productId, type, productKey) {
                 id: productId,
             },
         }).done((data) => {
-            $("#" + img_id).attr("src", data.product.anhsanpham);
+            $("#" + img_id).attr("src", '/'+ data.product.anhsanpham);
             $(`#${link_id}`).attr('href', '/cart/'+data.product.id);
             let price = formatCurrency(data.product.giasanpham);
             $("#" + price_id).html(price);
